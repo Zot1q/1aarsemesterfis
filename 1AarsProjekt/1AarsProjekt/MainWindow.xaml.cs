@@ -24,6 +24,7 @@ namespace _1AarsProjekt
         {
             InitializeComponent();
             //Hej
+            //Hej Thomas
         }
     }
 }
