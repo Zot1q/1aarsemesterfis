@@ -9,7 +9,7 @@
       Title="CustomerManagementWindow"
       Background="White">
 
-    <Grid>
+    <Grid Background="#FF55BEC9">
         
     </Grid>
 </Page>

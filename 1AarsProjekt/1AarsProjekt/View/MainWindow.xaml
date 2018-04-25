@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1AarsProjekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800">
     <Grid>
-        
+        <StackPanel Width="200" Height="410" HorizontalAlignment="Left">
+            <Button Content="Kunde Administration" FontSize="14" Width="200" Height="50" Name="Btn_Customer" Click="Btn_Customer_Click"/>
+            <Button Content="Kunde Administration" FontSize="14" Width="200" Height="50"/>
+            <Button Content="Kunde Administration" FontSize="14" Width="200" Height="50"/>
+            <Button Content="Kunde Administration" FontSize="14" Width="200" Height="50"/>
+            <Button Content="Kunde Administration" FontSize="14" Width="200" Height="50"/>
+        </StackPanel>
+        <StackPanel Width="580" HorizontalAlignment="Right">
+            <Frame Name="Main" Content="Frame" HorizontalAlignment="Left" Height="425"  Width="580" Grid.Row="1" VerticalAlignment="Top"/>
+        </StackPanel>
     </Grid>
+
 </Window>
