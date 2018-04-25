@@ -23,6 +23,7 @@ namespace _1AarsProjekt
         public MainWindow()
         {
             InitializeComponent();
+            //Hej
         }
     }
 }
