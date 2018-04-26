@@ -20,6 +20,7 @@ namespace _1AarsProjekt.View
     /// </summary>
     public partial class CustomerManagementWindow : Page
     {
+        CustomerListWindow custListWin = new CustomerListWindow();
         public CustomerManagementWindow()
         {
             InitializeComponent();
@@ -32,5 +33,21 @@ namespace _1AarsProjekt.View
         }
 
         public void CreateCustomer() { }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCreateCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnShowCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+        }
     }
 }

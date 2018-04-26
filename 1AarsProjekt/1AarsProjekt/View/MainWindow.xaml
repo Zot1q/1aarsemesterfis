@@ -48,8 +48,8 @@
                 </StackPanel>
             </Expander>
         </StackPanel>
-        <StackPanel Width="580" HorizontalAlignment="Stretch">
-            <Frame x:Name="Main" Content="Frame" HorizontalAlignment="Right" Height="425"  Width="555" VerticalAlignment="Top"/>
+        <StackPanel Width="580" HorizontalAlignment="Right">
+            <Frame x:Name="Main" Content="" Height="425"  Width="555"/>
         </StackPanel>
     </Grid>
 

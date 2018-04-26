@@ -65,6 +65,9 @@
     <Compile Include="Viewmodel\ProductVM.cs" />
     <Compile Include="Viewmodel\StatisticVM.cs" />
     <Compile Include="Viewmodel\SubscriptionVM.cs" />
+    <Compile Include="View\CustomerListWindow.xaml.cs">
+      <DependentUpon>CustomerListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProductManagementWindow.xaml.cs">
       <DependentUpon>ProductManagementWindow.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
       <DependentUpon>SubscriptionManagementWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AgreementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomerListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
