@@ -28,7 +28,7 @@ namespace _1AarsProjekt.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CreateCustomer(txtName.Text);
+            //CreateCustomer(txtName.Text);
         }
 
         public void CreateCustomer() { }
