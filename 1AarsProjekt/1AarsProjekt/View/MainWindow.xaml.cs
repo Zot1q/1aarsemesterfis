@@ -47,5 +47,10 @@ namespace _1AarsProjekt
         {
             Main.Content = custWin;
         }
+
+        private void Btn_CustomerCreate_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = custWin;
+        }
     }
 }
