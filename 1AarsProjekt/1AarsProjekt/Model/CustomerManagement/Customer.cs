@@ -8,5 +8,7 @@ namespace _1AarsProjekt.Model.CustomerManagement
 {
     class Customer
     {
+        public string Name { get; set; }
+        public strin { get; set; }
     }
 }
