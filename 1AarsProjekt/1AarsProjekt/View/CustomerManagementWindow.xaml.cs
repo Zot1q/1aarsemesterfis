@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _1AarsProjekt.Viewmodel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace _1AarsProjekt.View
     /// </summary>
     public partial class CustomerManagementWindow : Page
     {
+        CustomerVM customerVM = new CustomerVM();
         public CustomerManagementWindow()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace _1AarsProjekt.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //CreateCustomer(txtName.Text);
+            //customerVM.CustCreateGetData(txtName.Text, txtAdress.Text);
         }
 
         public void CreateCustomer() { }
