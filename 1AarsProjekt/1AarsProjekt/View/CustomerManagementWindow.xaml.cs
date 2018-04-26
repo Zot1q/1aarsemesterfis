@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _1AarsProjekt.Model.CustomerManagement;
+using _1AarsProjekt.Model.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +30,15 @@ namespace _1AarsProjekt.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //CreateCustomer(txtName.Text);
+            Customer cust = new Customer();
+            //txtName.Text = cust.Name;
+            //txtAdress.Text = cust.Address;
+            //txtEmail.Text = cust.Email;
+            //txtPhoneNr.Text = Convert.ToString(cust.Phone);
+            //txtContactPerson.Text = cust.ContactPers;
+            //txtExpectedRevenue.Text = Convert.ToString(cust.ExpectRevenue);
+
+            cust.CreateCustomer(txtName.Text, txtAdress.Text, txtEmail.Text, txtPhoneNr.Text, txtContactPerson.Text, txtExpectedRevenue.Text);   
         }
 
         public void CreateCustomer() { }

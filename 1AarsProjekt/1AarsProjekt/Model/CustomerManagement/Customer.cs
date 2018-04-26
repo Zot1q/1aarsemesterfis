@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _1AarsProjekt.Model.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +16,34 @@ namespace _1AarsProjekt.Model.CustomerManagement
         public string ContactPers { get; set; }
         public double ExpectRevenue { get; set; }
 
-
-        public static void CreateCustomer(string Name, string Address, string Email,
-            int Phone, string ContactPers, double ExpectRevenue)
+        public void CreateCustomer (string Name, string Address, string Email, string Phone, string ContactPers, string ExpectRevenue)
         {
             Customer cust = new Customer();
+            
             cust.Name = Name;
             cust.Address = Address;
             cust.Email = Email;
-            cust.Phone = Phone;
+            int number = 0;
+            bool result = Int32.TryParse(Phone, out number);
+            cust.Phone = number;
             cust.ContactPers = ContactPers;
-            cust.ExpectRevenue = ExpectRevenue;
+            double nmb = 0;
+            bool result1 = double.TryParse(ExpectRevenue, out nmb);
+            cust.ExpectRevenue = nmb;
+
+            DataAccessLayer db = new DataAccessLayer();
+            db.InsertCustomer(cust);
         }
+        //public static void CreateCustomer(string Name, string Address, string Email,
+        //    int Phone, string ContactPers, double ExpectRevenue)
+        //{
+        //    Customer cust = new Customer();
+        //    cust.Name = Name;
+        //    cust.Address = Address;
+        //    cust.Email = Email;
+        //    cust.Phone = Phone;
+        //    cust.ContactPers = ContactPers;
+        //    cust.ExpectRevenue = ExpectRevenue;
+        //}
     }
 }
