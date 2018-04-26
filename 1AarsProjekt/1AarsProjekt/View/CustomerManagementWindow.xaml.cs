@@ -1,6 +1,4 @@
-﻿using _1AarsProjekt.Model.CustomerManagement;
-using _1AarsProjekt.Model.DB;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +20,7 @@ namespace _1AarsProjekt.View
     /// </summary>
     public partial class CustomerManagementWindow : Page
     {
+        CustomerListWindow listWindow = new CustomerListWindow();
         public CustomerManagementWindow()
         {
             InitializeComponent();
@@ -42,5 +41,33 @@ namespace _1AarsProjekt.View
         }
 
         public void CreateCustomer() { }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCreateCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnShowCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Content = listWindow;
+            
+        }
+
+        private void btn_CustShow_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerListWindow customerListWindow = new CustomerListWindow();
+            Content = customerListWindow;
+        }
+
+        private void btn_CustShow_Click_1(object sender, RoutedEventArgs e)
+        {
+            CustomerListWindow customerListWindow = new CustomerListWindow();
+            NavigationService.Navigate(customerListWindow);
+        }
     }
 }

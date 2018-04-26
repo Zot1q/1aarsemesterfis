@@ -30,7 +30,7 @@ namespace _1AarsProjekt
 
         private void Btn_Agreement_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void Btn_Subscription_Click(object sender, RoutedEventArgs e)

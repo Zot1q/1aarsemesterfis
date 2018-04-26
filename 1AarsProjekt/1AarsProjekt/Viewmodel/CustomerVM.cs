@@ -8,5 +8,9 @@ namespace _1AarsProjekt.Viewmodel
 {
     class CustomerVM
     {
+        public static void CustCreateGetData()
+        {
+
+        }
     }
 }
