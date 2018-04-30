@@ -15,6 +15,7 @@ namespace _1AarsProjekt.Model.CustomerManagement
         public int Phone { get; set; }
         public string ContactPers { get; set; }
         public double ExpectRevenue { get; set; }
+        public int CustomerID { get; set; }
 
         public void CreateCustomer (string Name, string Address, string Email, string Phone, string ContactPers, string ExpectRevenue)
         {
@@ -33,6 +34,12 @@ namespace _1AarsProjekt.Model.CustomerManagement
 
             DataAccessLayer db = new DataAccessLayer();
             db.InsertCustomer(cust);
+        }
+
+        static public List<Customer> ListCustomers()
+        {
+            List<Customer> list = DataAccessLayer.GetCustomers();
+            return list;
         }
         //public static void CreateCustomer(string Name, string Address, string Email,
         //    int Phone, string ContactPers, double ExpectRevenue)

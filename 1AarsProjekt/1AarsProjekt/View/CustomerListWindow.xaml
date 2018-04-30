@@ -10,7 +10,7 @@
     
     <Grid Background="White">
         <ScrollViewer>
-            <ListBox HorizontalAlignment="Center" Height="300" VerticalAlignment="Center" Width="300"/>
+            <ListBox x:Name="ShowCustomer" HorizontalAlignment="Center" Height="300" VerticalAlignment="Center" Width="300"/>
         </ScrollViewer>
     </Grid>
 </Page>

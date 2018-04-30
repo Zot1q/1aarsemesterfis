@@ -1,5 +1,9 @@
-﻿using System;
+﻿using _1AarsProjekt.Model.CustomerManagement;
+using _1AarsProjekt.Model.DB;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,22 +56,23 @@ namespace _1AarsProjekt.View
 
         }
 
-        private void btnShowCustomer_Click(object sender, RoutedEventArgs e)
-        {
-            Content = listWindow;
+        //private void btnShowCustomer_Click(object sender, RoutedEventArgs e)
+        //{
             
-        }
+        //    Content = listWindow;
+                       
+        //}
+
+        //private void btn_CustShow_Click(object sender, RoutedEventArgs e)
+        //{
+        //    CustomerListWindow customerListWindow = new CustomerListWindow();
+        //    Content = customerListWindow;
+        //}
 
         private void btn_CustShow_Click(object sender, RoutedEventArgs e)
         {
-            CustomerListWindow customerListWindow = new CustomerListWindow();
-            Content = customerListWindow;
-        }
+            Customer.ListCustomers();
 
-        private void btn_CustShow_Click_1(object sender, RoutedEventArgs e)
-        {
-            CustomerListWindow customerListWindow = new CustomerListWindow();
-            NavigationService.Navigate(customerListWindow);
         }
     }
 }
