@@ -1,4 +1,5 @@
 ﻿using _1AarsProjekt.View;
+using _1AarsProjekt.Viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,36 +22,12 @@ namespace _1AarsProjekt
     /// </summary>
     public partial class MainWindow : Window
     {
-        CustomerManagementWindow custWin = new CustomerManagementWindow();
         public MainWindow()
         {
             InitializeComponent();
-        }
-        
-
-        private void Btn_Agreement_Click(object sender, RoutedEventArgs e)
-        {
-            
+            DataContext = new MainWindowVM();
         }
 
-        private void Btn_Subscription_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Btn_Product_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Btn_Customer_Click(object sender, RoutedEventArgs e)
-        {
-            Main.Content = custWin;
-        }
-
-        private void Btn_CustomerCreate_Click(object sender, RoutedEventArgs e)
-        {
-            Main.Content = custWin;
-        }
     }
+
 }

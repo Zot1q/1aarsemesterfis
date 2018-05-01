@@ -8,48 +8,34 @@
         Title="MainWindow" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800">
     <Grid>
         <Rectangle Fill="Black" Width="1" Margin="199,0,580,77" Height="450"/>
-        <StackPanel Width="200" Height="420" HorizontalAlignment="Left">
-            <StackPanel.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Margin" Value="0,10,0,0"/>
-                </Style>
-            </StackPanel.Resources>
+        <StackPanel Height="400" Width="150" HorizontalAlignment="Left">
             <Expander Header="Kunde">
                 <StackPanel>
-                    <Button Content="Opret kunde" FontSize="14" Width="190" Height="30" Name="Btn_CustomerCreate" Click="Btn_CustomerCreate_Click"/>
-                    <Button Content="Rediger kunde" FontSize="14" Width="190" Height="30" Name="Btn_CustomerEdit"/>
-                    <Button Content="Slet kunde" FontSize="14" Width="190" Height="30" Name="Btn_CustomerDelete"/>
-                    <Button Content="Vis kunde" FontSize="14" Width="190" Height="30" Name="Btn_CustomerShow"/>
+                    <Button x:Name="btn_ChangeWindow" Content="Administrer kunde"  Height="30" Width="145" Command="{Binding SwapPageCustWindow}"/>
                 </StackPanel>
             </Expander>
             <Expander Header="Aftale">
                 <StackPanel>
-                    <Button Content="Opret aftale" FontSize="14" Width="190" Height="30" Name="Btn_AgreementCreate"/>
-                    <Button Content="Rediger aftale" FontSize="14" Width="190" Height="30" Name="Btn_AgreementEdit"/>
-                    <Button Content="Slet aftale" FontSize="14" Width="190" Height="30" Name="Btn_AgreementDelete"/>
-                    <Button Content="Vis aftale" FontSize="14" Width="190" Height="30" Name="Btn_AgreementShow"/>
+                    <Button Content="Administrer aftale" FontSize="14" Height="30" Width="145" Name="Btn_AgreementCreate"/>
                 </StackPanel>
             </Expander>
             <Expander Header="Abonnement">
                 <StackPanel>
-                    <Button Content="Opret abonnent" FontSize="14" Width="190" Height="30" Name="Btn_SubCreate"/>
-                    <Button Content="Rediger abonnement" FontSize="14" Width="190" Height="30" Name="Btn_SubEdit"/>
-                    <Button Content="Slet abonnent" FontSize="14" Width="190" Height="30" Name="Btn_SubDelete"/>
-                    <Button Content="Vis abonnement" FontSize="14" Width="190" Height="30" Name="Btn_SubShow"/>
+                    <Button Content="Administrer abonent" FontSize="14" Height="30" Width="145" Name="Btn_SubCreate"/>
                 </StackPanel>
             </Expander>
             <Expander Header="Produktkatalog">
                 <StackPanel>
-                    <Button Content="Opret produkt" FontSize="14" Width="190" Height="30" Name="Btn_ProductCreate"/>
-                    <Button Content="Rediger produkt" FontSize="14" Width="190" Height="30" Name="Btn_ProductEdit"/>
-                    <Button Content="Vis produkt" FontSize="14" Width="190" Height="30" Name="Btn_ProductShow"/>
-                    <Button Content="Søg produkt" FontSize="14" Width="190" Height="30" Name="Btn_ProductSearch"/>
-                    <Button Content="Masseændring af pris" FontSize="14" Width="190" Height="30" Name="Btn_ProductPriceEdit"/>
+                    <Button Content="Opret produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductCreate"/>
+                    <Button Content="Rediger produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductEdit"/>
+                    <Button Content="Vis produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductShow"/>
+                    <Button Content="Søg produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductSearch"/>
+                    <Button Content="Masseændring af pris" FontSize="14" Height="30" Width="145" Name="Btn_ProductPriceEdit"/>
                 </StackPanel>
             </Expander>
         </StackPanel>
         <StackPanel Width="580" HorizontalAlignment="Right">
-            <Frame x:Name="Main" Content="" Height="425"  Width="555"/>
+            <Frame Content="{Binding Frame}" HorizontalAlignment="Right" Height="450" VerticalAlignment="Center" Width="525" />
         </StackPanel>
     </Grid>
 
