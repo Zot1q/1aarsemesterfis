@@ -68,7 +68,7 @@ namespace _1AarsProjekt.Model.DB
                     cust.Email = (string)reader["E-mail"];
                     cust.Phone = (int)reader["Phone Nr"];
                     cust.ContactPers = (string)reader["Contact Person"];
-                    cust.ExpectRevenue = (double)reader["Expected Revenue"];
+                    cust.ExpectRevenue = float.Parse(reader["Expected Revenue"].ToString());
                     customerList.Add(cust);
                     
                 }
