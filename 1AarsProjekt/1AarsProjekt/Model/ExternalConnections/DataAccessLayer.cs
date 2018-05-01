@@ -1,4 +1,5 @@
-﻿using _1AarsProjekt.Model.CustomerManagement;
+﻿using _1AarsProjekt.Model.AgreementManagement;
+using _1AarsProjekt.Model.CustomerManagement;
 using _1AarsProjekt.View;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,27 @@ namespace _1AarsProjekt.Model.DB
                 connection.Close();
         }
 
+        public void InsertAgreement(Agreement agreement)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement (AgreementID, Description, Discount, Duration, [Product Group]) VALUES (@Agreement, @Description, @Discount, @Duration, @ProductGroup)", connection);
+                command.Parameters.Add(CreateParam("@Agreement", agreement.CustomerNumb));
+                command.Parameters.Add(CreateParam("@Description", agreement.Description));
+                command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
+                command.Parameters.Add(CreateParam("@Duration", agreement.Duration));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
         public void InsertCustomer(Customer cust)
         {
             try
@@ -50,6 +72,37 @@ namespace _1AarsProjekt.Model.DB
             }
         }
 
+        public static List<Agreement> GetAgreements()
+        {
+            try
+            {
+                Agreement agreement = new Agreement();
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT AgreementID, Description, Discount, Duration, [Product Group], CustomerID FROM tblAgreement", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Agreement> agreementList = new List<Agreement>();
+                while (reader.Read())
+                {
+                    agreement = new Agreement();
+                    agreement.CustomerNumb = (int)reader["AgreementID"];
+                    agreement.Description = (string)reader["Description"];
+                    agreement.Discount = (double)reader["Discount"];
+                    agreement.Duration = (string)reader["Duration"];
+                    agreement.ProductGroup = (string)reader["Product Group"];
+                    agreementList.Add(agreement);
+                }
+                return agreementList;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
         public static List<Customer> GetCustomers()
         {
             try
@@ -70,7 +123,6 @@ namespace _1AarsProjekt.Model.DB
                     cust.ContactPers = (string)reader["Contact Person"];
                     cust.ExpectRevenue = float.Parse(reader["Expected Revenue"].ToString());
                     customerList.Add(cust);
-                    
                 }
                 return customerList;
             }
@@ -83,10 +135,6 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
-
-
-
-
         private SqlParameter CreateParam(string paramName, string paramValue)
         {//parameter metoder der laver parameteren om til enten VarChar eller int, således det kan komme ind i databasen.
             SqlParameter param = new SqlParameter();
