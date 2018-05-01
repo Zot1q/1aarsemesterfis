@@ -55,13 +55,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AgreementManagement\Agreement.cs" />
+    <Compile Include="Model\CSV\CSVHandler.cs" />
     <Compile Include="Model\CustomerManagement\Customer.cs" />
-    <Compile Include="Model\DB\DataAccessLayer.cs" />
+    <Compile Include="Model\ExternalConnections\DataAccessLayer.cs" />
+    <Compile Include="Model\ExternalConnections\ServerAccessLayer.cs" />
     <Compile Include="Model\LOG\ErrorLog.cs" />
     <Compile Include="Model\ProductManagement\Product.cs" />
     <Compile Include="Model\SubscriptionManagement\Subscription.cs" />
     <Compile Include="Viewmodel\AgreementVM.cs" />
+    <Compile Include="Viewmodel\Commands\ChangePageCMD.cs" />
+    <Compile Include="Viewmodel\Commands\CustomerManagementCMD.cs" />
     <Compile Include="Viewmodel\CustomerVM.cs" />
+    <Compile Include="Viewmodel\MainWindowVM.cs" />
     <Compile Include="Viewmodel\ProductVM.cs" />
     <Compile Include="Viewmodel\StatisticVM.cs" />
     <Compile Include="Viewmodel\SubscriptionVM.cs" />
