@@ -70,12 +70,17 @@ namespace _1AarsProjekt.Model.DB
                     cust.ContactPers = (string)reader["Contact Person"];
                     cust.ExpectRevenue = (double)reader["Expected Revenue"];
                     customerList.Add(cust);
+                    
                 }
                 return customerList;
             }
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                CloseConnection();
             }
         }
 

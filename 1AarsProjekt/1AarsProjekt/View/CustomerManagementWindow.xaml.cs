@@ -71,6 +71,8 @@ namespace _1AarsProjekt.View
 
         private void btn_CustShow_Click(object sender, RoutedEventArgs e)
         {
+            CustomerListWindow customerListWindow = new CustomerListWindow();
+            Content = customerListWindow;
             Customer.ListCustomers();
 
         }
