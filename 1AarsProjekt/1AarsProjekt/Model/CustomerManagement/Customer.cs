@@ -41,16 +41,5 @@ namespace _1AarsProjekt.Model.CustomerManagement
             List<Customer> list = DataAccessLayer.GetCustomers();
             return list;
         }
-        //public static void CreateCustomer(string Name, string Address, string Email,
-        //    int Phone, string ContactPers, double ExpectRevenue)
-        //{
-        //    Customer cust = new Customer();
-        //    cust.Name = Name;
-        //    cust.Address = Address;
-        //    cust.Email = Email;
-        //    cust.Phone = Phone;
-        //    cust.ContactPers = ContactPers;
-        //    cust.ExpectRevenue = ExpectRevenue;
-        //}
     }
 }
