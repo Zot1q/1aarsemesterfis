@@ -25,6 +25,7 @@ namespace _1AarsProjekt.View
     public partial class CustomerManagementWindow : Page
     {
         CustomerListWindow listWindow = new CustomerListWindow();
+        Customer cust = new Customer();
         public CustomerManagementWindow()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace _1AarsProjekt.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Customer cust = new Customer();
+
             //txtName.Text = cust.Name;
             //txtAdress.Text = cust.Address;
             //txtEmail.Text = cust.Email;

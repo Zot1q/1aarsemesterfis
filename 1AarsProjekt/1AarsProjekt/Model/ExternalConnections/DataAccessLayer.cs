@@ -32,7 +32,7 @@ namespace _1AarsProjekt.Model.DB
             {
                 OpenConnection();
                 SqlCommand command = new SqlCommand("INSERT INTO tblAgreement (AgreementID, Description, Discount, Duration, [Product Group]) VALUES (@Agreement, @Description, @Discount, @Duration, @ProductGroup)", connection);
-                command.Parameters.Add(CreateParam("@Agreement", agreement.CustomerNumb));
+                command.Parameters.Add(CreateParam("@Agreement", agreement.AgreementID));
                 command.Parameters.Add(CreateParam("@Description", agreement.Description));
                 command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
                 command.Parameters.Add(CreateParam("@Duration", agreement.Duration));
@@ -84,11 +84,13 @@ namespace _1AarsProjekt.Model.DB
                 while (reader.Read())
                 {
                     agreement = new Agreement();
-                    agreement.CustomerNumb = (int)reader["AgreementID"];
+                    agreement.AgreementID = (int)reader["AgreementID"];
                     agreement.Description = (string)reader["Description"];
                     agreement.Discount = (double)reader["Discount"];
                     agreement.Duration = (string)reader["Duration"];
-                    agreement.ProductGroup = (string)reader["Product Group"];
+                    agreement.ProductGroup1 = (string)reader["Product Group"];
+                    agreement.ProductGroup2 = (string)reader["Product Group"];
+                    agreement.ProductGroup3 = (string)reader["Product Group"];
                     agreementList.Add(agreement);
                 }
                 return agreementList;

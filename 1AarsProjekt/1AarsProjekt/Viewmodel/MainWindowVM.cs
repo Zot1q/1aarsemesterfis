@@ -29,6 +29,7 @@ namespace _1AarsProjekt.Viewmodel
         public MainWindowVM()
         {
             SwapPageCustWindow = new ChangePageCMD(PageSwapToCustomerManagementWindow);
+
         }
 
         public void PageSwapToCustomerManagementWindow()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _1AarsProjekt.Model.AgreementManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace _1AarsProjekt.View
     /// </summary>
     public partial class AgreementWindow : Page
     {
+        AgreementMethods agreement = new AgreementMethods();
         public AgreementWindow()
         {
             InitializeComponent();
+        }
+
+        private void btn_CreateAgreement_Click(object sender, RoutedEventArgs e)
+        {
+            agreement.CreateAgreement(Convert.ToInt32(txtCustomerNumber.Text), Convert.ToInt32(lblSubcriptionId), txtDescription.Text, Convert.ToDouble(txtDiscount.Text), txtDuration.Text, checkBox1.IsChecked.ToString(), checkBox2.IsChecked.ToString(), checkBox3.IsChecked.ToString());
         }
     }
 }

@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AgreementManagement\Agreement.cs" />
+    <Compile Include="Model\AgreementManagement\AgreementMethods.cs" />
     <Compile Include="Model\CSV\CSVHandler.cs" />
     <Compile Include="Model\CustomerManagement\Customer.cs" />
     <Compile Include="Model\ExternalConnections\DataAccessLayer.cs" />
