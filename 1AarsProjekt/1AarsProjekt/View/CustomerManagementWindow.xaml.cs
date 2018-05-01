@@ -28,7 +28,6 @@ namespace _1AarsProjekt.View
         public CustomerManagementWindow()
         {
             InitializeComponent();
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
