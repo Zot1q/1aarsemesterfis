@@ -58,6 +58,7 @@
     <Compile Include="Model\AgreementManagement\AgreementMethods.cs" />
     <Compile Include="Model\CSV\CSVHandler.cs" />
     <Compile Include="Model\CustomerManagement\Customer.cs" />
+    <Compile Include="Model\CustomerManagement\CustomerMethods.cs" />
     <Compile Include="Model\ExternalConnections\DataAccessLayer.cs" />
     <Compile Include="Model\ExternalConnections\ServerAccessLayer.cs" />
     <Compile Include="Model\LOG\ErrorLog.cs" />

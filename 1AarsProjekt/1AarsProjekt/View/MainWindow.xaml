@@ -35,8 +35,9 @@
                 </StackPanel>
             </Expander>
         </StackPanel>
-        <StackPanel Width="580" HorizontalAlignment="Right">
-            <Frame Content="{Binding Frame}" HorizontalAlignment="Right" Height="450" VerticalAlignment="Center" Width="525" />
+        <StackPanel Width="580" Height="420" VerticalAlignment="Top"
+                    HorizontalAlignment="Right">
+            <Frame NavigationUIVisibility="Hidden" Content="{Binding Frame}" HorizontalAlignment="Left" Height="420" VerticalAlignment="Center" Width="525" />
         </StackPanel>
     </Grid>
 

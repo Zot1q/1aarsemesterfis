@@ -28,6 +28,5 @@ namespace _1AarsProjekt.View
             InitializeComponent();
             DataContext = new CustomerVM();
         }
-
     }
 }
