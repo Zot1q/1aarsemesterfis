@@ -153,38 +153,3 @@ namespace _1AarsProjekt.Model.DB
         }
     }
 }
-
-
-
-//public List<Customer> GetCustomers()
-//{
-//    try
-//    {
-//        Customer cust = new Customer();
-//        DataAccessLayer db = new DataAccessLayer();
-//        db.OpenConnection();
-//        SqlCommand cmd = new SqlCommand("SELECT * FROM tblCustomer", db.connection);
-//        SqlDataReader reader = cmd.ExecuteReader();
-//        List<Customer> Customers = new List<Customer>();
-
-//        while (reader.Read())
-//        {
-//            cust = new Customer();
-//            cust.Name = (string)reader["Fullname"];
-//            cust.Address = (string)reader["Address"];
-//            cust.Email = (string)reader["Email"];
-//            cust.Phone = (int)reader["Phone"];
-//            cust.ContactPers = (string)reader["ContactPers"];
-//            cust.ExpectRevenue = (double)reader["ExpectRevenue"];
-//            Customers.Add(cust);
-//        }
-//        db.CloseConnection();
-//        return Customers;
-//    }
-
-//    catch (Exception ex)
-//    {
-//        MessageBox.Show("Error" + ex);
-//    }
-
-//}

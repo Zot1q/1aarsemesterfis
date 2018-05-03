@@ -28,14 +28,12 @@ namespace _1AarsProjekt.Viewmodel
         public ChangePageCMD SwapPageCreateCustomer { get; set; }
         public ChangePageCMD SwapPageShowCustomer { get; set; }
         public ChangePageCMD SwapPageAgreementWindow { get; set; }
-        public ChangePageCMD SwapPageSubWindow { get; set; }
         public ChangePageCMD SwapPageProductWindow { get; set; }
         public MainWindowVM()
         {
             SwapPageCreateCustomer = new ChangePageCMD(PageSwapToCustomerManagementWindow);
             SwapPageShowCustomer = new ChangePageCMD(PageSwapToCustomerListWindow);
             SwapPageAgreementWindow = new ChangePageCMD(PageSwapToAgreementWindow);
-            SwapPageSubWindow = new ChangePageCMD(PageSwapToSubWindow);
             SwapPageProductWindow = new ChangePageCMD(PageSwapToProductWindow);
         }
 
@@ -50,11 +48,6 @@ namespace _1AarsProjekt.Viewmodel
         public void PageSwapToAgreementWindow()
         {
             Frame = new AgreementWindow();
-        }
-
-        public void PageSwapToSubWindow()
-        {
-            Frame = new SubscriptionManagementWindow();
         }
 
         public void PageSwapToProductWindow()

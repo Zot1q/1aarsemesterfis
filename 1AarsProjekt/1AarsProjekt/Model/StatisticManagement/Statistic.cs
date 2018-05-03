@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _1AarsProjekt.Viewmodel
+namespace _1AarsProjekt.Model.StatisticManagement
 {
-    class SubscriptionVM
+    class Statistic
     {
     }
 }

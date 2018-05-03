@@ -20,11 +20,6 @@
                     <Button Content="Administrer aftale" FontSize="14" Height="30" Width="145" Name="Btn_AgreementCreate" Command="{Binding SwapPageAgreementWindow}"/>
                 </StackPanel>
             </Expander>
-            <Expander Header="Abonnement">
-                <StackPanel>
-                    <Button Content="Administrer abonent" FontSize="14" Height="30" Width="145" Name="Btn_SubCreate" Command="{Binding SwapPageSubWindow}"/>
-                </StackPanel>
-            </Expander>
             <Expander Header="Produktkatalog">
                 <StackPanel>
                     <Button Content="Opret produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductCreate" Command="{Binding SwapPageProductWindow}"/>

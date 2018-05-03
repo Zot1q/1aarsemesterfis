@@ -63,16 +63,14 @@
     <Compile Include="Model\ExternalConnections\ServerAccessLayer.cs" />
     <Compile Include="Model\LOG\ErrorLog.cs" />
     <Compile Include="Model\ProductManagement\Product.cs" />
-    <Compile Include="Model\SubscriptionManagement\Subscription.cs" />
+    <Compile Include="Model\StatisticManagement\Statistic.cs" />
     <Compile Include="Viewmodel\AgreementVM.cs" />
     <Compile Include="Viewmodel\Commands\ChangePageCMD.cs" />
-    <Compile Include="Viewmodel\Commands\CustomerManagementCMD.cs" />
     <Compile Include="Viewmodel\CustomerListVM.cs" />
     <Compile Include="Viewmodel\CustomerVM.cs" />
     <Compile Include="Viewmodel\MainWindowVM.cs" />
     <Compile Include="Viewmodel\ProductVM.cs" />
     <Compile Include="Viewmodel\StatisticVM.cs" />
-    <Compile Include="Viewmodel\SubscriptionVM.cs" />
     <Compile Include="View\CustomerListWindow.xaml.cs">
       <DependentUpon>CustomerListWindow.xaml</DependentUpon>
     </Compile>
@@ -81,9 +79,6 @@
     </Compile>
     <Compile Include="View\StatisticWindow.xaml.cs">
       <DependentUpon>StatisticWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SubscriptionManagementWindow.xaml.cs">
-      <DependentUpon>SubscriptionManagementWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AgreementWindow.xaml">
       <SubType>Designer</SubType>
@@ -123,10 +118,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SubscriptionManagementWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -154,8 +145,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\StatisticManagement\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

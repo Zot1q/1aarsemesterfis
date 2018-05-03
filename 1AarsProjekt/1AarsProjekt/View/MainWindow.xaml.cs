@@ -27,7 +27,5 @@ namespace _1AarsProjekt
             InitializeComponent();
             DataContext = new MainWindowVM();
         }
-
     }
-
 }
