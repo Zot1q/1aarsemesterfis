@@ -9,17 +9,17 @@
       Title="AgreementWindow" Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="275"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Label Content="Opret Abonnement" Grid.Column="0" HorizontalAlignment="Left" FontSize="20"/>
-        <StackPanel Grid.Column="0" Grid.Row="1">
+        <!--<StackPanel Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <Label HorizontalAlignment="left" Margin="0, 5" Content="Kunde nr: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Navn: "/>
                 <TextBox x:Name="txtCustomerNumber" Text="" Width="80" Height="20"/>
                 <Label Content="Abonnement Nr: " VerticalAlignment="Center"/>
                 <Label x:Name="lblSubcriptionId" Content="" VerticalAlignment="Center"/>
@@ -39,14 +39,10 @@
                 <Label HorizontalAlignment="left" Margin="0, 5" Content="Løbetid"/>
                 <TextBox x:Name="txtDuration" Text="" Width="80" Height="20"/>
                 <Label Margin="0, 5" Content="(6 - 24 mnd)" Foreground="Red" FontWeight="Bold"/>
-            </StackPanel>
+            </StackPanel>-->
             
-        </StackPanel>
-        <StackPanel Margin="0, 0, 0, 40" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-            <Button Name="btn_CreateAgreement" Content="Opret" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom" Width="75" Grid.Column="1" Click="btn_CreateAgreement_Click"/>
-            <Button Content="Vis" Name="btn_ShowAgreement" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom" Width="75" Grid.Column="1"/>
-        </StackPanel>
-        <ListBox Grid.Column="1" HorizontalAlignment="Left" Height="270" Grid.Row="1" VerticalAlignment="Top" Width="280"/>
+        <!--</StackPanel>-->
+        <ListBox HorizontalAlignment="Left" Height="270" Grid.Row="1" VerticalAlignment="Top" Width="555"/>
         
     </Grid>
 </Page>
