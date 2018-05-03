@@ -9,9 +9,10 @@
     <Grid>
         <Rectangle Fill="Black" Width="1" Margin="199,0,580,77" Height="450"/>
         <StackPanel Height="400" Width="150" HorizontalAlignment="Left">
-            <Expander Header="Kunde">
+            <Expander Header="Administrer Kunder">
                 <StackPanel>
-                    <Button x:Name="btn_ChangeWindow" Content="Administrer kunde"  Height="30" Width="145" Command="{Binding SwapPageCustWindow}"/>
+                    <Button x:Name="btn_CreateCustomer" Content="Opret kunde"  Height="30" Width="145" Command="{Binding SwapPageCreateCustomer}"/>
+                    <Button x:Name="btn_ShowCustomer" Height="30" Width="145" Content="Vis Kunder" Command="{Binding SwapPageShowCustomer}"/>
                 </StackPanel>
             </Expander>
             <Expander Header="Aftale">

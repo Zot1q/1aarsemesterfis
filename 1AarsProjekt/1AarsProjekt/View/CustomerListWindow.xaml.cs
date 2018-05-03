@@ -1,4 +1,4 @@
-﻿using _1AarsProjekt.Model.DB;
+﻿using _1AarsProjekt.Viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +24,7 @@ namespace _1AarsProjekt.View
         public CustomerListWindow()
         {
             InitializeComponent();
+            DataContext = new CustomerListVM();
         }
     }
 }
