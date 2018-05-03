@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.CustomerManagement
 {
-    class Customer
+    public class Customer
     {
+        public List<Customer> customerList { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
@@ -16,30 +17,5 @@ namespace _1AarsProjekt.Model.CustomerManagement
         public string ContactPers { get; set; }
         public double ExpectRevenue { get; set; }
         public int CustomerID { get; set; }
-
-        public void CreateCustomer (string Name, string Address, string Email, string Phone, string ContactPers, string ExpectRevenue)
-        {
-            Customer cust = new Customer();
-            
-            cust.Name = Name;
-            cust.Address = Address;
-            cust.Email = Email;
-            int number = 0;
-            bool result = Int32.TryParse(Phone, out number);
-            cust.Phone = number;
-            cust.ContactPers = ContactPers;
-            double nmb = 0;
-            bool result1 = double.TryParse(ExpectRevenue, out nmb);
-            cust.ExpectRevenue = nmb;
-
-            DataAccessLayer db = new DataAccessLayer();
-            db.InsertCustomer(cust);
-        }
-
-        static public List<Customer> ListCustomers()
-        {
-            List<Customer> list = DataAccessLayer.GetCustomers();
-            return list;
-        }
     }
 }

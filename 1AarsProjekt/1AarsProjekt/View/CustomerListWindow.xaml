@@ -7,10 +7,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="425" d:DesignWidth="555"
       Title="CustomerListWindow" Background="White">
-    
+
     <Grid Background="White">
-        <ScrollViewer>
-            <ListBox x:Name="ShowCustomer" HorizontalAlignment="Center" Height="300" VerticalAlignment="Center" Width="300"/>
-        </ScrollViewer>
+        <ListBox ItemsSource="{Binding Path=CustList}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Name}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
+                        <Expander>
+                            <StackPanel>
+                                <Label Content="{Binding Address}" ContentStringFormat="Addresse: {0}"/>
+                                <Line/>
+                                <Label  Content="{Binding Email}" ContentStringFormat="E-mail: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding Phone}" ContentStringFormat="Tlf Nr: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding ContactPers}" ContentStringFormat="Kontakt Person: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding ExpectRevenue}" ContentStringFormat="Forventet Omsætning: {0}"/>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

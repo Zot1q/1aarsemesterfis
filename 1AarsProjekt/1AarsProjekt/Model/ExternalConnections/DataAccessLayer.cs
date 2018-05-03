@@ -31,11 +31,11 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement (AgreementID, Description, Discount, Duration, [Product Group]) VALUES (@Agreement, @Description, @Discount, @Duration, @ProductGroup)", connection);
+                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement (AgreementID, Discount, Duration, [Status], ProductGroup) VALUES (@Agreement, @Discount, @Duration, @Status, @ProductGroup)", connection);
                 command.Parameters.Add(CreateParam("@Agreement", agreement.AgreementID));
-                command.Parameters.Add(CreateParam("@Description", agreement.Description));
                 command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
                 command.Parameters.Add(CreateParam("@Duration", agreement.Duration));
+                command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblCustomer (FullName, Address, [E-Mail], [Phone Nr], [Contact Person], [Expected Revenue]) VALUES (@FullName, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue)", connection);
+                SqlCommand command = new SqlCommand("INSERT INTO tblCustomer (FullName, Address, [EMail], [PhoneNr], [ContactPerson], [ExpectedRevenue]) VALUES (@FullName, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue)", connection);
                 //SqlCommand command = new SqlCommand("INSERT INTO tblCustomer (FullName, [Address], [E-mail], [Phone Nr], [Contact Person], [Expected Revenue]) VALUES (@Name, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue)", connection);
                 command.Parameters.Add(CreateParam("@FullName", cust.Name));
                 command.Parameters.Add(CreateParam("@Address", cust.Address));
@@ -85,12 +85,10 @@ namespace _1AarsProjekt.Model.DB
                 {
                     agreement = new Agreement();
                     agreement.AgreementID = (int)reader["AgreementID"];
-                    agreement.Description = (string)reader["Description"];
                     agreement.Discount = (double)reader["Discount"];
                     agreement.Duration = (string)reader["Duration"];
-                    agreement.ProductGroup1 = (string)reader["Product Group"];
-                    agreement.ProductGroup2 = (string)reader["Product Group"];
-                    agreement.ProductGroup3 = (string)reader["Product Group"];
+                    agreement.Status = (bool)reader["Status"];
+                    agreement.ProductGroup = (string)reader["Product Group"];
                     agreementList.Add(agreement);
                 }
                 return agreementList;
@@ -111,7 +109,7 @@ namespace _1AarsProjekt.Model.DB
             {
                 Customer cust = new Customer();
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT CustomerID, FullName, Address, [E-mail], [Phone Nr], [Contact Person], [Expected Revenue] FROM tblCustomer", connection);
+                SqlCommand cmd = new SqlCommand("SELECT CustomerID, FullName, Address, [Email], [PhoneNr], [ContactPerson], [ExpectedRevenue] FROM tblCustomer", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Customer> customerList = new List<Customer>();
                 while (reader.Read())
@@ -120,10 +118,10 @@ namespace _1AarsProjekt.Model.DB
                     cust.CustomerID = (int)reader["CustomerID"];
                     cust.Name = (string)reader["FullName"];
                     cust.Address = (string)reader["Address"];
-                    cust.Email = (string)reader["E-mail"];
-                    cust.Phone = (int)reader["Phone Nr"];
-                    cust.ContactPers = (string)reader["Contact Person"];
-                    cust.ExpectRevenue = float.Parse(reader["Expected Revenue"].ToString());
+                    cust.Email = (string)reader["Email"];
+                    cust.Phone = (int)reader["PhoneNr"];
+                    cust.ContactPers = (string)reader["ContactPerson"];
+                    cust.ExpectRevenue = float.Parse(reader["ExpectedRevenue"].ToString());
                     customerList.Add(cust);
                 }
                 return customerList;
