@@ -8,5 +8,6 @@ namespace _1AarsProjekt.Viewmodel
 {
     class AgreementVM
     {
+        //hh
     }
 }
