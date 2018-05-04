@@ -64,6 +64,7 @@
     <Compile Include="Model\LOG\ErrorLog.cs" />
     <Compile Include="Model\ProductManagement\Product.cs" />
     <Compile Include="Model\StatisticManagement\Statistic.cs" />
+    <Compile Include="Viewmodel\AgreementListVM.cs" />
     <Compile Include="Viewmodel\AgreementVM.cs" />
     <Compile Include="Viewmodel\Commands\ChangePageCMD.cs" />
     <Compile Include="Viewmodel\CustomerListVM.cs" />
@@ -71,16 +72,23 @@
     <Compile Include="Viewmodel\MainWindowVM.cs" />
     <Compile Include="Viewmodel\ProductVM.cs" />
     <Compile Include="Viewmodel\StatisticVM.cs" />
+    <Compile Include="View\CreateAgreementWindow.xaml.cs">
+      <DependentUpon>CreateAgreementWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CustomerListWindow.xaml.cs">
       <DependentUpon>CustomerListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductManagementWindow.xaml.cs">
       <DependentUpon>ProductManagementWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\StatisticWindow.xaml.cs">
-      <DependentUpon>StatisticWindow.xaml</DependentUpon>
+    <Compile Include="View\StatisticPage.xaml.cs">
+      <DependentUpon>StatisticPage.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AgreementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateAgreementWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,7 +122,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\StatisticWindow.xaml">
+    <Page Include="View\StatisticPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

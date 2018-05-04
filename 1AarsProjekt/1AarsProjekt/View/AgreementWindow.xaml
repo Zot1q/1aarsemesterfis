@@ -17,32 +17,27 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Label Content="Opret Abonnement" Grid.Column="0" HorizontalAlignment="Left" FontSize="20"/>
-        <!--<StackPanel Grid.Column="0" Grid.Row="1">
-            <StackPanel Orientation="Horizontal">
-                <Label HorizontalAlignment="left" Margin="0, 5" Content="Navn: "/>
-                <TextBox x:Name="txtCustomerNumber" Text="" Width="80" Height="20"/>
-                <Label Content="Abonnement Nr: " VerticalAlignment="Center"/>
-                <Label x:Name="lblSubcriptionId" Content="" VerticalAlignment="Center"/>
-            </StackPanel>
-            <Label FontWeight="Bold" HorizontalAlignment="left" Margin="0, 5" Content="Hovedgruppe: "/>
-            <StackPanel Orientation="Horizontal">
-                <CheckBox Name="checkBox1" VerticalAlignment="Center" Margin="5, 3, 0 , 0">Rør og Fittings</CheckBox>
-                <CheckBox Name="checkBox2" VerticalAlignment="Center" Margin="15, 3, 0 , 0">Varme</CheckBox>
-                <CheckBox Name="checkBox3" VerticalAlignment="Center" Margin="15, 3, 0 , 0">Sanitet</CheckBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label HorizontalAlignment="Left" Margin="0, 5" Content="Rabat: "/>
-                <TextBox Name="txtDiscount" Text="" Width="80" Height="20"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <Label HorizontalAlignment="left" Margin="0, 5" Content="Løbetid"/>
-                <TextBox x:Name="txtDuration" Text="" Width="80" Height="20"/>
-                <Label Margin="0, 5" Content="(6 - 24 mnd)" Foreground="Red" FontWeight="Bold"/>
-            </StackPanel>-->
-            
-        <!--</StackPanel>-->
-        <ListBox HorizontalAlignment="Left" Height="270" Grid.Row="1" VerticalAlignment="Top" Width="555"/>
-        
+        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=AgreeList}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Name}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
+                        <Expander>
+                            <StackPanel>
+                                <Label Content="{Binding Address}" ContentStringFormat="Addresse: {0}"/>
+                                <Line/>
+                                <Label  Content="{Binding Email}" ContentStringFormat="E-mail: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding Phone}" ContentStringFormat="Tlf Nr: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding ContactPers}" ContentStringFormat="Kontakt Person: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding ExpectRevenue}" ContentStringFormat="Forventet Omsætning: {0}"/>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

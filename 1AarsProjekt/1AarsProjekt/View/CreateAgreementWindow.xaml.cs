@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace _1AarsProjekt.View
 {
     /// <summary>
-    /// Interaction logic for StatisticWindow.xaml
+    /// Interaction logic for CreateAgreementWindow.xaml
     /// </summary>
-    public partial class StatisticWindow : Window
+    public partial class CreateAgreementWindow : Window
     {
-        public StatisticWindow()
+        public CreateAgreementWindow()
         {
             InitializeComponent();
         }

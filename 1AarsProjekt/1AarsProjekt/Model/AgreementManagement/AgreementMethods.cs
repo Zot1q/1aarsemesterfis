@@ -20,7 +20,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
             agreement.Status = Status;
             db.InsertAgreement(agreement);
         }
-        static public List<Agreement> ListAgreements()
+        public List<Agreement> ListAgreements()
         {
             List<Agreement> list = DataAccessLayer.GetAgreements();
             return list;

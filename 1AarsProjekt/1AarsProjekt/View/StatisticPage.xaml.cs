@@ -1,6 +1,4 @@
-﻿using _1AarsProjekt.Model.AgreementManagement;
-using _1AarsProjekt.Viewmodel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,14 +16,13 @@ using System.Windows.Shapes;
 namespace _1AarsProjekt.View
 {
     /// <summary>
-    /// Interaction logic for AgreementWindow.xaml
+    /// Interaction logic for StatisticPage.xaml
     /// </summary>
-    public partial class AgreementWindow : Page
+    public partial class StatisticPage : Page
     {
-        public AgreementWindow()
+        public StatisticPage()
         {
             InitializeComponent();
-            DataContext = new AgreementListVM();
         }
     }
 }
