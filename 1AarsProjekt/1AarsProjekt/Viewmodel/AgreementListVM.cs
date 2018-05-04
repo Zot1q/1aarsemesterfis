@@ -18,7 +18,11 @@ namespace _1AarsProjekt.Viewmodel
         public List<Agreement> AgreeList
         {
             get { return agreeList; }
-            set { agreeList = value; }
+            set
+            {
+                agreeList = value;
+
+            }
         }
         public AgreementListVM()
         {

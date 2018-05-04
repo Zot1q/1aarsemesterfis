@@ -78,7 +78,7 @@ namespace _1AarsProjekt.Model.DB
             {
                 Agreement agreement = new Agreement();
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT AgreementID, Description, Discount, Duration, [Product Group], CustomerID FROM tblAgreement", connection);
+                SqlCommand cmd = new SqlCommand("SELECT AgreementID, Discount, Duration, [ProductGroup], CustomerID FROM tblAgreement", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Agreement> agreementList = new List<Agreement>();
                 while (reader.Read())
@@ -88,7 +88,7 @@ namespace _1AarsProjekt.Model.DB
                     agreement.Discount = (double)reader["Discount"];
                     agreement.Duration = (string)reader["Duration"];
                     agreement.Status = (bool)reader["Status"];
-                    agreement.ProductGroup = (string)reader["Product Group"];
+                    agreement.ProductGroup = (string)reader["ProductGroup"];
                     agreementList.Add(agreement);
                 }
                 return agreementList;

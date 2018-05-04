@@ -11,19 +11,14 @@ namespace _1AarsProjekt.Model.AgreementManagement
     {
         Agreement agreement = new Agreement();
         DataAccessLayer db = new DataAccessLayer();
-        public void CreateAgreement(int AgreementID, double Discount, string Duration, bool Status, string ProductGroup)
+        public void CreateAgreement(Agreement agreement)
         {
-            agreement.AgreementID = AgreementID;
-            agreement.Discount = Discount;
-            agreement.Duration = Duration;
-            agreement.ProductGroup = ProductGroup;
-            agreement.Status = Status;
             db.InsertAgreement(agreement);
         }
         public List<Agreement> ListAgreements()
         {
-            List<Agreement> list = DataAccessLayer.GetAgreements();
-            return list;
+            agreement.agreementList = DataAccessLayer.GetAgreements();
+            return agreement.agreementList;
         }
     }
 }
