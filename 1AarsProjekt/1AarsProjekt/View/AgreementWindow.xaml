@@ -4,9 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
+      xmlns:agreement="clr-namespace:_1AarsProjekt.Viewmodel"
       mc:Ignorable="d" 
       d:DesignHeight="425" d:DesignWidth="555"
       Title="AgreementWindow" Background="White">
+   
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -16,7 +18,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Label Content="Opret Abonnement" Grid.Column="0" HorizontalAlignment="Left" FontSize="20"/>
+        <Label Content="Opret et abonnement for en kunde" Grid.Column="0" HorizontalAlignment="Left" FontSize="20"/>
         <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=AgreeList}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -33,11 +35,13 @@
                                 <Label Content="{Binding ContactPers}" ContentStringFormat="Kontakt Person: {0}"/>
                                 <Line/>
                                 <Label Content="{Binding ExpectRevenue}" ContentStringFormat="Forventet Omsætning: {0}"/>
+                                <Line/>
                             </StackPanel>
                         </Expander>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        
     </Grid>
 </Page>
