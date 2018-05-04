@@ -1,4 +1,5 @@
 ﻿using _1AarsProjekt.Model.DB;
+using _1AarsProjekt.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
 {
     public class Agreement
     {
+        public List<Agreement> agreementList { get; set; }
         public int AgreementID { get; set; }
         public double Discount { get; set; }
         public string Duration { get; set; }
