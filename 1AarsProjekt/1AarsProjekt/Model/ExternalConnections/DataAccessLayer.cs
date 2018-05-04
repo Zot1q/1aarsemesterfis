@@ -135,6 +135,23 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
+
+        public void CustomerDelete(Customer selectedCust)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("DELETE FROM dbo.tblCustomer WHERE CustomerID = @CustomerID ", connection);
+                command.Parameters.Add(CreateParam("@CustomerID", selectedCust.CustomerID));
+                command.ExecuteNonQuery();
+                CloseConnection();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         private SqlParameter CreateParam(string paramName, string paramValue)
         {//parameter metoder der laver parameteren om til enten VarChar eller int, således det kan komme ind i databasen.
             SqlParameter param = new SqlParameter();
