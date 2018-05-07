@@ -67,7 +67,7 @@
             <Label Content="Opret Produkt" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
             <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <Button Name="btnCreateCustomer" Command="{Binding CreateCustomer}" Content="Opret" Height="20" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                <Button Name="btnCreateCustomer" Command="{Binding CreateProduct}" Content="Opret" Height="20" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
             </StackPanel>
         </Grid>
     </Grid>

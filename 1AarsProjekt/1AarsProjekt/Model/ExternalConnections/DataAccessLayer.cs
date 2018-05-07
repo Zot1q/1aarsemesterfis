@@ -91,21 +91,21 @@ namespace _1AarsProjekt.Model.DB
                 OpenConnection();
                 SqlCommand command = new SqlCommand("INSERT INTO tblProducts ([ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode]) VALUES (@ProdNumber, @CompanyID, @InterchangeID, @ProductName1, @ProductName2, @ItemUnit, @ProductDescription, @Synonyms, @ProductGroup, @Weight, @MinQuantity, @Price, @Discount, @NetPrice, @PCode, @DistCode)", connection);
                 command.Parameters.Add(CreateParam("@ProdNumber", product.ProdNumber));
-                command.Parameters.Add(CreateParam("@CompanyID", product.CompanyID));
-                command.Parameters.Add(CreateParam("@InterchangeID", product.InterchangeID));
-                command.Parameters.Add(CreateParam("@ProductName1", product.ProductName1));
-                command.Parameters.Add(CreateParam("@ProductName2", product.ProductName2));
-                command.Parameters.Add(CreateParam("@ItemUnit", product.ItemUnit));
-                command.Parameters.Add(CreateParam("@ProductDescription", product.ProductDescription));
-                command.Parameters.Add(CreateParam("@Synonyms", product.Synonyms));
-                command.Parameters.Add(CreateParam("@ProductGroup", product.ProductGroup));
-                command.Parameters.Add(CreateParam("@Weight", product.Weight.ToString()));
-                command.Parameters.Add(CreateParam("@MinQuantity", product.MinQuantity));
-                command.Parameters.Add(CreateParam("@Price", product.Price));
-                command.Parameters.Add(CreateParam("@Discount", product.Discount));
-                command.Parameters.Add(CreateParam("@NetPrice", product.NetPrice));
-                command.Parameters.Add(CreateParam("@PCode", product.PCode));
-                command.Parameters.Add(CreateParam("@DistCode", product.DistCode));
+                //command.Parameters.Add(CreateParam("@CompanyID", product.CompanyID));
+                //command.Parameters.Add(CreateParam("@InterchangeID", product.InterchangeID));
+                //command.Parameters.Add(CreateParam("@ProductName1", product.ProductName1));
+                //command.Parameters.Add(CreateParam("@ProductName2", product.ProductName2));
+                //command.Parameters.Add(CreateParam("@ItemUnit", product.ItemUnit));
+                //command.Parameters.Add(CreateParam("@ProductDescription", product.ProductDescription));
+                //command.Parameters.Add(CreateParam("@Synonyms", product.Synonyms));
+                //command.Parameters.Add(CreateParam("@ProductGroup", product.ProductGroup));
+                //command.Parameters.Add(CreateParam("@Weight", product.Weight.ToString()));
+                //command.Parameters.Add(CreateParam("@MinQuantity", product.MinQuantity));
+                //command.Parameters.Add(CreateParam("@Price", product.Price));
+                //command.Parameters.Add(CreateParam("@Discount", product.Discount));
+                //command.Parameters.Add(CreateParam("@NetPrice", product.NetPrice));
+                //command.Parameters.Add(CreateParam("@PCode", product.PCode));
+                //command.Parameters.Add(CreateParam("@DistCode", product.DistCode));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
