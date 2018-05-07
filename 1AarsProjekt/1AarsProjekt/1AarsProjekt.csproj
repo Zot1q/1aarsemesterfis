@@ -63,6 +63,7 @@
     <Compile Include="Model\ExternalConnections\ServerAccessLayer.cs" />
     <Compile Include="Model\LOG\ErrorLog.cs" />
     <Compile Include="Model\ProductManagement\Product.cs" />
+    <Compile Include="Model\ProductManagement\ProductMethods.cs" />
     <Compile Include="Model\StatisticManagement\Statistic.cs" />
     <Compile Include="Viewmodel\AgreementListVM.cs" />
     <Compile Include="Viewmodel\AgreementVM.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Viewmodel\CustomerListVM.cs" />
     <Compile Include="Viewmodel\CustomerVM.cs" />
     <Compile Include="Viewmodel\MainWindowVM.cs" />
+    <Compile Include="Viewmodel\ProductListVM.cs" />
     <Compile Include="Viewmodel\ProductVM.cs" />
     <Compile Include="Viewmodel\StatisticVM.cs" />
     <Compile Include="View\CreateAgreementWindow.xaml.cs">
@@ -81,6 +83,9 @@
     </Compile>
     <Compile Include="View\CustomerListWindow.xaml.cs">
       <DependentUpon>CustomerListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductListPage.xaml.cs">
+      <DependentUpon>ProductListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductManagementWindow.xaml.cs">
       <DependentUpon>ProductManagementWindow.xaml</DependentUpon>
@@ -129,6 +134,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ProductListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProductManagementWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

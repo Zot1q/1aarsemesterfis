@@ -1,5 +1,4 @@
-﻿using _1AarsProjekt.Viewmodel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace _1AarsProjekt.View
 {
     /// <summary>
-    /// Interaction logic for ProductManagementWindow.xaml
+    /// Interaction logic for ProductListPage.xaml
     /// </summary>
-    public partial class ProductManagementWindow : Page
+    public partial class ProductListPage : Page
     {
-        public ProductManagementWindow()
+        public ProductListPage()
         {
             InitializeComponent();
-            DataContext = new ProductVM();
         }
     }
 }

@@ -5,11 +5,70 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="555"
       Title="ProductManagementWindow"
       Background="White">
 
     <Grid>
-        
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="266"/>
+                <ColumnDefinition Width="266"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" Width="150" Grid.Column="0" Grid.Row="1">
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Produkt Nummer: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Firma CVR-NR: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Udveksling NR: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Produkt Navn: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Produkt Navn: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Varenummer: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Produkt Beskrivelse: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Synonym: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Produkt Gruppe: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Vægt: "/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Antal: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Pris: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Rabat: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Netto Pris: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="P-kode: "/>
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Dist Kode: "/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Right" Margin="5, 5, 5, 5" Height="auto" VerticalAlignment="Top"  Width="150" Grid.Column="0" Grid.Row="1">
+                <TextBox x:Name="txtProductNumber" Text="{Binding Customer.Name}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtCompanyId" Text="{Binding Customer.Address}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtInterchangeId" Text="{Binding Customer.Email}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtProductName1" Text="{Binding Customer.Phone}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtProductName2" Text="{Binding Customer.ContactPers}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtItemUnit" Text="{Binding Customer.ExpectRevenue}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtProductDescription" Text="" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtSynonyms" Text="" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtProductGroup" Text="" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtWeight" Text="" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Margin="5, 5, 5, 5" Height="auto" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
+                <TextBox x:Name="txtMinQuantity" Text="" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtPrice" Text="" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtDiscount" Text="" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtNetPrice" Text="" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtPCode" Text="" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtDistCode" Text="" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </StackPanel>
+
+            <Label Content="Opret Produkt" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Button Name="btnCreateCustomer" Command="{Binding CreateCustomer}" Content="Opret" Height="20" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

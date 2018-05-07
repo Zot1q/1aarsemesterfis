@@ -1,5 +1,6 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
 using _1AarsProjekt.Model.CustomerManagement;
+using _1AarsProjekt.Model.ProductManagement;
 using _1AarsProjekt.View;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace _1AarsProjekt.Model.DB
     class DataAccessLayer
     {
         private static SqlConnection connection = new SqlConnection();
+
+        #region OPEN&CLOSE CONNECTION
         static void OpenConnection()
         { //Åbner Connection til databasen
             connection = new SqlConnection("Data Source=.;Initial Catalog=ApEngrosDb;Integrated Security=True");
@@ -25,7 +28,9 @@ namespace _1AarsProjekt.Model.DB
             if (connection != null && connection.State == ConnectionState.Open)
                 connection.Close();
         }
+        #endregion
 
+        #region INSERT
         public void InsertAgreement(Agreement agreement)
         {
             try
@@ -71,7 +76,51 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
+        
+        /// <author>
+        /// Newjan
+        /// </author>
+        /// <param name="product"></param>
+        /// <summary>
+        /// Method to insert product
+        /// </summary>
+        public void InsertProduct(Product product)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("INSERT INTO tblProducts ([ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode]) VALUES (@ProdNumber, @CompanyID, @InterchangeID, @ProductName1, @ProductName2, @ItemUnit, @ProductDescription, @Synonyms, @ProductGroup, @Weight, @MinQuantity, @Price, @Discount, @NetPrice, @PCode, @DistCode)", connection);
+                command.Parameters.Add(CreateParam("@ProdNumber", product.ProdNumber));
+                command.Parameters.Add(CreateParam("@CompanyID", product.CompanyID));
+                command.Parameters.Add(CreateParam("@InterchangeID", product.InterchangeID));
+                command.Parameters.Add(CreateParam("@ProductName1", product.ProductName1));
+                command.Parameters.Add(CreateParam("@ProductName2", product.ProductName2));
+                command.Parameters.Add(CreateParam("@ItemUnit", product.ItemUnit));
+                command.Parameters.Add(CreateParam("@ProductDescription", product.ProductDescription));
+                command.Parameters.Add(CreateParam("@Synonyms", product.Synonyms));
+                command.Parameters.Add(CreateParam("@ProductGroup", product.ProductGroup));
+                command.Parameters.Add(CreateParam("@Weight", product.Weight.ToString()));
+                command.Parameters.Add(CreateParam("@MinQuantity", product.MinQuantity));
+                command.Parameters.Add(CreateParam("@Price", product.Price));
+                command.Parameters.Add(CreateParam("@Discount", product.Discount));
+                command.Parameters.Add(CreateParam("@NetPrice", product.NetPrice));
+                command.Parameters.Add(CreateParam("@PCode", product.PCode));
+                command.Parameters.Add(CreateParam("@DistCode", product.DistCode));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex);
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        #endregion
 
+        #region SELECT
         public static List<Agreement> GetAgreements()
         {
             try
@@ -126,8 +175,9 @@ namespace _1AarsProjekt.Model.DB
                 }
                 return customerList;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show("Error" + ex);
                 throw;
             }
             finally
@@ -135,7 +185,54 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
+        public static List<Product> GetProducts()
+        {
+            try
+            {
+                Product product = new Product();
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT [ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode] FROM tblProducts", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Product> productList = new List<Product>();
+                while (reader.Read())
+                {
+                    product = new Product();
+                    product.ProdNumber = (int)reader["ProdNumber"];
+                    product.CompanyID = (int)reader["CompanyID"];
+                    product.InterchangeID = (string)reader["InterchangeID"];
+                    product.ProductName1 = (string)reader["ProductName1"];
+                    product.ProductName2 = (string)reader["ProductName2"];
+                    product.ItemUnit = (string)reader["ItemUnit"];
+                    product.ProductDescription = (string)reader["ProductDescription"];
+                    product.Synonyms = (string)reader["Synonyms"];
+                    product.ProductGroup = (string)reader["ProductGroup"];
+                    product.Weight = (float)reader["Weight"];
+                    product.MinQuantity = (string)reader["MinQuantiy"];
+                    product.Price = (string)reader["Price"];
+                    product.Discount = (string)reader["Discount"];
+                    product.NetPrice = (string)reader["NetPrice"];
+                    product.PCode = (string)reader["PCode"];
+                    product.DistCode = (string)reader["DistCode"];
+                    productList.Add(product);
+                }
+                return productList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex);
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        #endregion
 
+        #region UPDATE
+        #endregion 
+
+        #region DELETE
         public void CustomerDelete(Customer selectedCust)
         {
             try
@@ -152,6 +249,9 @@ namespace _1AarsProjekt.Model.DB
                 throw ex;
             }
         }
+        #endregion
+
+        #region CREATEPARAMS
         private SqlParameter CreateParam(string paramName, string paramValue)
         {//parameter metoder der laver parameteren om til enten VarChar eller int, således det kan komme ind i databasen.
             SqlParameter param = new SqlParameter();
@@ -168,5 +268,6 @@ namespace _1AarsProjekt.Model.DB
             param.SqlDbType = SqlDbType.Int;
             return param;
         }
+        #endregion
     }
 }

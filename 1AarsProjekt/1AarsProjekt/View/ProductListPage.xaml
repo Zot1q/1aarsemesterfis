@@ -1,0 +1,50 @@
+﻿<Page x:Class="_1AarsProjekt.View.ProductListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_1AarsProjekt.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="555"
+      Title="ProductListPage">
+
+    <Grid Background="White">
+        <ListBox ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Name}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
+                        <Expander>
+                            <StackPanel>
+                                <Label Content="{Binding Address}" ContentStringFormat="Addresse: {0}"/>
+                                <Line/>
+                                <Label  Content="{Binding Email}" ContentStringFormat="E-mail: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding Phone}" ContentStringFormat="Tlf Nr: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding ContactPers}" ContentStringFormat="Kontakt Person: {0}"/>
+                                <Line/>
+                                <Label Content="{Binding ExpectRevenue}" ContentStringFormat="Forventet Omsætning: {0}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Margin" Value="10,0,0,0"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <StackPanel.DataContext>
+                                        <Viewmodel:CustomerListVM/>
+                                    </StackPanel.DataContext>
+                                    <Button Content="Slet kunde" Width="100" Height="30"        x:Name="btn_DeleteYesNo" Command="{Binding CustDelete}"/>
+                                    <Button Content="Rediger kunde" Width="100" Height="30" x:Name="btn_Edit" Command=""/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Content="Rediger" HorizontalAlignment="Left" Margin="44,354,0,0" Height="30" Width="100" VerticalAlignment="Top" Command="{Binding OpenCustomerEditWindow}"/>
+        <Button Content="Slet" HorizontalAlignment="Left" Margin="180,354,0,0" VerticalAlignment="Top" Width="100" Height="30" Command="{Binding CustDelete}"/>
+    </Grid>
+</Page>
