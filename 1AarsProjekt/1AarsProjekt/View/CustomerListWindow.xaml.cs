@@ -29,9 +29,5 @@ namespace _1AarsProjekt.View
             InitializeComponent();
         }
 
-        private void CustomerListWindow_TargetUpdated(object sender, DataTransferEventArgs e)
-        {
-
-        }
     }
 }
