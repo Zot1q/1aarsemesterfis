@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
+      xmlns:Viewmodel="clr-namespace:_1AarsProjekt.Viewmodel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="555"
       Title="ProductListPage">
@@ -32,7 +33,7 @@
                                         </Style>
                                     </StackPanel.Resources>
                                     <StackPanel.DataContext>
-                                        <Viewmodel:CustomerListVM/>
+                                    <Viewmodel:CustomerListVM/>
                                     </StackPanel.DataContext>
                                     <Button Content="Slet kunde" Width="100" Height="30"        x:Name="btn_DeleteYesNo" Command="{Binding CustDelete}"/>
                                     <Button Content="Rediger kunde" Width="100" Height="30" x:Name="btn_Edit" Command=""/>

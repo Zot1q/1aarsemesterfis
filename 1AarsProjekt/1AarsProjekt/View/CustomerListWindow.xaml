@@ -5,19 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
       xmlns:Viewmodel="clr-namespace:_1AarsProjekt.Viewmodel" 
-    x:Class="_1AarsProjekt.View.CustomerListWindow"
+      x:Class="_1AarsProjekt.View.CustomerListWindow"
       mc:Ignorable="d" 
       d:DesignHeight="425" d:DesignWidth="555"
       Title="CustomerListWindow" Background="White">
+
+    <Page.Resources>
+        <Viewmodel:CustomerListVM x:Key="custListVM"/>
+    </Page.Resources>
+    
     <Page.DataContext>
-        <Viewmodel:CustomerListVM/>
+        <StaticResource ResourceKey="custListVM"/>
     </Page.DataContext>
-
-
+    
     <Grid Background="White">
         <StackPanel Height="100" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Label Name="IndexLabel" Content="{Binding SelectedIndex}"/>
-            <Label Name="ItemLabel" Content="{Binding SelectedItem}"/>
         </StackPanel>
         <ListBox Name="Lstbox" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
             <ListBox.ItemTemplate>
@@ -42,7 +45,7 @@
                                         </Style>
                                     </StackPanel.Resources>
                                     <StackPanel.DataContext>
-                                        <Viewmodel:CustomerListVM/>
+                                        <StaticResource ResourceKey="custListVM"/>
                                     </StackPanel.DataContext>
                                     <Button Content="Slet kunde" Width="100" Height="30"        x:Name="btn_DeleteYesNo" Command="{Binding CustDelete}"/>
                                     <Button Content="Rediger kunde" Width="100" Height="30" x:Name="btn_Edit" Command=""/>
