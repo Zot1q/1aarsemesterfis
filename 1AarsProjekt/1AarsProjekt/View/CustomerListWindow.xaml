@@ -22,7 +22,7 @@
         <StackPanel Height="100" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Label Name="IndexLabel" Content="{Binding SelectedIndex}"/>
         </StackPanel>
-        <ListBox Name="Lstbox" ItemsSource="{Binding ProductList}" SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
+        <ListBox Name="Lstbox" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
