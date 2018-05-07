@@ -59,6 +59,7 @@ namespace _1AarsProjekt.Viewmodel
             Customer selectedCust = new Customer();
             selectedCust = custList.ElementAt(SelectedIndex);
             db.CustomerDelete(selectedCust);
+            //CustList = cust.ListCustomers();
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

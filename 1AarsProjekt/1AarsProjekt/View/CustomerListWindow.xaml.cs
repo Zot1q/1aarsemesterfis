@@ -22,10 +22,16 @@ namespace _1AarsProjekt.View
     /// </summary>
     public partial class CustomerListWindow : Page
     {
+        public CustomerListVM listVM { get; set; } = new CustomerListVM();
         public CustomerListWindow()
         {
+            //DataContext = listVM;
             InitializeComponent();
-            DataContext = new CustomerListVM();
+        }
+
+        private void CustomerListWindow_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+
         }
     }
 }

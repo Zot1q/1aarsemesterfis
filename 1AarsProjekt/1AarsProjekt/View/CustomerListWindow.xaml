@@ -4,13 +4,22 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
-      xmlns:Viewmodel="clr-namespace:_1AarsProjekt.Viewmodel" x:Class="_1AarsProjekt.View.CustomerListWindow"
+      xmlns:Viewmodel="clr-namespace:_1AarsProjekt.Viewmodel" 
+    x:Class="_1AarsProjekt.View.CustomerListWindow"
       mc:Ignorable="d" 
       d:DesignHeight="425" d:DesignWidth="555"
       Title="CustomerListWindow" Background="White">
+    <Page.DataContext>
+        <Viewmodel:CustomerListVM/>
+    </Page.DataContext>
+
 
     <Grid Background="White">
-        <ListBox ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
+        <StackPanel Height="100" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Label Name="IndexLabel" Content="{Binding SelectedIndex}"/>
+            <Label Name="ItemLabel" Content="{Binding SelectedItem}"/>
+        </StackPanel>
+        <ListBox Name="Lstbox" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
