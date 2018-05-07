@@ -19,7 +19,7 @@
             <Label Name="IndexLabel" Content="{Binding SelectedIndex}"/>
             <Label Name="ItemLabel" Content="{Binding SelectedItem}"/>
         </StackPanel>
-        <ListBox Name="Lstbox" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
+        <ListBox Name="Lstbox" ItemsSource="{Binding ProductList}" SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

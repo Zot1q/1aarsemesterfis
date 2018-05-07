@@ -18,8 +18,8 @@ namespace _1AarsProjekt.Model.ProductManagement
         }
         public List<Product> ListProducts()
         {
-            product.productList = DataAccessLayer.GetProducts();
-            return product.productList;
+            product.ProductList = DataAccessLayer.GetProducts();
+            return product.ProductList;
         }
     }
 }

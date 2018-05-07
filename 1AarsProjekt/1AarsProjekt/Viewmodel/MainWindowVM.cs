@@ -29,14 +29,20 @@ namespace _1AarsProjekt.Viewmodel
         public ChangePageCMD SwapPageShowCustomer { get; set; }
         public ChangePageCMD SwapPageAgreementWindow { get; set; }
         public ChangePageCMD SwapPageProductWindow { get; set; }
+        public ChangePageCMD SwapPageProductListWindow { get; set; }
         public MainWindowVM()
         {
             SwapPageCreateCustomer = new ChangePageCMD(PageSwapToCustomerManagementWindow);
             SwapPageShowCustomer = new ChangePageCMD(PageSwapToCustomerListWindow);
             SwapPageAgreementWindow = new ChangePageCMD(PageSwapToAgreementWindow);
             SwapPageProductWindow = new ChangePageCMD(PageSwapToProductWindow);
+            SwapPageProductListWindow = new ChangePageCMD(PageSwapToProductListWindow);
         }
 
+        public void PageSwapToProductListWindow()
+        {
+            Frame = new ProductListPage();
+        }
         public void PageSwapToCustomerManagementWindow()
         {
             Frame = new CustomerManagementWindow();

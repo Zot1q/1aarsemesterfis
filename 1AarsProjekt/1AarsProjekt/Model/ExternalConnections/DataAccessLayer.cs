@@ -241,12 +241,34 @@ namespace _1AarsProjekt.Model.DB
                 SqlCommand command = new SqlCommand("DELETE FROM dbo.tblCustomer WHERE CustomerID = @CustomerID ", connection);
                 command.Parameters.Add(CreateParam("@CustomerID", selectedCust.CustomerID));
                 command.ExecuteNonQuery();
-                CloseConnection();
             }
             catch (Exception ex)
             {
 
                 throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        public void ProductDelete(Product selectedProd)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("DELETE FROM dbo.tblProducts WHERE ProdNumber = @ProdNumber", connection);
+                command.Parameters.Add(CreateParam("@ProdNumber", selectedProd.ProdNumber));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                CloseConnection();
             }
         }
         #endregion
