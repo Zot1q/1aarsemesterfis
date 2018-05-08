@@ -8,7 +8,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="425" d:DesignWidth="555"
       Title="AgreementWindow" Background="White">
-   
+    <Page.Resources>
+        <agreement:AgreementListVM x:Key="agreeVm"/>
+    </Page.Resources>
+    <Page.DataContext>
+        <StaticResource ResourceKey="agreeVm"/>
+    </Page.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -18,8 +23,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Label Content="Opret et abonnement for en kunde" Grid.Column="0" HorizontalAlignment="Left" FontSize="20"/>
-        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=AgreeList}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
+        <Label Content="Vælg en kunde som du vil oprette et abonnement for" Grid.Column="0" HorizontalAlignment="Left" FontSize="20"/>
+        <ListBox SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=CustList}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -34,14 +39,28 @@
                                 <Line/>
                                 <Label Content="{Binding ContactPers}" ContentStringFormat="Kontakt Person: {0}"/>
                                 <Line/>
-                                <Label Content="{Binding ExpectRevenue}" ContentStringFormat="Forventet Omsætning: {0}"/>
+                                <Label Content="{Binding ExpectRevenue}" ContentStringFormat="Forventet Omsætning: {0} DKK"/>
                                 <Line/>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Margin" Value="10,0,0,0"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <StackPanel.DataContext>
+                                        <StaticResource ResourceKey="agreeVm"/>
+                                    </StackPanel.DataContext>
+                                    <Button Content="Opret aftale" Width="100" Height="30"        x:Name="btn_OpenCreateAgreeWin" Command="{Binding OpenAgreementWin}"/>
+                                    <Button Content="Se kundes aftaler" Width="100" Height="30" x:Name="btn_Edit" Command=""/>
+                                </StackPanel>
+
                             </StackPanel>
                         </Expander>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+        <Label Width="90" x:Name="IndexLabel" Content="{Binding SelectedIndex}" Margin="220,10,245,10" Grid.Row="2"/>
+
     </Grid>
 </Page>

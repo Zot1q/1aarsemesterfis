@@ -65,6 +65,7 @@
     <Compile Include="Model\ProductManagement\Product.cs" />
     <Compile Include="Model\ProductManagement\ProductMethods.cs" />
     <Compile Include="Model\StatisticManagement\Statistic.cs" />
+    <Compile Include="Viewmodel\AgreementCreateVM.cs" />
     <Compile Include="Viewmodel\AgreementListVM.cs" />
     <Compile Include="Viewmodel\AgreementVM.cs" />
     <Compile Include="Viewmodel\Commands\ChangePageCMD.cs" />

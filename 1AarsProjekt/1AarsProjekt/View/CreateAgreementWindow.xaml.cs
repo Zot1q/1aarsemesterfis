@@ -23,6 +23,7 @@ namespace _1AarsProjekt.View
         public CreateAgreementWindow()
         {
             InitializeComponent();
+            DataContext = new AgreementCreateVM();
         }
     }
 }
