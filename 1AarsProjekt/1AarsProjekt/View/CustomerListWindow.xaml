@@ -17,7 +17,7 @@
     <Page.DataContext>
         <StaticResource ResourceKey="custListVM"/>
     </Page.DataContext>
-    
+
     <Grid Background="White">
         <StackPanel Height="100" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Label Name="IndexLabel" Content="{Binding SelectedIndex}"/>

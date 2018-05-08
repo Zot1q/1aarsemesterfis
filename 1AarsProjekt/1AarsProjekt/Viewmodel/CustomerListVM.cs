@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace _1AarsProjekt.Viewmodel
 {
@@ -19,6 +20,7 @@ namespace _1AarsProjekt.Viewmodel
         CustomerMethods cust = new CustomerMethods();
         public ChangePageCMD OpenCustomerEditWindow { get; set; }
         public ChangePageCMD CustDelete { get; set; }
+        public ChangePageCMD Test { get; set; }
         private List<Customer> custList;
 
         public List<Customer> CustList
@@ -45,6 +47,14 @@ namespace _1AarsProjekt.Viewmodel
             OpenCustomerEditWindow = new ChangePageCMD(EditCustWindow);
             CustDelete = new ChangePageCMD(DeleteCustomer);
             CustList = cust.ListCustomers();
+
+        }
+
+
+        private void Expander_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SelectedIndex = ((ListBox)((ListBoxItem)sender).Parent).SelectedIndex;
+
         }
 
         public void EditCustWindow()

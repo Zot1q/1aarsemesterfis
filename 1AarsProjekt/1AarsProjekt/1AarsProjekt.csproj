@@ -69,6 +69,7 @@
     <Compile Include="Viewmodel\AgreementListVM.cs" />
     <Compile Include="Viewmodel\AgreementVM.cs" />
     <Compile Include="Viewmodel\Commands\ChangePageCMD.cs" />
+    <Compile Include="Viewmodel\Commands\ThisCMD.cs" />
     <Compile Include="Viewmodel\CustomerEditVM.cs" />
     <Compile Include="Viewmodel\CustomerListVM.cs" />
     <Compile Include="Viewmodel\CustomerVM.cs" />
