@@ -17,8 +17,8 @@ namespace _1AarsProjekt.Model.CustomerManagement
         }
         public List<Customer> ListCustomers()
         {
-            cust.customerList = DataAccessLayer.GetCustomers();
-            return cust.customerList;
+            cust.CustomerList = DataAccessLayer.GetCustomers();
+            return cust.CustomerList;
         }
     }
 }
