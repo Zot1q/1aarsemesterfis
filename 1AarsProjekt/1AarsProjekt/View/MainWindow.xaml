@@ -23,10 +23,14 @@
             <Expander Header="Produktkatalog">
                 <StackPanel>
                     <Button Content="Opret produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductCreate" Command="{Binding SwapPageProductWindow}"/>
-                    <Button Content="Rediger produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductEdit"/>
                     <Button Content="Vis produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductShow" Command="{Binding SwapPageProductListWindow}"/>
-                    <Button Content="Søg produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductSearch"/>
-                    <Button Content="Masseændring af pris" FontSize="14" Height="30" Width="145" Name="Btn_ProductPriceEdit"/>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Statistik">
+                <StackPanel>
+                    <Button Content="Oprettede/afviklede aftaler" FontSize="10" Height="30" Width="145" Name="Btn_CreatedAndFinishedAgreements" Command="{Binding SwapPageStatisticAgreement}"/>
+                    <Button Content="Aktive/inaktive kunder" FontSize="10" Height="30" Width="145" Name="Btn_ActiveInactiveCusts" Command="{Binding SwapPageStatisticCustomer}"/>
+                    <Button Content="Top 10 produktgrupper" FontSize="10" Height="30" Width="145" Name="Btn_Top10Products" Command="{Binding SwapPageStatisticTopXPage}"/>
                 </StackPanel>
             </Expander>
         </StackPanel>

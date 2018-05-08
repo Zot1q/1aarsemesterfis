@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="555"
+      d:DesignHeight="450" d:DesignWidth="525"
       Title="WelcomePage" Background="#ffffff">
 
     <Grid>
-        <StackPanel Width="auto" Height="auto" VerticalAlignment="Top" Orientation="Vertical" HorizontalAlignment="Right" Margin="35">
+        <StackPanel Width="auto" Height="auto" VerticalAlignment="Top" Orientation="Vertical" HorizontalAlignment="Center" Margin="35">
             <Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="AP Engros" FontWeight="DemiBold" FontStretch="UltraCondensed" FontFamily="helvetica" FontSize="50"/>
             <TextBlock Text="Salg og service af energisystemer, solceller, varmevekslere mv" FontFamily="helvetica" FontSize="15" Height="29"/>
         </StackPanel>

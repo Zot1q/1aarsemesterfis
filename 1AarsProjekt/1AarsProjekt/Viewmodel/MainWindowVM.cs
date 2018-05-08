@@ -30,6 +30,9 @@ namespace _1AarsProjekt.Viewmodel
         public ChangePageCMD SwapPageAgreementWindow { get; set; }
         public ChangePageCMD SwapPageProductWindow { get; set; }
         public ChangePageCMD SwapPageProductListWindow { get; set; }
+        public ChangePageCMD SwapPageStatisticTopXPage { get; set; }
+        public ChangePageCMD SwapPageStatisticCustomer { get; set; }
+        public ChangePageCMD SwapPageStatisticAgreement { get; set; }
         public MainWindowVM()
         {
             SwapPageCreateCustomer = new ChangePageCMD(PageSwapToCustomerManagementWindow);
@@ -37,6 +40,10 @@ namespace _1AarsProjekt.Viewmodel
             SwapPageAgreementWindow = new ChangePageCMD(PageSwapToAgreementWindow);
             SwapPageProductWindow = new ChangePageCMD(PageSwapToProductWindow);
             SwapPageProductListWindow = new ChangePageCMD(PageSwapToProductListWindow);
+            SwapPageStatisticTopXPage = new ChangePageCMD(PageSwapToStatisticTopXPage);
+            SwapPageStatisticCustomer = new ChangePageCMD(PageSwapToStatisticCustomerPage);
+            SwapPageStatisticAgreement = new ChangePageCMD(PageSwapToStatisticAgreementPage);
+            Frame = new WelcomePage();
         }
 
         public void PageSwapToProductListWindow()
@@ -59,6 +66,21 @@ namespace _1AarsProjekt.Viewmodel
         public void PageSwapToProductWindow()
         {
             Frame = new ProductManagementWindow();
+        }
+
+        public void PageSwapToStatisticTopXPage()
+        {
+            Frame = new StatisticPage();
+        }
+
+        public void PageSwapToStatisticCustomerPage()
+        {
+            Frame = new StatisticCustomerPage();
+        }
+
+        public void PageSwapToStatisticAgreementPage()
+        {
+            Frame = new StatisticAgreementPage();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

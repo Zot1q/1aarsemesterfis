@@ -93,6 +93,12 @@
     <Compile Include="View\ProductManagementWindow.xaml.cs">
       <DependentUpon>ProductManagementWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StatisticAgreementPage.xaml.cs">
+      <DependentUpon>StatisticAgreementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StatisticCustomerPage.xaml.cs">
+      <DependentUpon>StatisticCustomerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StatisticPage.xaml.cs">
       <DependentUpon>StatisticPage.xaml</DependentUpon>
     </Compile>
@@ -146,6 +152,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ProductManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StatisticAgreementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StatisticCustomerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
