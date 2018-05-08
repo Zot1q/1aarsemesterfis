@@ -58,14 +58,14 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblCustomer (FullName, Address, [EMail], [PhoneNr], [ContactPerson], [ExpectedRevenue]) VALUES (@FullName, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue)", connection);
-                //SqlCommand command = new SqlCommand("INSERT INTO tblCustomer (FullName, [Address], [E-mail], [Phone Nr], [Contact Person], [Expected Revenue]) VALUES (@Name, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue)", connection);
+                SqlCommand command = new SqlCommand("INSERT INTO tblCustomer (FullName, Address, [EMail], [PhoneNr], [ContactPerson], [ExpectedRevenue], [Status]) VALUES (@FullName, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue, @Status)", connection);
                 command.Parameters.Add(CreateParam("@FullName", cust.Name));
                 command.Parameters.Add(CreateParam("@Address", cust.Address));
                 command.Parameters.Add(CreateParam("@Email", cust.Email));
                 command.Parameters.Add(CreateParam("@Phone", cust.Phone));
                 command.Parameters.Add(CreateParam("@ContactPers", cust.ContactPers));
                 command.Parameters.Add(CreateParam("@ExpectRevenue", Convert.ToString(cust.ExpectRevenue)));
+                command.Parameters.Add(CreateParam("@Status", cust.Status.ToString()));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -231,6 +231,24 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region UPDATE
+        public void UpdateCustomer(Customer cust)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("UPDATE tblCustomer SET Status = @Status", connection);
+                command.Parameters.Add(CreateParam("@Status", cust.Status.ToString()));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
         #endregion 
 
         #region DELETE

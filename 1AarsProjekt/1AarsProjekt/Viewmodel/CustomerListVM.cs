@@ -58,7 +58,8 @@ namespace _1AarsProjekt.Viewmodel
             DataAccessLayer db = new DataAccessLayer();
             Customer selectedCust = new Customer();
             selectedCust = custList.ElementAt(SelectedIndex);
-            db.CustomerDelete(selectedCust);
+            //db.CustomerDelete(selectedCust);
+            db.UpdateCustomer(selectedCust);
             //CustList = cust.ListCustomers();
         }
         public event PropertyChangedEventHandler PropertyChanged;
