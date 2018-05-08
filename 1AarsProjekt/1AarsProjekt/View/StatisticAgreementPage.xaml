@@ -5,11 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="525"
       Title="StatisticAgreementPage"
       Background="#fff">
 
     <Grid>
-        <Label Content="Vis Aktive/inaktive aftaler" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <Label Content="Overblik og statistik over aftaler" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        
+        <DataGrid AutoGenerateColumns="True" x:Name="myDataGrid" HorizontalAlignment="Left" Height="154" VerticalAlignment="Top" Width="449" Margin="33,75,0,0"/>
+
     </Grid>
 </Page>

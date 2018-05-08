@@ -75,6 +75,7 @@
     <Compile Include="Viewmodel\MainWindowVM.cs" />
     <Compile Include="Viewmodel\ProductListVM.cs" />
     <Compile Include="Viewmodel\ProductVM.cs" />
+    <Compile Include="Viewmodel\StatisticAgreementVM.cs" />
     <Compile Include="Viewmodel\StatisticVM.cs" />
     <Compile Include="View\CreateAgreementWindow.xaml.cs">
       <DependentUpon>CreateAgreementWindow.xaml</DependentUpon>

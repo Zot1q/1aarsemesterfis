@@ -143,7 +143,7 @@ namespace _1AarsProjekt.Model.DB
                 }
                 return agreementList;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -310,5 +310,63 @@ namespace _1AarsProjekt.Model.DB
             return param;
         }
         #endregion
+
+        #region DATAGRID
+        public void LoadDataGrid()
+        {
+            OpenConnection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT [AgreementID], [Discount], [Duration], [ProductGroup], [CustomerID] FROM tblAgreement");
+                cmd.ExecuteNonQuery();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable("tblAgreement");
+                dataAdapter.Fill(dataAdapter);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion
     }
 }
+//private void LoadTableTxt_Click(object sender, RoutedEventArgs e)
+//{
+//    SqlConnection connection = new SqlConnection();
+
+//    try
+//    {
+//        connection = new SqlConnection("Data Source=.;Initial Catalog=BudgetManager;Integrated Security=True");
+//        connection.Open();
+//        string Query = "select Periode,Beskrivelse from Table1";
+//        SqlCommand cmd = new SqlCommand(Query, connection);
+//        cmd.ExecuteNonQuery();
+
+//        SqlDataAdapter dataAdp = new SqlDataAdapter(cmd);
+//        DataTable dt = new DataTable("Table1");
+//        dataAdp.Fill(dt);
+//        dt.Columns.Add(txtBoxFinance.Text);
+
+//        myDataGrid.ItemsSource = dt.DefaultView;
+//        dataAdp.Update(dt);
+
+//        connection.Close();
+//    }
+//    catch (Exception ex)
+//    {
+//        MessageBox.Show(ex.Message);
+//        throw;
+//    }
+//}
+
+//private void myDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+//{
+//    DataGrid gd = (DataGrid)sender;
+//    DataRowView row_selected = gd.SelectedItem as DataRowView;
+//    if (row_selected != null)
+//    {
+
+//    }
+//}
