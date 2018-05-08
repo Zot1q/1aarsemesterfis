@@ -72,20 +72,20 @@
     <Compile Include="Viewmodel\Commands\ThisCMD.cs" />
     <Compile Include="Viewmodel\CustomerEditVM.cs" />
     <Compile Include="Viewmodel\CustomerListVM.cs" />
-    <Compile Include="Viewmodel\CustomerVM.cs" />
+    <Compile Include="Viewmodel\CustomerCreateVM.cs" />
     <Compile Include="Viewmodel\MainWindowVM.cs" />
     <Compile Include="Viewmodel\ProductListVM.cs" />
     <Compile Include="Viewmodel\ProductVM.cs" />
     <Compile Include="Viewmodel\StatisticAgreementVM.cs" />
     <Compile Include="Viewmodel\StatisticVM.cs" />
-    <Compile Include="View\CreateAgreementWindow.xaml.cs">
-      <DependentUpon>CreateAgreementWindow.xaml</DependentUpon>
+    <Compile Include="View\AgreementCreateWindow.xaml.cs">
+      <DependentUpon>AgreementCreateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CustomerEditWindow.xaml.cs">
       <DependentUpon>CustomerEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CustomerListWindow.xaml.cs">
-      <DependentUpon>CustomerListWindow.xaml</DependentUpon>
+    <Compile Include="View\CustomerListPage.xaml.cs">
+      <DependentUpon>CustomerListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductEditWindow.xaml.cs">
       <DependentUpon>ProductEditWindow.xaml</DependentUpon>
@@ -93,8 +93,8 @@
     <Compile Include="View\ProductListPage.xaml.cs">
       <DependentUpon>ProductListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProductManagementWindow.xaml.cs">
-      <DependentUpon>ProductManagementWindow.xaml</DependentUpon>
+    <Compile Include="View\ProductCreatePage.xaml.cs">
+      <DependentUpon>ProductCreatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StatisticAgreementPage.xaml.cs">
       <DependentUpon>StatisticAgreementPage.xaml</DependentUpon>
@@ -102,17 +102,17 @@
     <Compile Include="View\StatisticCustomerPage.xaml.cs">
       <DependentUpon>StatisticCustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\StatisticPage.xaml.cs">
-      <DependentUpon>StatisticPage.xaml</DependentUpon>
+    <Compile Include="View\StatisticProductTopPage.xaml.cs">
+      <DependentUpon>StatisticProductTopPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\AgreementWindow.xaml">
+    <Page Include="View\AgreementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CreateAgreementWindow.xaml">
+    <Page Include="View\AgreementCreateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,11 +120,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CustomerListWindow.xaml">
+    <Page Include="View\CustomerListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CustomerManagementWindow.xaml">
+    <Page Include="View\CustomerCreatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,11 +136,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\AgreementWindow.xaml.cs">
-      <DependentUpon>AgreementWindow.xaml</DependentUpon>
+    <Compile Include="View\AgreementPage.xaml.cs">
+      <DependentUpon>AgreementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CustomerManagementWindow.xaml.cs">
-      <DependentUpon>CustomerManagementWindow.xaml</DependentUpon>
+    <Compile Include="View\CustomerCreatePage.xaml.cs">
+      <DependentUpon>CustomerCreatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -154,7 +154,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProductManagementWindow.xaml">
+    <Page Include="View\ProductCreatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,7 +166,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\StatisticPage.xaml">
+    <Page Include="View\StatisticProductTopPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

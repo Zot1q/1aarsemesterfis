@@ -17,13 +17,13 @@
             </Expander>
             <Expander Header="Aftale">
                 <StackPanel>
-                    <Button Content="Opret Aftale" Height="30" Width="145" Name="Btn_AgreementCreate" Command="{Binding SwapPageAgreementWindow}"/>
+                    <Button Content="Opret Aftale" Height="30" Width="145" Name="Btn_AgreementCreate" Command="{Binding SwapPageAgreementPage}"/>
                 </StackPanel>
             </Expander>
             <Expander Header="Produktkatalog">
                 <StackPanel>
-                    <Button Content="Opret produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductCreate" Command="{Binding SwapPageProductWindow}"/>
-                    <Button Content="Vis produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductShow" Command="{Binding SwapPageProductListWindow}"/>
+                    <Button Content="Opret produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductCreate" Command="{Binding SwapPageProductCreatePage}"/>
+                    <Button Content="Vis produkt" FontSize="14" Height="30" Width="145" Name="Btn_ProductShow" Command="{Binding SwapPageProductListPage}"/>
                 </StackPanel>
             </Expander>
             <Expander Header="Statistik">

@@ -27,50 +27,50 @@ namespace _1AarsProjekt.Viewmodel
 
         public ChangePageCMD SwapPageCreateCustomer { get; set; }
         public ChangePageCMD SwapPageShowCustomer { get; set; }
-        public ChangePageCMD SwapPageAgreementWindow { get; set; }
-        public ChangePageCMD SwapPageProductWindow { get; set; }
-        public ChangePageCMD SwapPageProductListWindow { get; set; }
+        public ChangePageCMD SwapPageAgreementPage { get; set; }
+        public ChangePageCMD SwapPageProductCreatePage { get; set; }
+        public ChangePageCMD SwapPageProductListPage { get; set; }
         public ChangePageCMD SwapPageStatisticTopXPage { get; set; }
         public ChangePageCMD SwapPageStatisticCustomer { get; set; }
         public ChangePageCMD SwapPageStatisticAgreement { get; set; }
         public MainWindowVM()
         {
-            SwapPageCreateCustomer = new ChangePageCMD(PageSwapToCustomerManagementWindow);
-            SwapPageShowCustomer = new ChangePageCMD(PageSwapToCustomerListWindow);
-            SwapPageAgreementWindow = new ChangePageCMD(PageSwapToAgreementWindow);
-            SwapPageProductWindow = new ChangePageCMD(PageSwapToProductWindow);
-            SwapPageProductListWindow = new ChangePageCMD(PageSwapToProductListWindow);
+            SwapPageCreateCustomer = new ChangePageCMD(PageSwapToCustomerCreatePage);
+            SwapPageShowCustomer = new ChangePageCMD(PageSwapToCustomerListPage);
+            SwapPageAgreementPage = new ChangePageCMD(PageSwapToAgreementPage);
+            SwapPageProductCreatePage = new ChangePageCMD(PageSwapToProductCreatePage);
+            SwapPageProductListPage = new ChangePageCMD(PageSwapToProductListPage);
             SwapPageStatisticTopXPage = new ChangePageCMD(PageSwapToStatisticTopXPage);
             SwapPageStatisticCustomer = new ChangePageCMD(PageSwapToStatisticCustomerPage);
             SwapPageStatisticAgreement = new ChangePageCMD(PageSwapToStatisticAgreementPage);
             Frame = new WelcomePage();
         }
 
-        public void PageSwapToProductListWindow()
+        public void PageSwapToProductListPage()
         {
             Frame = new ProductListPage();
         }
-        public void PageSwapToCustomerManagementWindow()
+        public void PageSwapToCustomerCreatePage()
         {
-            Frame = new CustomerManagementWindow();
+            Frame = new CustomerCreatePage();
         }
-        public void PageSwapToCustomerListWindow()
+        public void PageSwapToCustomerListPage()
         {
-            Frame = new CustomerListWindow();
+            Frame = new CustomerListPage();
         }
-        public void PageSwapToAgreementWindow()
+        public void PageSwapToAgreementPage()
         {
-            Frame = new AgreementWindow();
+            Frame = new AgreementPage();
         }
 
-        public void PageSwapToProductWindow()
+        public void PageSwapToProductCreatePage()
         {
-            Frame = new ProductManagementWindow();
+            Frame = new ProductCreatePage();
         }
 
         public void PageSwapToStatisticTopXPage()
         {
-            Frame = new StatisticPage();
+            Frame = new StatisticProductTopPage();
         }
 
         public void PageSwapToStatisticCustomerPage()

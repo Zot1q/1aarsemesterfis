@@ -47,7 +47,7 @@ namespace _1AarsProjekt.Viewmodel
         public void AgreementWinOpen()
         {
             
-            CreateAgreementWindow createAgreementWindow = new CreateAgreementWindow(CustList.ElementAt(SelectedIndex).CustomerID);
+            AgreementCreateWindow createAgreementWindow = new AgreementCreateWindow(CustList.ElementAt(SelectedIndex).CustomerID);
             createAgreementWindow.Show();
 
         }

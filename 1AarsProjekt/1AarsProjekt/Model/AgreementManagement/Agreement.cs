@@ -10,7 +10,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
 {
     public class Agreement
     {
-        public List<Agreement> agreementList { get; set; }
+        public List<Agreement> AgreementList { get; set; }
         public int AgreementID { get; set; }
         public double Discount { get; set; }
         public string Duration { get; set; }

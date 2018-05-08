@@ -18,9 +18,9 @@ namespace _1AarsProjekt.View
     /// <summary>
     /// Interaction logic for StatisticPage.xaml
     /// </summary>
-    public partial class StatisticPage : Page
+    public partial class StatisticProductTopPage : Page
     {
-        public StatisticPage()
+        public StatisticProductTopPage()
         {
             InitializeComponent();
         }

@@ -12,11 +12,11 @@ using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
-    class CustomerVM : INotifyPropertyChanged
+    class CustomerCreateVM : INotifyPropertyChanged
     {
         public Customer Customer { get; set; }
         public ChangePageCMD CreateCustomer { get; set; }
-        public CustomerVM()
+        public CustomerCreateVM()
         {
             Customer = new Customer();
             CreateCustomer = new ChangePageCMD(CreateCust);

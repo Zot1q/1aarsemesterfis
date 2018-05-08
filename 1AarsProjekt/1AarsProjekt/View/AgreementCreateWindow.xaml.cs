@@ -1,8 +1,6 @@
 ﻿using _1AarsProjekt.Viewmodel;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,20 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace _1AarsProjekt.View
 {
     /// <summary>
-    /// Interaction logic for CustomerManagementWindow.xaml
+    /// Interaction logic for CreateAgreementWindow.xaml
     /// </summary>
-    public partial class CustomerManagementWindow : Page
+    public partial class AgreementCreateWindow : Window
     {
-        public CustomerManagementWindow()
+        public AgreementCreateWindow(int customerID)
         {
             InitializeComponent();
-            DataContext = new CustomerVM();
+            DataContext = new AgreementCreateVM(customerID);
         }
     }
 }

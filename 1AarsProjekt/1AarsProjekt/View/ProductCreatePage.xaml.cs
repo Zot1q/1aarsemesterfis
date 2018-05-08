@@ -11,19 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace _1AarsProjekt.View
 {
     /// <summary>
-    /// Interaction logic for CreateAgreementWindow.xaml
+    /// Interaction logic for ProductManagementWindow.xaml
     /// </summary>
-    public partial class CreateAgreementWindow : Window
+    public partial class ProductCreatePage : Page
     {
-        public CreateAgreementWindow(int customerID)
+        public ProductCreatePage()
         {
             InitializeComponent();
-            DataContext = new AgreementCreateVM(customerID);
+            DataContext = new ProductVM();
         }
     }
 }

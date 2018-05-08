@@ -1,7 +1,8 @@
-﻿using _1AarsProjekt.Model.CustomerManagement;
-using _1AarsProjekt.Viewmodel;
+﻿using _1AarsProjekt.Viewmodel;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +19,14 @@ using System.Windows.Shapes;
 namespace _1AarsProjekt.View
 {
     /// <summary>
-    /// Interaction logic for CustomerListWindow.xaml
+    /// Interaction logic for CustomerManagementWindow.xaml
     /// </summary>
-    public partial class CustomerListWindow : Page
+    public partial class CustomerCreatePage : Page
     {
-        //public CustomerListVM listVM { get; set; } = new CustomerListVM();
-        public CustomerListWindow()
+        public CustomerCreatePage()
         {
-            //DataContext = listVM;
             InitializeComponent();
+            DataContext = new CustomerCreateVM();
         }
-
     }
 }

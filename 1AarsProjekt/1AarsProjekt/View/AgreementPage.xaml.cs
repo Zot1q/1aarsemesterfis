@@ -20,9 +20,9 @@ namespace _1AarsProjekt.View
     /// <summary>
     /// Interaction logic for AgreementWindow.xaml
     /// </summary>
-    public partial class AgreementWindow : Page
+    public partial class AgreementPage : Page
     {
-        public AgreementWindow()
+        public AgreementPage()
         {
             InitializeComponent();
         }

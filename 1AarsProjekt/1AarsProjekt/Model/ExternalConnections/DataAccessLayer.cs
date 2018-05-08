@@ -321,7 +321,7 @@ namespace _1AarsProjekt.Model.DB
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable("tblAgreement");
-                dataAdapter.Fill(dataAdapter);
+                //dataAdapter.Fill(dataAdapter);
             }
             catch (Exception)
             {

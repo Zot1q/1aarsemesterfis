@@ -1,4 +1,4 @@
-﻿<Page x:Class="_1AarsProjekt.View.CustomerManagementWindow"
+﻿<Page x:Class="_1AarsProjekt.View.CustomerCreatePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

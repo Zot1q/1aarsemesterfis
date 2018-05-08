@@ -32,8 +32,8 @@ namespace _1AarsProjekt.Model.AgreementManagement
         }
         public List<Agreement> ListAgreements()
         {
-            agreement.agreementList = DataAccessLayer.GetAgreements();
-            return agreement.agreementList;
+            agreement.AgreementList = DataAccessLayer.GetAgreements();
+            return agreement.AgreementList;
         }
     }
 }
