@@ -25,7 +25,6 @@ namespace _1AarsProjekt.View
         public AgreementWindow()
         {
             InitializeComponent();
-            DataContext = new AgreementListVM();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using _1AarsProjekt.Model.DB;
+﻿using _1AarsProjekt.Model.CustomerManagement;
+using _1AarsProjekt.Model.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,23 @@ namespace _1AarsProjekt.Model.AgreementManagement
     {
         Agreement agreement = new Agreement();
         DataAccessLayer db = new DataAccessLayer();
-        public void CreateAgreement(Agreement agreement)
+
+        public void CreateAgreementTest()
         {
-            db.InsertAgreement(agreement);
+            Agreement agree = new Agreement();
+            Customer cust = new Customer();
+            agree.CustomerID = 1;
+            agree.Discount = 20;
+            agree.Duration = "12";
+            agree.ProductGroup = "Varme";
+            agree.Status = true;
+            cust.CustomerID = 1;
+            agree.CustomerID = cust.CustomerID;
+            CreateAgreement(agree);
+        }
+        public void CreateAgreement(Agreement agree)
+        {
+            db.InsertAgreement(agree);
         }
         public List<Agreement> ListAgreements()
         {

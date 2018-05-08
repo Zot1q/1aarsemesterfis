@@ -36,11 +36,12 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement (AgreementID, Discount, Duration, [Status], ProductGroup) VALUES (@Agreement, @Discount, @Duration, @Status, @ProductGroup)", connection);
-                command.Parameters.Add(CreateParam("@Agreement", agreement.AgreementID));
+                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement ([Discount], [Duration], [Status], [ProductGroup], [CustomerID]) VALUES (@Discount, @Duration, @Status, @ProductGroup, @CustomerID)", connection);
                 command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
                 command.Parameters.Add(CreateParam("@Duration", agreement.Duration));
                 command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
+                command.Parameters.Add(CreateParam("@ProductGroup", agreement.ProductGroup));
+                command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)

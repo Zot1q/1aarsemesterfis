@@ -1,6 +1,7 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
 using _1AarsProjekt.Model.CustomerManagement;
 using _1AarsProjekt.View;
+using _1AarsProjekt.Viewmodel.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,33 +17,39 @@ namespace _1AarsProjekt.Viewmodel
     public class AgreementListVM : INotifyPropertyChanged
     {
         CustomerMethods cust = new CustomerMethods();
-        private List<Customer> agreeList;
+        private List<Customer> custList;
 
-        public List<Customer> AgreeList
+        public List<Customer> CustList
         {
-            get { return agreeList; }
+            get { return custList; }
             set
             {
-                agreeList = value;
+                custList = value;
             }
         }
-        private CreateAgreementWindow createAgreementWin;
+        private int selectedIndex;
 
-        public CreateAgreementWindow CreateAgreementWin
+        public int SelectedIndex
         {
-            get { return createAgreementWin; }
+            get { return selectedIndex; }
             set
             {
-                createAgreementWin = value;
+                selectedIndex = value;
                 NotifyPropertyChanged();
             }
         }
+        public ChangePageCMD OpenAgreementWin { get; set; }
         public AgreementListVM()
         {
-            AgreeList = cust.ListCustomers();
-            CreateAgreementWin = new CreateAgreementWindow();
+            OpenAgreementWin = new ChangePageCMD(AgreementWinOpen);
+            CustList = cust.ListCustomers();
         }
-
+        public void AgreementWinOpen()
+        {
+            CreateAgreementWindow createAgreementWindow = new CreateAgreementWindow();
+            createAgreementWindow.Show();
+            //AgreeList.ElementAt(SelectedIndex).CustomerID
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {

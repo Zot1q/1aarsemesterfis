@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1AarsProjekt.View"
         mc:Ignorable="d"
-        Title="CreateAgreementWindow" Height="450" Width="555">
+        Title="Opret Aftale" Height="450" Width="555">
     <Grid>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
@@ -30,6 +30,7 @@
                 <TextBox x:Name="txtDuration" Text="" Width="80" Height="20"/>
                 <Label Margin="0, 5" Content="(6 - 24 mnd)" Foreground="Red" FontWeight="Bold"/>
             </StackPanel>
+            <Button Content="Opret" Width="80" Height="20" Command="{Binding CreateAgreement}"/>
 
         </StackPanel>
     </Grid>
