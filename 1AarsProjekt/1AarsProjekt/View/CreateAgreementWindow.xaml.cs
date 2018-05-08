@@ -20,10 +20,10 @@ namespace _1AarsProjekt.View
     /// </summary>
     public partial class CreateAgreementWindow : Window
     {
-        public CreateAgreementWindow()
+        public CreateAgreementWindow(int customerID)
         {
             InitializeComponent();
-            DataContext = new AgreementCreateVM();
+            DataContext = new AgreementCreateVM(customerID);
         }
     }
 }

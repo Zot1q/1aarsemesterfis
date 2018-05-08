@@ -46,9 +46,10 @@ namespace _1AarsProjekt.Viewmodel
         }
         public void AgreementWinOpen()
         {
-            CreateAgreementWindow createAgreementWindow = new CreateAgreementWindow();
+            
+            CreateAgreementWindow createAgreementWindow = new CreateAgreementWindow(CustList.ElementAt(SelectedIndex).CustomerID);
             createAgreementWindow.Show();
-            //AgreeList.ElementAt(SelectedIndex).CustomerID
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

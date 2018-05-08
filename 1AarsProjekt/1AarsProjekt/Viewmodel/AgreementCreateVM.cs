@@ -14,17 +14,20 @@ namespace _1AarsProjekt.Viewmodel
     class AgreementCreateVM : INotifyPropertyChanged
     {
         AgreementMethods agreementMethod = new AgreementMethods();
-
         public ChangePageCMD CreateAgreement { get; set; }
         public Agreement Agreement { get; set; }
-        public AgreementCreateVM()
+        public AgreementCreateVM(int custID)
         {
+            Agreement = new Agreement();
+            Agreement.CustomerID = custID;
             CreateAgreement = new ChangePageCMD(AgreementCreate);
         }
         public void AgreementCreate()
         {
-            agreementMethod.CreateAgreementTest();
+            MessageBox.Show(Agreement.CustomerID.ToString());
+            //agreementMethod.CreateAgreementTest();
         }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
