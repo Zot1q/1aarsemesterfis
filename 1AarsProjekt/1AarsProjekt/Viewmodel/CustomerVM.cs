@@ -23,8 +23,18 @@ namespace _1AarsProjekt.Viewmodel
         }
         public void CreateCust()
         {
-            CustomerMethods customerMethod = new CustomerMethods();
-            customerMethod.CreateCustomer(Customer);
+            MessageBoxResult boxResult = MessageBox.Show("Er du sikker på at du vil gemme kunden?", "Bekræftelse", MessageBoxButton.YesNo);
+
+            if (boxResult == MessageBoxResult.Yes)
+            {
+                CustomerMethods customerMethod = new CustomerMethods();
+                customerMethod.CreateCustomer(Customer);
+                MessageBox.Show(String.Format("Kunde: {0} Er nu oprettet", Customer.Name));
+            }
+            else
+            {
+                MessageBox.Show("Prøv igen");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

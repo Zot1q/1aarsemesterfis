@@ -34,7 +34,7 @@
                 <TextBox x:Name="txtExpectedRevenue" Text="{Binding Customer.ExpectRevenue}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </StackPanel>
 
-            <Label Content="Opret Kunde" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Label Content="Rediger kunde" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
             <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 0, 30, 50">
                 <Button Name="btn_CustomerEdit" Command="{Binding CustomerEdit}" Content="Rediger" Height="20" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 5, 0"/>
