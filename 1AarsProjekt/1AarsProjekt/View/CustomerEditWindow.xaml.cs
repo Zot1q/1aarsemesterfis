@@ -20,10 +20,10 @@ namespace _1AarsProjekt.View
     /// </summary>
     public partial class CustomerEditWindow : Window
     {
-        public CustomerEditWindow()
+        public CustomerEditWindow(object selectedCust)
         {
             InitializeComponent();
-            DataContext = new CustomerEditVM();
+            DataContext = new CustomerEditVM(selectedCust);
         }
     }
 }

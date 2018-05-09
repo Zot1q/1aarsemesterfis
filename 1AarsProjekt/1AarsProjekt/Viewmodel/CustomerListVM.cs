@@ -58,8 +58,8 @@ namespace _1AarsProjekt.Viewmodel
 
         public void EditCustWindow()
         {
-            CustomerEditWindow editWindow = new CustomerEditWindow();
-            editWindow.Show();
+            CustomerEditWindow customerEditWindow = new CustomerEditWindow(CustList.ElementAt(SelectedIndex));
+            customerEditWindow.Show();
         }
 
         public void DeleteCustomer()
