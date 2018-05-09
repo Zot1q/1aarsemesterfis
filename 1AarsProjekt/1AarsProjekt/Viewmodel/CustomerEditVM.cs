@@ -1,4 +1,5 @@
 ﻿using _1AarsProjekt.Model.CustomerManagement;
+using _1AarsProjekt.Viewmodel.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
@@ -22,16 +24,28 @@ namespace _1AarsProjekt.Viewmodel
                 NotifyPropertyChanged();
             }
         }
-
+        public ChangePageCMD CustomerEdit { get; set; }
         //Constructor
         public CustomerEditVM(object selectedCust)
         {
             CastToType(selectedCust);
+            CustomerEdit = new ChangePageCMD(EditCustomer);
         }
 
         public void CastToType(object selectedCust)
         {
             CustToEdit = (Customer)selectedCust;
+        }
+
+        public void EditCustomer()
+        {
+            MessageBoxResult boxResult = MessageBox.Show
+                ("Er du sikker på at du vil redigere kunden?", "Bekræftelse", MessageBoxButton.YesNo);
+            if (boxResult == MessageBoxResult.Yes)
+            {
+                CustomerMethods custMethods = new CustomerMethods();
+                custMethods.EditCustomer(CustToEdit);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace _1AarsProjekt.Model.CustomerManagement
 {
@@ -25,6 +26,10 @@ namespace _1AarsProjekt.Model.CustomerManagement
         {
             selectedCust.Status = 0;
             db.CustomerDelete(selectedCust);
+        }
+        public void EditCustomer(Customer CustToEdit)
+        {
+            MessageBox.Show(CustToEdit.Name.ToString(), "ændret");
         }
     }
 }

@@ -26,12 +26,12 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Right" Margin="5, 5, 5, 5" Height="220" VerticalAlignment="Top"  Width="150" Grid.Column="0" Grid.Row="1">
-                <TextBox x:Name="txtName" Text="{Binding Customer.Name}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtAddress" Text="{Binding Customer.Address}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtEmail" Text="{Binding Customer.Email}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtPhoneNr" Text="{Binding Customer.Phone}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtContactPerson" Text="{Binding Customer.ContactPers}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtExpectedRevenue" Text="{Binding Customer.ExpectRevenue}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtName" Text="{Binding CustToEdit.Name}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtAddress" Text="{Binding CustToEdit.Address}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtEmail" Text="{Binding CustToEdit.Email}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtPhoneNr" Text="{Binding CustToEdit.Phone}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtContactPerson" Text="{Binding CustToEdit.ContactPers}" Width="80" Height="20" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtExpectedRevenue" Text="{Binding CustToEdit.ExpectRevenue}" Width="80" Height="20" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </StackPanel>
 
             <Label Content="Rediger kunde" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
