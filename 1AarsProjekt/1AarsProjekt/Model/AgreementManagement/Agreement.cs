@@ -14,7 +14,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
         public decimal Discount { get; set; }
         public string Duration { get; set; }
         public string ProductGroup { get; set; }
-        public byte Status { get; set; }
+        public bool Status { get; set; }
         public int CustomerID { get; set; }
     }
 }

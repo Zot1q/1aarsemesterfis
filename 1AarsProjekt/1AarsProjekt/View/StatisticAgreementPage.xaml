@@ -9,9 +9,19 @@
       Title="StatisticAgreementPage"
       Background="#fff">
 
+
     <Grid>
-        <Label Content="Overblik og statistik over aftaler" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <ListView Margin="10" Name="lvAgreements">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="Overblik og statistik over aftaler" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        
+        <ListView Grid.Row="1" ItemsSource="{Binding AgreeStatisticList}" Margin="10" Name="lvAgreements">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="AgreementID" Width="80" DisplayMemberBinding="{Binding AgreementID}" />

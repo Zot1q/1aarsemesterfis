@@ -14,9 +14,10 @@ namespace _1AarsProjekt.Model.StatisticManagement
         List<Agreement> AgreementList = new List<Agreement>();
         DataAccessLayer db = new DataAccessLayer();
 
-        public void GetAgreement()
+        public List<Agreement> ListAgreements()
         {
-            db.AgreementTest();
+            AgreementList = DataAccessLayer.GetAgreements();
+            return AgreementList;
         }
     }
 }

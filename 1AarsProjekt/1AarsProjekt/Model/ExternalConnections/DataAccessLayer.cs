@@ -40,7 +40,7 @@ namespace _1AarsProjekt.Model.DB
                 command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
                 command.Parameters.Add(CreateParam("@Duration", agreement.Duration));
                 command.Parameters.Add(CreateParam("@ProductGroup", agreement.ProductGroup));
-                command.Parameters.Add(CreateParam("@Status", agreement.Status));
+                command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));
                 command.ExecuteNonQuery();
             }
@@ -199,24 +199,34 @@ namespace _1AarsProjekt.Model.DB
             }
         }
         #endregion
-        public void AgreementTest()
+        public static List<Agreement> GetAgreements()
         {
             try
             {
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT TOP(1) [Status] FROM dbo.tblAgreement", connection);
+                SqlCommand cmd = new SqlCommand("SELECT TOP(1) [Discount], [Duration], [ProductGroup], [CustomerID], [Status] FROM dbo.tblAgreement", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
+                List<Agreement> agreementList = new List<Agreement>();
                 while (reader.Read())
                 {
-                    Agreement agreeTest = new Agreement();
-                    //int test = (int)reader["Status"];
-                    bool status = (bool)reader["Status"];
+                    Agreement agree = new Agreement();
+                    agree.Discount = (decimal)reader["Discount"];
+                    agree.Duration = (string)reader["Duration"];
+                    agree.ProductGroup = (string)reader["ProductGroup"];
+                    agree.CustomerID = (int)reader["CustomerID"];
+                    agree.Status = (bool)reader["Status"];
+                    agreementList.Add(agree);
                 }
+                return agreementList;
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Error:" + " " + ex);
                 throw ex;
+            }
+            finally
+            {
+                CloseConnection();
             }
         }
 

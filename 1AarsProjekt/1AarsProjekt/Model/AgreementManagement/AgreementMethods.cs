@@ -21,7 +21,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
             agree.Discount = 20;
             agree.Duration = "12";
             agree.ProductGroup = "Varme";
-            agree.Status = 1;
+            agree.Status = true;
             cust.CustomerID = 1;
             agree.CustomerID = cust.CustomerID;
             CreateAgreement(agree);
@@ -33,7 +33,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
 
         public void DeleteAgreement(Agreement selectedAgreement)
         {
-            selectedAgreement.Status = 0;
+            selectedAgreement.Status = false;
         }
     }
 }
