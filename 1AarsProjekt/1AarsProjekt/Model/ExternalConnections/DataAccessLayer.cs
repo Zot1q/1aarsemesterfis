@@ -38,7 +38,7 @@ namespace _1AarsProjekt.Model.DB
                 OpenConnection();
                 SqlCommand command = new SqlCommand("INSERT INTO tblAgreement ([Discount], [ExpirationDate], [ProductGroup], [Status], [CustomerID]) VALUES (@Discount, @ExpirationDate, @ProductGroup, @Status, @CustomerID)", connection);
                 command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
-                command.Parameters.Add(CreateParam("@ExpirationDate", agreement.ExpirationDate.ToString()));
+                command.Parameters.Add(CreateParam("@ExpirationDate", agreement.ExpirationDate.Date.ToString()));
                 command.Parameters.Add(CreateParam("@ProductGroup", agreement.ProductGroup));
                 command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));
@@ -77,36 +77,29 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
-
-        /// <author>
-        /// Newjan
-        /// </author>
-        /// <param name="product"></param>
-        /// <summary>
-        /// Method to insert product
-        /// </summary>
         public void InsertProduct(Product product)
         {
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblProducts ([ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode]) VALUES (@ProdNumber, @CompanyID, @InterchangeID, @ProductName1, @ProductName2, @ItemUnit, @ProductDescription, @Synonyms, @ProductGroup, @Weight, @MinQuantity, @Price, @Discount, @NetPrice, @PCode, @DistCode)", connection);
-                command.Parameters.Add(CreateParam("@ProdNumber", product.ProdNumber));
-                //command.Parameters.Add(CreateParam("@CompanyID", product.CompanyID));
-                //command.Parameters.Add(CreateParam("@InterchangeID", product.InterchangeID));
-                //command.Parameters.Add(CreateParam("@ProductName1", product.ProductName1));
-                //command.Parameters.Add(CreateParam("@ProductName2", product.ProductName2));
-                //command.Parameters.Add(CreateParam("@ItemUnit", product.ItemUnit));
-                //command.Parameters.Add(CreateParam("@ProductDescription", product.ProductDescription));
-                //command.Parameters.Add(CreateParam("@Synonyms", product.Synonyms));
-                //command.Parameters.Add(CreateParam("@ProductGroup", product.ProductGroup));
-                //command.Parameters.Add(CreateParam("@Weight", product.Weight.ToString()));
-                //command.Parameters.Add(CreateParam("@MinQuantity", product.MinQuantity));
-                //command.Parameters.Add(CreateParam("@Price", product.Price));
-                //command.Parameters.Add(CreateParam("@Discount", product.Discount));
-                //command.Parameters.Add(CreateParam("@NetPrice", product.NetPrice));
-                //command.Parameters.Add(CreateParam("@PCode", product.PCode));
-                //command.Parameters.Add(CreateParam("@DistCode", product.DistCode));
+                string query = "INSERT INTO tblProducts ([CompanyID], [AgreementID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode]) VALUES (@CompanyID, @AgreementID, @InterchangeID, @ProductName1, @ProductName2, @ItemUnit, @ProductDescription, @Synonyms, @ProductGroup, @Weight, @MinQuantity, @Price, @Discount, @NetPrice, @PCode, @DistCode)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(CreateParam("@CompanyID", product.CompanyID));
+                command.Parameters.Add(CreateParam("@AgreementID", product.AgreementID));
+                command.Parameters.Add(CreateParam("@InterchangeID", product.InterchangeID));
+                command.Parameters.Add(CreateParam("@ProductName1", product.ProductName1));
+                command.Parameters.Add(CreateParam("@ProductName2", product.ProductName2));
+                command.Parameters.Add(CreateParam("@ItemUnit", product.ItemUnit));
+                command.Parameters.Add(CreateParam("@ProductDescription", product.ProductDescription));
+                command.Parameters.Add(CreateParam("@Synonyms", product.Synonyms));
+                command.Parameters.Add(CreateParam("@ProductGroup", product.ProductGroup));
+                command.Parameters.Add(CreateParam("@Weight", product.Weight.ToString()));
+                command.Parameters.Add(CreateParam("@MinQuantity", product.MinQuantity));
+                command.Parameters.Add(CreateParam("@Price", product.Price));
+                command.Parameters.Add(CreateParam("@Discount", product.Discount));
+                command.Parameters.Add(CreateParam("@NetPrice", product.NetPrice));
+                command.Parameters.Add(CreateParam("@PCode", product.PCode));
+                command.Parameters.Add(CreateParam("@DistCode", product.DistCode));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -128,13 +121,13 @@ namespace _1AarsProjekt.Model.DB
             {
                 Product product = new Product();
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT [ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode] FROM tblProducts", connection);
+                SqlCommand cmd = new SqlCommand("SELECT [ProductID], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode] FROM tblProducts", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Product> productList = new List<Product>();
                 while (reader.Read())
                 {
                     product = new Product();
-                    product.ProdNumber = (int)reader["ProdNumber"];
+                    product.ProductID = (int)reader["ProdNumber"];
                     product.CompanyID = (int)reader["CompanyID"];
                     product.InterchangeID = (string)reader["InterchangeID"];
                     product.ProductName1 = (string)reader["ProductName1"];
@@ -164,7 +157,6 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
-        #endregion
         public static List<Agreement> GetAgreements()
         {
             try
@@ -228,6 +220,72 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
+        public static List<Customer> GetCustomersStatistic()
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [CustomerID], [CompanyName], [Address], [Email], [PhoneNr], [ContactPerson], [ExpectedRevenue], [Status] FROM dbo.tblCustomer", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Customer> customerList = new List<Customer>();
+                while (reader.Read())
+                {
+                    Customer cust = new Customer();
+                    cust.CustomerID = (int)reader["CustomerID"];
+                    cust.CompanyName = (string)reader["CompanyName"];
+                    cust.Address = (string)reader["Address"];
+                    cust.Email = (string)reader["Email"];
+                    cust.Phone = (int)reader["PhoneNr"];
+                    cust.ContactPers = (string)reader["ContactPerson"];
+                    cust.ExpectRevenue = float.Parse(reader["ExpectedRevenue"].ToString());
+                    cust.Status = (bool)reader["Status"];
+                    customerList.Add(cust);
+                }
+                return customerList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:" + " " + ex);
+                throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public static List<Agreement> GetAgreementsStatistic()
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [Discount], [ExpirationDate], [ProductGroup], [CustomerID], [Status] FROM dbo.tblAgreement", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Agreement> agreementList = new List<Agreement>();
+                while (reader.Read())
+                {
+                    Agreement agree = new Agreement();
+                    agree.Discount = (decimal)reader["Discount"];
+                    DateTime dt = (DateTime)reader["ExpirationDate"];
+                    agree.ProductGroup = (string)reader["ProductGroup"];
+                    agree.CustomerID = (int)reader["CustomerID"];
+                    agree.Status = (bool)reader["Status"];
+                    agreementList.Add(agree);
+                }
+                return agreementList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:" + " " + ex);
+                throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        #endregion
+
         #region UPDATE
         public void UpdateCustomer(Customer CustToEdit)
         {
@@ -281,8 +339,8 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("DELETE FROM dbo.tblProducts WHERE ProdNumber = @ProdNumber", connection);
-                command.Parameters.Add(CreateParam("@ProdNumber", selectedProd.ProdNumber));
+                SqlCommand command = new SqlCommand("DELETE FROM dbo.tblProducts WHERE ProductID = @ProductID", connection);
+                command.Parameters.Add(CreateParam("@ProductID", selectedProd.ProductID));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)

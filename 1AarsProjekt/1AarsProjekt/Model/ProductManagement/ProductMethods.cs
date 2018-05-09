@@ -9,6 +9,7 @@ namespace _1AarsProjekt.Model.ProductManagement
 {
     public class ProductMethods
     {
+        public List<Product> ProductList { get; set; }
         Product product = new Product();
         DataAccessLayer db = new DataAccessLayer();
 
@@ -18,8 +19,8 @@ namespace _1AarsProjekt.Model.ProductManagement
         }
         public List<Product> ListProducts()
         {
-            product.ProductList = DataAccessLayer.GetProducts();
-            return product.ProductList;
+            ProductList = DataAccessLayer.GetProducts();
+            return ProductList;
         }
     }
 }

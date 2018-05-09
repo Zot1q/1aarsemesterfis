@@ -8,9 +8,9 @@ namespace _1AarsProjekt.Model.ProductManagement
 {
     public class Product
     {
-        public List<Product> ProductList { get; set; }
-        public int ProdNumber { get; set; }
+        public int ProductID { get; set; }
         public int CompanyID { get; set; }
+        public int AgreementID { get; set; }
         public string InterchangeID { get; set; }
         public string ProductName1 { get; set; }
         public string ProductName2 { get; set; }

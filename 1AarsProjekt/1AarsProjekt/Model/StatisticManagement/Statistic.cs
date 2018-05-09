@@ -17,12 +17,12 @@ namespace _1AarsProjekt.Model.StatisticManagement
 
         public List<Agreement> ListAgreements()
         {
-            AgreementList = DataAccessLayer.GetAgreements();
+            AgreementList = DataAccessLayer.GetAgreementsStatistic();
             return AgreementList;
         }
         public List<Customer> ListCustomer()
         {
-            CustomerList = DataAccessLayer.GetCustomers();
+            CustomerList = DataAccessLayer.GetCustomersStatistic();
             return CustomerList;
         }
     }

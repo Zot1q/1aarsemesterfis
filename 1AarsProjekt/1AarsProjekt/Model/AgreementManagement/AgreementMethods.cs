@@ -26,6 +26,11 @@ namespace _1AarsProjekt.Model.AgreementManagement
             agree.CustomerID = cust.CustomerID;
             CreateAgreement(agree);
         }
+        private void SqlFormattedDateTime(Agreement agree)
+        {
+            agree.ExpirationDate.Date.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
         public void CreateAgreement(Agreement agree)
         {
             db.InsertAgreement(agree);
