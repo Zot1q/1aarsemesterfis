@@ -48,7 +48,7 @@
                                         <StaticResource ResourceKey="custListVM"/>
                                     </StackPanel.DataContext>
                                     <Button Content="Slet kunde" Width="100" Height="30"        x:Name="btn_DeleteYesNo" Command="{Binding CustDelete}"/>
-                                    <Button Content="Rediger kunde" Width="100" Height="30" x:Name="btn_Edit" Command=""/>
+                                    <Button Content="Rediger kunde" Width="100" Height="30" x:Name="btn_Edit" Command="{Binding OpenCustomerEditWindow}"/>
                                 </StackPanel>
                             </StackPanel>
                         </Expander>
@@ -56,8 +56,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
-        <Button Content="Rediger" HorizontalAlignment="Left" Margin="44,354,0,0" Height="30" Width="100" VerticalAlignment="Top" Command="{Binding OpenCustomerEditWindow}"/>
-        <Button Content="Slet" HorizontalAlignment="Left" Margin="180,354,0,0" VerticalAlignment="Top" Width="100" Height="30" Command="{Binding CustDelete}"/>
     </Grid>
 </Page>

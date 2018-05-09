@@ -9,16 +9,22 @@ namespace _1AarsProjekt.Model.CustomerManagement
 {
     public class CustomerMethods
     {
-        Customer cust = new Customer();
+        List<Customer> CustomerList = new List<Customer>();
         DataAccessLayer db = new DataAccessLayer();
-        public void CreateCustomer(Customer customer)
+        public void CreateCustomer(Customer cust)
         {
-            db.InsertCustomer(customer);
+            cust.Status = 1;
+            db.InsertCustomer(cust);
         }
         public List<Customer> ListCustomers()
         {
-            cust.CustomerList = DataAccessLayer.GetCustomers();
-            return cust.CustomerList;
+            CustomerList = DataAccessLayer.GetCustomers();
+            return CustomerList;
+        }
+        public void DeleteCustomer(Customer selectedCust)
+        {
+            selectedCust.Status = 0;
+            db.CustomerDelete(selectedCust);
         }
     }
 }

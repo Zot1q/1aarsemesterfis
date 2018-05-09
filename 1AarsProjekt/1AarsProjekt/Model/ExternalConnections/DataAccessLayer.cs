@@ -19,12 +19,12 @@ namespace _1AarsProjekt.Model.DB
 
         #region OPEN&CLOSE CONNECTION
         static void OpenConnection()
-        { //Åbner Connection til databasen
+        { //Open connection to the database
             connection = new SqlConnection("Data Source=.;Initial Catalog=ApEngrosDb;Integrated Security=True");
             connection.Open();
         }
         static void CloseConnection()
-        { //Lukker Connection til databasen
+        { //Closes connection to the database
             if (connection != null && connection.State == ConnectionState.Open)
                 connection.Close();
         }
@@ -36,11 +36,11 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement ([Discount], [Duration], [Status], [ProductGroup], [CustomerID]) VALUES (@Discount, @Duration, @Status, @ProductGroup, @CustomerID)", connection);
+                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement ([Discount], [Duration], [ProductGroup], [Status], [CustomerID]) VALUES (@Discount, @Duration, @ProductGroup, @Status, @CustomerID)", connection);
                 command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
                 command.Parameters.Add(CreateParam("@Duration", agreement.Duration));
-                command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.Parameters.Add(CreateParam("@ProductGroup", agreement.ProductGroup));
+                command.Parameters.Add(CreateParam("@Status", agreement.Status));
                 command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));
                 command.ExecuteNonQuery();
             }
@@ -65,7 +65,7 @@ namespace _1AarsProjekt.Model.DB
                 command.Parameters.Add(CreateParam("@Phone", cust.Phone));
                 command.Parameters.Add(CreateParam("@ContactPers", cust.ContactPers));
                 command.Parameters.Add(CreateParam("@ExpectRevenue", Convert.ToString(cust.ExpectRevenue)));
-                command.Parameters.Add(CreateParam("@Status", cust.Status.ToString()));
+                command.Parameters.Add(CreateParam("@Status", cust.Status));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -135,9 +135,9 @@ namespace _1AarsProjekt.Model.DB
                 {
                     agreement = new Agreement();
                     agreement.AgreementID = (int)reader["AgreementID"];
-                    agreement.Discount = (double)reader["Discount"];
+                    agreement.Discount = (decimal)reader["Discount"];
                     agreement.Duration = (string)reader["Duration"];
-                    agreement.Status = (bool)reader["Status"];
+                    agreement.Status = (byte)reader["Status"];
                     agreement.ProductGroup = (string)reader["ProductGroup"];
                     agreementList.Add(agreement);
                 }
@@ -159,7 +159,8 @@ namespace _1AarsProjekt.Model.DB
             {
                 Customer cust = new Customer();
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT CustomerID, FullName, Address, [Email], [PhoneNr], [ContactPerson], [ExpectedRevenue] FROM tblCustomer", connection);
+                //SqlCommand cmd = new SqlCommand("SELECT CustomerID, FullName, Address, [Email], [PhoneNr], [ContactPerson], [ExpectedRevenue] FROM tblCustomer", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.tblCustomer WHERE (Status = 1)", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Customer> customerList = new List<Customer>();
                 while (reader.Read())
@@ -230,26 +231,6 @@ namespace _1AarsProjekt.Model.DB
         }
         #endregion
 
-        #region UPDATE
-        public void UpdateCustomer(Customer cust)
-        {
-            try
-            {
-                OpenConnection();
-                SqlCommand command = new SqlCommand("UPDATE tblCustomer SET Status = @Status", connection);
-                command.Parameters.Add(CreateParam("@Status", cust.Status.ToString()));
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-        #endregion 
 
         #region DELETE
         public void CustomerDelete(Customer selectedCust)
@@ -257,14 +238,13 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("DELETE FROM dbo.tblCustomer WHERE CustomerID = @CustomerID ", connection);
+                SqlCommand command = new SqlCommand("UPDATE dbo.tblCustomer SET Status = 0 WHERE CustomerID = @CustomerID", connection);
                 command.Parameters.Add(CreateParam("@CustomerID", selectedCust.CustomerID));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                MessageBox.Show("Error" + ex);
             }
             finally
             {

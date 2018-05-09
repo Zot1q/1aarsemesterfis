@@ -24,8 +24,8 @@ namespace _1AarsProjekt.Viewmodel
         }
         public void AgreementCreate()
         {
+            agreementMethod.CreateAgreementTest();
             MessageBox.Show(Agreement.CustomerID.ToString());
-            //agreementMethod.CreateAgreementTest();
         }
 
 
