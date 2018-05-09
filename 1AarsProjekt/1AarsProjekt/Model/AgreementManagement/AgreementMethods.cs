@@ -19,7 +19,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
             Customer cust = new Customer();
             agree.CustomerID = 1;
             agree.Discount = 20;
-            agree.Duration = "12";
+            agree.ExpirationDate = DateTime.Now;
             agree.ProductGroup = "Varme";
             agree.Status = true;
             cust.CustomerID = 1;

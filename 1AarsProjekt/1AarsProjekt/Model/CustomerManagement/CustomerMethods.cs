@@ -13,7 +13,7 @@ namespace _1AarsProjekt.Model.CustomerManagement
         DataAccessLayer db = new DataAccessLayer();
         public void CreateCustomer(Customer cust)
         {
-            cust.Status = 1;
+            cust.Status = true;
             db.InsertCustomer(cust);
         }
         public List<Customer> ListCustomers()
@@ -23,7 +23,7 @@ namespace _1AarsProjekt.Model.CustomerManagement
         }
         public void DeleteCustomer(Customer selectedCust)
         {
-            selectedCust.Status = 0;
+            selectedCust.Status = false;
             db.CustomerDelete(selectedCust);
         }
     }
