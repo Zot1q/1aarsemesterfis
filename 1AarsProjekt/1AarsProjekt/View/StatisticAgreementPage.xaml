@@ -11,8 +11,18 @@
 
     <Grid>
         <Label Content="Overblik og statistik over aftaler" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        
-        <DataGrid AutoGenerateColumns="True" x:Name="myDataGrid" HorizontalAlignment="Left" Height="154" VerticalAlignment="Top" Width="449" Margin="33,75,0,0"/>
+        <ListView Margin="10" Name="lvAgreements">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="AgreementID" Width="80" DisplayMemberBinding="{Binding AgreementID}" />
+                    <GridViewColumn Header="Discount" Width="80" DisplayMemberBinding="{Binding Discount}" />
+                    <GridViewColumn Header="Duration" Width="80" DisplayMemberBinding="{Binding Discount}" />
+                    <GridViewColumn Header="Product Group" Width="100" DisplayMemberBinding="{Binding ProductGroup}" />
+                    <GridViewColumn Header="Status" Width="70" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Header="CustomerID" Width="100" DisplayMemberBinding="{Binding CustomerID}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Page>
