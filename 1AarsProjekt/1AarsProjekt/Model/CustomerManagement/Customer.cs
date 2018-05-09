@@ -15,7 +15,7 @@ namespace _1AarsProjekt.Model.CustomerManagement
         public int Phone { get; set; }
         public string ContactPers { get; set; }
         public double ExpectRevenue { get; set; }
-        public bool Status { get; set; }
         public int CustomerID { get; set; }
+        public bool Status { get; set; }
     }
 }

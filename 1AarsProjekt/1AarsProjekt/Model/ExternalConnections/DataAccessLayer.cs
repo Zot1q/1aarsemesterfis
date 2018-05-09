@@ -58,7 +58,7 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblCustomer ([CompanyName], [Address], [EMail], [PhoneNr], [ContactPerson], [ExpectedRevenue], [Status]) VALUES (@CompanyName, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue, @Status)", connection);
+                SqlCommand command = new SqlCommand("INSERT INTO tblCustomer (CompanyName, Address, [EMail], [PhoneNr], [ContactPerson], [ExpectedRevenue], [Status]) VALUES (@CompanyName, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue, @Status)", connection);
                 command.Parameters.Add(CreateParam("@CompanyName", cust.CompanyName));
                 command.Parameters.Add(CreateParam("@Address", cust.Address));
                 command.Parameters.Add(CreateParam("@Email", cust.Email));
@@ -77,7 +77,7 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
-        
+
         /// <author>
         /// Newjan
         /// </author>
@@ -199,13 +199,14 @@ namespace _1AarsProjekt.Model.DB
         {
             try
             {
+                Customer cust = new Customer();
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [CustomerID], [CompanyName], [Address], [Email], [PhoneNr], [ContactPerson], [ExpectedRevenue], [Status] FROM dbo.tblCustomer", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.tblCustomer WHERE (Status = 1)", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Customer> customerList = new List<Customer>();
                 while (reader.Read())
                 {
-                    Customer cust = new Customer();
+                    cust = new Customer();
                     cust.CustomerID = (int)reader["CustomerID"];
                     cust.CompanyName = (string)reader["CompanyName"];
                     cust.Address = (string)reader["Address"];
@@ -213,14 +214,40 @@ namespace _1AarsProjekt.Model.DB
                     cust.Phone = (int)reader["PhoneNr"];
                     cust.ContactPers = (string)reader["ContactPerson"];
                     cust.ExpectRevenue = float.Parse(reader["ExpectedRevenue"].ToString());
-                    cust.Status = (bool)reader["Status"];
                     customerList.Add(cust);
                 }
                 return customerList;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + " " + ex);
+                MessageBox.Show("Error" + ex);
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        #region UPDATE
+        public void UpdateCustomer(Customer CustToEdit)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("UPDATE tblCustomer SET CompanyName = @CompanyName, Address = @Address," +
+                    " Email = @Email, PhoneNr = @PhoneNr, ContactPerson = @ContactPerson, ExpectedRevenue = @ExpectedRevenue " +
+                    "WHERE (CustomerID = @CustomerID)", connection);
+                command.Parameters.Add(CreateParam("@CompanyName", CustToEdit.CompanyName));
+                command.Parameters.Add(CreateParam("@Address", CustToEdit.Address));
+                command.Parameters.Add(CreateParam("@Email", CustToEdit.Email));
+                command.Parameters.Add(CreateParam("@PhoneNr", CustToEdit.Phone));
+                command.Parameters.Add(CreateParam("@ContactPerson", CustToEdit.ContactPers));
+                command.Parameters.Add(CreateParam("@ExpectedRevenue", Convert.ToString(CustToEdit.ExpectRevenue)));
+                command.Parameters.Add(CreateParam("@CustomerID", CustToEdit.CustomerID));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally
@@ -228,6 +255,7 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
+        #endregion
 
         #region DELETE
         public void CustomerDelete(Customer selectedCust)

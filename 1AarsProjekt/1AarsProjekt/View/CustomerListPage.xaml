@@ -10,10 +10,14 @@
       d:DesignHeight="425" d:DesignWidth="555"
       Title="CustomerListWindow" Background="White">
 
+    <!--<Page.Resources>
+        <Viewmodel:CustomerListVM x:Key="custListVM"/>
+    </Page.Resources>-->
+
     <Page.Resources>
         <Viewmodel:CustomerListVM x:Key="custListVM"/>
     </Page.Resources>
-    
+
     <Page.DataContext>
         <StaticResource ResourceKey="custListVM"/>
     </Page.DataContext>
@@ -26,7 +30,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Label Content="{Binding Name}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
+                        <Label Content="{Binding CompanyName}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
                         <Expander>
                             <StackPanel>
                                 <Label Content="{Binding Address}" ContentStringFormat="Addresse: {0}"/>

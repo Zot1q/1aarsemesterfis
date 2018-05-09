@@ -29,7 +29,8 @@ namespace _1AarsProjekt.Model.CustomerManagement
         }
         public void EditCustomer(Customer CustToEdit)
         {
-            MessageBox.Show(CustToEdit.Name.ToString(), "ændret");
+            db.UpdateCustomer(CustToEdit);
+            MessageBox.Show(CustToEdit.CompanyName.ToString(), "ændret");
         }
     }
 }
