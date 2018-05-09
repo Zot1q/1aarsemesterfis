@@ -14,27 +14,9 @@ namespace _1AarsProjekt.Model.StatisticManagement
         List<Agreement> AgreementList = new List<Agreement>();
         DataAccessLayer db = new DataAccessLayer();
 
-        //public void CreateAgreementTest()
-        //{
-        //    Agreement agree = new Agreement();
-        //    Customer cust = new Customer();
-        //    agree.CustomerID = 1;
-        //    agree.Discount = 20;
-        //    agree.Duration = "12";
-        //    agree.ProductGroup = "Varme";
-        //    agree.Status = 1;
-        //    cust.CustomerID = 1;
-        //    agree.CustomerID = cust.CustomerID;
-        //    CreateAgreement(agree);
-        //}
-        //public void CreateAgreement(Agreement agree)
-        //{
-        //    db.InsertAgreement(agree);
-        //}
-        public List<Agreement> ListAgreements()
+        public void GetAgreement()
         {
-            AgreementList = DataAccessLayer.GetAgreements();
-            return AgreementList;
+            db.AgreementTest();
         }
     }
 }

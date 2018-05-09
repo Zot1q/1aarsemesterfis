@@ -26,7 +26,7 @@ namespace _1AarsProjekt.Viewmodel
 
         public StatisticAgreementVM()
         {
-            AgreeStatisticList = statistic.ListAgreements();
+            statistic.GetAgreement();
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

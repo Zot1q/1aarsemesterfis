@@ -30,11 +30,6 @@ namespace _1AarsProjekt.Model.AgreementManagement
         {
             db.InsertAgreement(agree);
         }
-        public List<Agreement> ListAgreements()
-        {
-            AgreementList = DataAccessLayer.GetAgreements();
-            return AgreementList;
-        }
 
         public void DeleteAgreement(Agreement selectedAgreement)
         {

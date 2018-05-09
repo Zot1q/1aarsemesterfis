@@ -122,45 +122,13 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region SELECT
-        public static List<Agreement> GetAgreements()
-        {
-            try
-            {
-                Agreement agreement = new Agreement();
-                OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.tblAgreement WHERE (Status = 1)", connection);
-                SqlDataReader reader = cmd.ExecuteReader();
-                List<Agreement> agreementList = new List<Agreement>();
-                while (reader.Read())
-                {
-                    agreement = new Agreement();
-                    //agreement.AgreementID = (int)reader["AgreementID"];
-                    //agreement.Discount = (decimal)reader["Discount"];
-                    //agreement.Duration = (string)reader["Duration"];
-                    //agreement.Status = (byte)reader["Status"];
-                    agreement.Status = reader.GetByte((int)reader["Status"]);
-                    //agreement.ProductGroup = (string)reader["ProductGroup"];
-                    agreementList.Add(agreement);
-                }
-                return agreementList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fejl" + ex);
-                throw;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
+
         public static List<Customer> GetCustomers()
         {
             try
             {
                 Customer cust = new Customer();
                 OpenConnection();
-                //SqlCommand cmd = new SqlCommand("SELECT CustomerID, FullName, Address, [Email], [PhoneNr], [ContactPerson], [ExpectedRevenue] FROM tblCustomer", connection);
                 SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.tblCustomer WHERE (Status = 1)", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Customer> customerList = new List<Customer>();
@@ -231,7 +199,26 @@ namespace _1AarsProjekt.Model.DB
             }
         }
         #endregion
+        public void AgreementTest()
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT TOP(1) [Status] FROM dbo.tblAgreement", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Agreement agreeTest = new Agreement();
+                    //int test = (int)reader["Status"];
+                    bool status = (bool)reader["Status"];
+                }
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+        }
 
         #region DELETE
         public void CustomerDelete(Customer selectedCust)
@@ -292,62 +279,6 @@ namespace _1AarsProjekt.Model.DB
         }
         #endregion
 
-        #region DATAGRID
-        public void LoadDataGrid()
-        {
-            OpenConnection();
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SELECT [AgreementID], [Discount], [Duration], [ProductGroup], [CustomerID] FROM tblAgreement");
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-                DataTable dataTable = new DataTable("tblAgreement");
-                //dataAdapter.Fill(dataAdapter);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        #endregion
     }
 }
-//private void LoadTableTxt_Click(object sender, RoutedEventArgs e)
-//{
-//    SqlConnection connection = new SqlConnection();
 
-//    try
-//    {
-//        connection = new SqlConnection("Data Source=.;Initial Catalog=BudgetManager;Integrated Security=True");
-//        connection.Open();
-//        string Query = "select Periode,Beskrivelse from Table1";
-//        SqlCommand cmd = new SqlCommand(Query, connection);
-//        cmd.ExecuteNonQuery();
-
-//        SqlDataAdapter dataAdp = new SqlDataAdapter(cmd);
-//        DataTable dt = new DataTable("Table1");
-//        dataAdp.Fill(dt);
-//        dt.Columns.Add(txtBoxFinance.Text);
-
-//        myDataGrid.ItemsSource = dt.DefaultView;
-//        dataAdp.Update(dt);
-
-//        connection.Close();
-//    }
-//    catch (Exception ex)
-//    {
-//        MessageBox.Show(ex.Message);
-//        throw;
-//    }
-//}
-
-//private void myDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-//{
-//    DataGrid gd = (DataGrid)sender;
-//    DataRowView row_selected = gd.SelectedItem as DataRowView;
-//    if (row_selected != null)
-//    {
-
-//    }
-//}
