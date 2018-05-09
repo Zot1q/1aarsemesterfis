@@ -29,7 +29,7 @@ namespace _1AarsProjekt.Viewmodel
             {
                 CustomerMethods customerMethod = new CustomerMethods();
                 customerMethod.CreateCustomer(Customer);
-                MessageBox.Show(String.Format("Kunde: {0} Er nu oprettet", Customer.Name));
+                MessageBox.Show(String.Format("Kunde: {0} Er nu oprettet", Customer.CompanyName));
             }
             else
             {

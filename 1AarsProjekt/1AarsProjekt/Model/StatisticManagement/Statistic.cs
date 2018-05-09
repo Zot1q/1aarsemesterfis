@@ -12,12 +12,18 @@ namespace _1AarsProjekt.Model.StatisticManagement
     public class Statistic
     {
         List<Agreement> AgreementList = new List<Agreement>();
+        List<Customer> CustomerList = new List<Customer>();
         DataAccessLayer db = new DataAccessLayer();
 
         public List<Agreement> ListAgreements()
         {
             AgreementList = DataAccessLayer.GetAgreements();
             return AgreementList;
+        }
+        public List<Customer> ListCustomer()
+        {
+            CustomerList = DataAccessLayer.GetCustomers();
+            return CustomerList;
         }
     }
 }

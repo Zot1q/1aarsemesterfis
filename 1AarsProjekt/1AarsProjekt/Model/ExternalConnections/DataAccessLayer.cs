@@ -36,9 +36,9 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement ([Discount], [Duration], [ProductGroup], [Status], [CustomerID]) VALUES (@Discount, @Duration, @ProductGroup, @Status, @CustomerID)", connection);
+                SqlCommand command = new SqlCommand("INSERT INTO tblAgreement ([Discount], [ExpirationDate], [ProductGroup], [Status], [CustomerID]) VALUES (@Discount, @ExpirationDate, @ProductGroup, @Status, @CustomerID)", connection);
                 command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
-                command.Parameters.Add(CreateParam("@Duration", agreement.Duration));
+                command.Parameters.Add(CreateParam("@ExpirationDate", agreement.ExpirationDate.ToString()));
                 command.Parameters.Add(CreateParam("@ProductGroup", agreement.ProductGroup));
                 command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));
@@ -58,14 +58,14 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO tblCustomer (FullName, Address, [EMail], [PhoneNr], [ContactPerson], [ExpectedRevenue], [Status]) VALUES (@FullName, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue, @Status)", connection);
-                command.Parameters.Add(CreateParam("@FullName", cust.Name));
+                SqlCommand command = new SqlCommand("INSERT INTO tblCustomer ([CompanyName], [Address], [EMail], [PhoneNr], [ContactPerson], [ExpectedRevenue], [Status]) VALUES (@CompanyName, @Address, @Email, @Phone, @ContactPers, @ExpectRevenue, @Status)", connection);
+                command.Parameters.Add(CreateParam("@CompanyName", cust.CompanyName));
                 command.Parameters.Add(CreateParam("@Address", cust.Address));
                 command.Parameters.Add(CreateParam("@Email", cust.Email));
                 command.Parameters.Add(CreateParam("@Phone", cust.Phone));
                 command.Parameters.Add(CreateParam("@ContactPers", cust.ContactPers));
                 command.Parameters.Add(CreateParam("@ExpectRevenue", Convert.ToString(cust.ExpectRevenue)));
-                command.Parameters.Add(CreateParam("@Status", cust.Status));
+                command.Parameters.Add(CreateParam("@Status", cust.Status.ToString()));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -122,40 +122,6 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region SELECT
-
-        public static List<Customer> GetCustomers()
-        {
-            try
-            {
-                Customer cust = new Customer();
-                OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.tblCustomer WHERE (Status = 1)", connection);
-                SqlDataReader reader = cmd.ExecuteReader();
-                List<Customer> customerList = new List<Customer>();
-                while (reader.Read())
-                {
-                    cust = new Customer();
-                    cust.CustomerID = (int)reader["CustomerID"];
-                    cust.Name = (string)reader["FullName"];
-                    cust.Address = (string)reader["Address"];
-                    cust.Email = (string)reader["Email"];
-                    cust.Phone = (int)reader["PhoneNr"];
-                    cust.ContactPers = (string)reader["ContactPerson"];
-                    cust.ExpectRevenue = float.Parse(reader["ExpectedRevenue"].ToString());
-                    customerList.Add(cust);
-                }
-                return customerList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-                throw;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
         public static List<Product> GetProducts()
         {
             try
@@ -204,20 +170,53 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT TOP(1) [Discount], [Duration], [ProductGroup], [CustomerID], [Status] FROM dbo.tblAgreement", connection);
+                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [Discount], [ExpirationDate], [ProductGroup], [CustomerID], [Status] FROM dbo.tblAgreement", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Agreement> agreementList = new List<Agreement>();
                 while (reader.Read())
                 {
                     Agreement agree = new Agreement();
                     agree.Discount = (decimal)reader["Discount"];
-                    agree.Duration = (string)reader["Duration"];
+                    agree.ExpirationDate = (DateTime)reader["ExpirationDate"];
                     agree.ProductGroup = (string)reader["ProductGroup"];
                     agree.CustomerID = (int)reader["CustomerID"];
                     agree.Status = (bool)reader["Status"];
                     agreementList.Add(agree);
                 }
                 return agreementList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:" + " " + ex);
+                throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        public static List<Customer> GetCustomers()
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [CustomerID], [CompanyName], [Address], [Email], [PhoneNr], [ContactPerson], [ExpectedRevenue], [Status] FROM dbo.tblCustomer", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Customer> customerList = new List<Customer>();
+                while (reader.Read())
+                {
+                    Customer cust = new Customer();
+                    cust.CustomerID = (int)reader["CustomerID"];
+                    cust.CompanyName = (string)reader["CompanyName"];
+                    cust.Address = (string)reader["Address"];
+                    cust.Email = (string)reader["Email"];
+                    cust.Phone = (int)reader["PhoneNr"];
+                    cust.ContactPers = (string)reader["ContactPerson"];
+                    cust.ExpectRevenue = float.Parse(reader["ExpectedRevenue"].ToString());
+                    cust.Status = (bool)reader["Status"];
+                    customerList.Add(cust);
+                }
+                return customerList;
             }
             catch (Exception ex)
             {

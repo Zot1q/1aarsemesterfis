@@ -12,7 +12,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
     {
         public int AgreementID { get; set; }
         public decimal Discount { get; set; }
-        public string Duration { get; set; }
+        public DateTime ExpirationDate { get; set; }
         public string ProductGroup { get; set; }
         public bool Status { get; set; }
         public int CustomerID { get; set; }

@@ -28,7 +28,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Label Content="{Binding Name}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
+                        <Label Content="{Binding CompanyName}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
                         <Expander>
                             <StackPanel>
                                 <Label Content="{Binding Address}" ContentStringFormat="Addresse: {0}"/>
