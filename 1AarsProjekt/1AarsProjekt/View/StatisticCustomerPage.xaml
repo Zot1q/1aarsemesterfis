@@ -24,7 +24,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Kunde ID" Width="55" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Navn" Width="100" DisplayMemberBinding="{Binding Fullname}" />
+                    <GridViewColumn Header="Firma" Width="100" DisplayMemberBinding="{Binding CompanyName}" />
                     <GridViewColumn Header="Adr." Width="100" DisplayMemberBinding="{Binding Address}" />
                     <GridViewColumn Header="E-mail" Width="100" DisplayMemberBinding="{Binding Email}" />
                     <GridViewColumn Header="Tlf. Nr" Width="60" DisplayMemberBinding="{Binding PhoneNr}" />

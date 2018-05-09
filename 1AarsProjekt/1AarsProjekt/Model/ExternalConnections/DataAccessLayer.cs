@@ -170,7 +170,7 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [Discount], [Duration], [ProductGroup], [CustomerID], [Status] FROM dbo.tblAgreement", connection);
+                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [Discount], [ExpirationDate], [ProductGroup], [CustomerID], [Status] FROM dbo.tblAgreement", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Agreement> agreementList = new List<Agreement>();
                 while (reader.Read())

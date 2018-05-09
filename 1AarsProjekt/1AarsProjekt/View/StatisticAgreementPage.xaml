@@ -26,7 +26,7 @@
                 <GridView>
                     <GridViewColumn Header="AgreementID" Width="80" DisplayMemberBinding="{Binding AgreementID}" />
                     <GridViewColumn Header="Discount" Width="80" DisplayMemberBinding="{Binding Discount}" />
-                    <GridViewColumn Header="Duration" Width="80" DisplayMemberBinding="{Binding Discount}" />
+                    <GridViewColumn Header="Exp Date" Width="80" DisplayMemberBinding="{Binding ExpirationDate}" />
                     <GridViewColumn Header="Product Group" Width="100" DisplayMemberBinding="{Binding ProductGroup}" />
                     <GridViewColumn Header="Status" Width="70" DisplayMemberBinding="{Binding Status}" />
                     <GridViewColumn Header="CustomerID" Width="100" DisplayMemberBinding="{Binding CustomerID}" />
