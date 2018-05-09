@@ -1,4 +1,6 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
+using _1AarsProjekt.Model.CustomerManagement;
+using _1AarsProjekt.Model.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +9,32 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.StatisticManagement
 {
-    class Statistic
+    public class Statistic
     {
-        AgreementMethods agreement = new AgreementMethods();
+        List<Agreement> AgreementList = new List<Agreement>();
+        DataAccessLayer db = new DataAccessLayer();
+
+        //public void CreateAgreementTest()
+        //{
+        //    Agreement agree = new Agreement();
+        //    Customer cust = new Customer();
+        //    agree.CustomerID = 1;
+        //    agree.Discount = 20;
+        //    agree.Duration = "12";
+        //    agree.ProductGroup = "Varme";
+        //    agree.Status = 1;
+        //    cust.CustomerID = 1;
+        //    agree.CustomerID = cust.CustomerID;
+        //    CreateAgreement(agree);
+        //}
+        //public void CreateAgreement(Agreement agree)
+        //{
+        //    db.InsertAgreement(agree);
+        //}
+        public List<Agreement> ListAgreements()
+        {
+            AgreementList = DataAccessLayer.GetAgreements();
+            return AgreementList;
+        }
     }
 }

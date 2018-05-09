@@ -128,24 +128,25 @@ namespace _1AarsProjekt.Model.DB
             {
                 Agreement agreement = new Agreement();
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT AgreementID, Discount, Duration, [ProductGroup], CustomerID FROM tblAgreement", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.tblAgreement WHERE (Status = 1)", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Agreement> agreementList = new List<Agreement>();
                 while (reader.Read())
                 {
                     agreement = new Agreement();
-                    agreement.AgreementID = (int)reader["AgreementID"];
-                    agreement.Discount = (decimal)reader["Discount"];
-                    agreement.Duration = (string)reader["Duration"];
-                    agreement.Status = (byte)reader["Status"];
-                    agreement.ProductGroup = (string)reader["ProductGroup"];
+                    //agreement.AgreementID = (int)reader["AgreementID"];
+                    //agreement.Discount = (decimal)reader["Discount"];
+                    //agreement.Duration = (string)reader["Duration"];
+                    //agreement.Status = (byte)reader["Status"];
+                    agreement.Status = reader.GetByte((int)reader["Status"]);
+                    //agreement.ProductGroup = (string)reader["ProductGroup"];
                     agreementList.Add(agreement);
                 }
                 return agreementList;
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Fejl" + ex);
                 throw;
             }
             finally
