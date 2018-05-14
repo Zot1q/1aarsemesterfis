@@ -5,14 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="525"
-      Title="WelcomePage" Background="#ffffff">
-
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="WelcomePage">
     <Grid>
-        <StackPanel Width="auto" Height="auto" VerticalAlignment="Top" Orientation="Vertical" HorizontalAlignment="Center" Margin="35">
-            <Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="AP Engros" FontWeight="DemiBold" FontStretch="UltraCondensed" FontFamily="helvetica" FontSize="50"/>
-            <TextBlock Text="Salg og service af energisystemer, solceller, varmevekslere mv" FontFamily="helvetica" FontSize="15" Height="29"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/2017.jpg" Stretch="Fill" Opacity="0.5"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+            <Image Source="/Images/EchoLogo1.png" Stretch="Uniform" Width="200" Height="200"/>
         </StackPanel>
-
     </Grid>
 </Page>

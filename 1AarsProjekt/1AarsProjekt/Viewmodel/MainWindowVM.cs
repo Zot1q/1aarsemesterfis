@@ -24,7 +24,7 @@ namespace _1AarsProjekt.Viewmodel
                 NotifyPropertyChanged();
             }
         }
-
+        public ChangePageCMD SwapWelcomePage { get; set; }
         public ChangePageCMD SwapPageCreateCustomer { get; set; }
         public ChangePageCMD SwapPageShowCustomer { get; set; }
         public ChangePageCMD SwapPageAgreementPage { get; set; }
@@ -35,6 +35,7 @@ namespace _1AarsProjekt.Viewmodel
         public ChangePageCMD SwapPageStatisticAgreement { get; set; }
         public MainWindowVM()
         {
+            SwapWelcomePage = new ChangePageCMD(PageSwapToWelcomePage);
             SwapPageCreateCustomer = new ChangePageCMD(PageSwapToCustomerCreatePage);
             SwapPageShowCustomer = new ChangePageCMD(PageSwapToCustomerListPage);
             SwapPageAgreementPage = new ChangePageCMD(PageSwapToAgreementPage);
@@ -45,7 +46,10 @@ namespace _1AarsProjekt.Viewmodel
             SwapPageStatisticAgreement = new ChangePageCMD(PageSwapToStatisticAgreementPage);
             Frame = new WelcomePage();
         }
-
+        public void PageSwapToWelcomePage()
+        {
+            Frame = new WelcomePage();
+        }
         public void PageSwapToProductListPage()
         {
             Frame = new ProductListPage();

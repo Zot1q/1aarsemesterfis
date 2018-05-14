@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:_1AarsProjekt.View"
       xmlns:agreement="clr-namespace:_1AarsProjekt.Viewmodel"
       mc:Ignorable="d" 
-      d:DesignHeight="425" d:DesignWidth="555"
+      d:DesignHeight="425" d:DesignWidth="750"
       Title="AgreementWindow" Background="White">
     <Page.Resources>
         <agreement:AgreementListVM x:Key="agreeVm"/>

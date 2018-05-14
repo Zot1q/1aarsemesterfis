@@ -5,34 +5,34 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="525"
+      d:DesignHeight="450" d:DesignWidth="750"
       Title="StatisticAgreementPage"
       Background="#fff">
 
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            
+        <StackPanel HorizontalAlignment="Left" Grid.Row="0" Margin="10, 0, 0, 0">
             <Label Content="Overblik og statistik over aftaler" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
         </StackPanel>
-
-        
-        <ListView Grid.Row="1" ItemsSource="{Binding AgreeStatisticList}" Margin="10" Name="lvAgreements">
+        <ListView Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding AgreeStatisticList}" Margin="10" Name="lvAgreements">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="AgreementID" Width="80" DisplayMemberBinding="{Binding AgreementID}" />
-                    <GridViewColumn Header="Discount" Width="80" DisplayMemberBinding="{Binding Discount}" />
-                    <GridViewColumn Header="Exp Date" Width="80" DisplayMemberBinding="{Binding ExpirationDate}" />
-                    <GridViewColumn Header="Product Group" Width="100" DisplayMemberBinding="{Binding ProductGroup}" />
-                    <GridViewColumn Header="Status" Width="70" DisplayMemberBinding="{Binding Status}" />
-                    <GridViewColumn Header="CustomerID" Width="100" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="AgreementID" Width="120" DisplayMemberBinding="{Binding AgreementID}" />
+                    <GridViewColumn Header="Discount" Width="120" DisplayMemberBinding="{Binding Discount}" />
+                    <GridViewColumn Header="Exp Date" Width="120" DisplayMemberBinding="{Binding ExpirationDate}" />
+                    <GridViewColumn Header="Product Group" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
+                    <GridViewColumn Header="Status" Width="120" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Header="CustomerID" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
                 </GridView>
             </ListView.View>
         </ListView>
-
     </Grid>
 </Page>

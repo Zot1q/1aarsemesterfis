@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1AarsProjekt.View"
         mc:Ignorable="d"
-        Title="Opret Aftale" Height="450" Width="555">
+        Title="Opret Aftale" Height="450" Width="750">
     <Grid>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Horizontal">

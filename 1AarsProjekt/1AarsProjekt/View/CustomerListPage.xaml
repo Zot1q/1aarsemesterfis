@@ -7,7 +7,7 @@
       xmlns:Viewmodel="clr-namespace:_1AarsProjekt.Viewmodel" 
       x:Class="_1AarsProjekt.View.CustomerListPage"
       mc:Ignorable="d" 
-      d:DesignHeight="425" d:DesignWidth="555"
+      d:DesignHeight="425" d:DesignWidth="750"
       Title="CustomerListWindow" Background="White">
 
     <!--<Page.Resources>

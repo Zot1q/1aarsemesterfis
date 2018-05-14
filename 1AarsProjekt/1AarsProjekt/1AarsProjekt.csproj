@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.0.1044, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.4.0.1044\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -194,6 +200,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,6 +209,35 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EchoLogo1.png" />
+    <Resource Include="Images\EchoLogo2.png" />
+    <Resource Include="Images\EchoLogo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\001-list.png" />
+    <Resource Include="Images\002-shopping-bag.png" />
+    <Resource Include="Images\003-shopping-cart.png" />
+    <Resource Include="Images\004-agreement.png" />
+    <Resource Include="Images\005-handshake.png" />
+    <Resource Include="Images\006-contract.png" />
+    <Resource Include="Images\007-profile.png" />
+    <Resource Include="Images\008-add-user.png" />
+    <Resource Include="Images\009-home-1.png" />
+    <Resource Include="Images\010-home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\line-chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\architecture-building-business-258160.jpg" />
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\2017.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
