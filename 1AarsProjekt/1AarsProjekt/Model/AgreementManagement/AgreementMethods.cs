@@ -13,18 +13,12 @@ namespace _1AarsProjekt.Model.AgreementManagement
         List<Agreement> AgreementList = new List<Agreement>();
         DataAccessLayer db = new DataAccessLayer();
 
-        public void CreateAgreementTest()
+        public void CreateAgreementTest(Agreement agreement)
         {
             Agreement agree = new Agreement();
-            Customer cust = new Customer();
-            agree.CustomerID = 1;
-            agree.Discount = 20;
-            agree.ExpirationDate = DateTime.Now;
-            agree.ProductGroup = "Varme";
-            agree.Status = true;
-            cust.CustomerID = 1;
-            agree.CustomerID = cust.CustomerID;
-            CreateAgreement(agree);
+            agreement.ProductGroup = "Varme";
+            agreement.Status = true;
+            CreateAgreement(agreement);
         }
         private void SqlFormattedDateTime(Agreement agree)
         {
