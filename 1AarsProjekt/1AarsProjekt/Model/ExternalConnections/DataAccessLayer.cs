@@ -38,7 +38,7 @@ namespace _1AarsProjekt.Model.DB
                 OpenConnection();
                 SqlCommand command = new SqlCommand("INSERT INTO tblAgreement ([Discount], [ExpirationDate], [ProductGroup], [Status], [CustomerID]) VALUES (@Discount, @ExpirationDate, @ProductGroup, @Status, @CustomerID)", connection);
                 command.Parameters.Add(CreateParam("@Discount", agreement.Discount.ToString()));
-                command.Parameters.Add(CreateParam("@ExpirationDate", agreement.ExpirationDate.Date.ToString()));
+                command.Parameters.Add(CreateParam("@ExpirationDate", agreement.ExpirationDate.ToString()));
                 command.Parameters.Add(CreateParam("@ProductGroup", agreement.ProductGroup));
                 command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));

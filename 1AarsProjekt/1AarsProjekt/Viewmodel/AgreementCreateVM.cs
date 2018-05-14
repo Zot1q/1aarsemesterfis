@@ -16,6 +16,9 @@ namespace _1AarsProjekt.Viewmodel
         AgreementMethods agreementMethod = new AgreementMethods();
         public ChangePageCMD CreateAgreement { get; set; }
         public Agreement Agreement { get; set; }
+
+        public int TimeToAdd { get; set; }
+
         public AgreementCreateVM(int custID)
         {
             Agreement = new Agreement();
@@ -24,8 +27,11 @@ namespace _1AarsProjekt.Viewmodel
         }
         public void AgreementCreate()
         {
-            agreementMethod.CreateAgreementTest();
-            MessageBox.Show(Agreement.CustomerID.ToString());
+            Agreement.ExpirationDate = DateTime.Now.AddMonths(TimeToAdd);
+            
+            MessageBox.Show(Agreement.ExpirationDate.ToString());
+            agreementMethod.CreateAgreementTest(Agreement);
+           
         }
 
 
