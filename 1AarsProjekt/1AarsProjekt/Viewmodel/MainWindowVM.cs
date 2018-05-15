@@ -64,6 +64,9 @@ namespace _1AarsProjekt.Viewmodel
                 case 3:
                     Frame = new ProductCreatePage();
                     break;
+                case 4:
+                    Frame = new ProductListPage();
+                    break;
                 case 5:
                     Frame = new StatisticCustomerPage();
                     break;

@@ -9,9 +9,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="750"
       Title="ProductListPage">
-    <Page.DataContext>
-        <Viewmodel:ProductListVM/>
-    </Page.DataContext>
 
     <Grid Background="White">
         <ListBox ItemsSource="{Binding ProductList}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">

@@ -82,10 +82,10 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                string query = "INSERT INTO tblProducts ([CompanyID], [AgreementID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode]) VALUES (@CompanyID, @AgreementID, @InterchangeID, @ProductName1, @ProductName2, @ItemUnit, @ProductDescription, @Synonyms, @ProductGroup, @Weight, @MinQuantity, @Price, @Discount, @NetPrice, @PCode, @DistCode)";
+                string query = "INSERT INTO tblProducts ([ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode]) VALUES (@ProdNumber, @CompanyID, @InterchangeID, @ProductName1, @ProductName2, @ItemUnit, @ProductDescription, @Synonyms, @ProductGroup, @Weight, @MinQuantity, @Price, @Discount, @NetPrice, @PCode, @DistCode)";
                 SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(CreateParam("@ProdNumber", product.ProductID));
                 command.Parameters.Add(CreateParam("@CompanyID", product.CompanyID));
-                command.Parameters.Add(CreateParam("@AgreementID", product.AgreementID));
                 command.Parameters.Add(CreateParam("@InterchangeID", product.InterchangeID));
                 command.Parameters.Add(CreateParam("@ProductName1", product.ProductName1));
                 command.Parameters.Add(CreateParam("@ProductName2", product.ProductName2));
@@ -115,48 +115,48 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region SELECT
-        public static List<Product> GetProducts()
-        {
-            try
-            {
-                Product product = new Product();
-                OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT [ProductID], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode] FROM tblProducts", connection);
-                SqlDataReader reader = cmd.ExecuteReader();
-                List<Product> productList = new List<Product>();
-                while (reader.Read())
-                {
-                    product = new Product();
-                    product.ProductID = (int)reader["ProdNumber"];
-                    product.CompanyID = (int)reader["CompanyID"];
-                    product.InterchangeID = (string)reader["InterchangeID"];
-                    product.ProductName1 = (string)reader["ProductName1"];
-                    product.ProductName2 = (string)reader["ProductName2"];
-                    product.ItemUnit = (string)reader["ItemUnit"];
-                    product.ProductDescription = (string)reader["ProductDescription"];
-                    product.Synonyms = (string)reader["Synonyms"];
-                    product.ProductGroup = (string)reader["ProductGroup"];
-                    product.Weight = (float)reader["Weight"];
-                    product.MinQuantity = (string)reader["MinQuantiy"];
-                    product.Price = (string)reader["Price"];
-                    product.Discount = (string)reader["Discount"];
-                    product.NetPrice = (string)reader["NetPrice"];
-                    product.PCode = (string)reader["PCode"];
-                    product.DistCode = (string)reader["DistCode"];
-                    productList.Add(product);
-                }
-                return productList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-                throw;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
+        //public static List<Product> GetProducts()
+        //{
+        //    try
+        //    {
+        //        Product product = new Product();
+        //        OpenConnection();
+        //        SqlCommand cmd = new SqlCommand("SELECT [ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode] FROM tblProducts", connection);
+        //        SqlDataReader reader = cmd.ExecuteReader();
+        //        List<Product> productList = new List<Product>();
+        //        while (reader.Read())
+        //        {
+        //            product = new Product();
+        //            product.ProductID = (int)reader["ProdNumber"];
+        //            product.CompanyID = (int)reader["CompanyID"];
+        //            product.InterchangeID = (string)reader["InterchangeID"];
+        //            product.ProductName1 = (string)reader["ProductName1"];
+        //            product.ProductName2 = (string)reader["ProductName2"];
+        //            product.ItemUnit = (string)reader["ItemUnit"];
+        //            product.ProductDescription = (string)reader["ProductDescription"];
+        //            product.Synonyms = (string)reader["Synonyms"];
+        //            product.ProductGroup = (string)reader["ProductGroup"];
+        //            product.Weight = (string)reader["Weight"];
+        //            product.MinQuantity = (string)reader["MinQuantiy"];
+        //            product.Price = (string)reader["Price"];
+        //            product.Discount = (string)reader["Discount"];
+        //            product.NetPrice = (string)reader["NetPrice"];
+        //            product.PCode = (string)reader["PCode"];
+        //            product.DistCode = (string)reader["DistCode"];
+        //            productList.Add(product);
+        //        }
+        //        return productList;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error" + ex);
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        CloseConnection();
+        //    }
+        //}
         public static List<Agreement> GetAgreements()
         {
             try
