@@ -14,6 +14,17 @@ namespace _1AarsProjekt.Viewmodel
     public class MainWindowVM : INotifyPropertyChanged
     {
         private Page frame;
+        private int selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                selectedIndex = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public Page Frame
         {
@@ -24,67 +35,46 @@ namespace _1AarsProjekt.Viewmodel
                 NotifyPropertyChanged();
             }
         }
-        public ChangePageCMD SwapWelcomePage { get; set; }
-        public ChangePageCMD SwapPageCreateCustomer { get; set; }
-        public ChangePageCMD SwapPageShowCustomer { get; set; }
-        public ChangePageCMD SwapPageAgreementPage { get; set; }
-        public ChangePageCMD SwapPageProductCreatePage { get; set; }
-        public ChangePageCMD SwapPageProductListPage { get; set; }
-        public ChangePageCMD SwapPageStatisticTopXPage { get; set; }
-        public ChangePageCMD SwapPageStatisticCustomer { get; set; }
-        public ChangePageCMD SwapPageStatisticAgreement { get; set; }
+
+        public ChangePageCMD SwapPage { get; set; }
         public MainWindowVM()
         {
-            SwapWelcomePage = new ChangePageCMD(PageSwapToWelcomePage);
-            SwapPageCreateCustomer = new ChangePageCMD(PageSwapToCustomerCreatePage);
-            SwapPageShowCustomer = new ChangePageCMD(PageSwapToCustomerListPage);
-            SwapPageAgreementPage = new ChangePageCMD(PageSwapToAgreementPage);
-            SwapPageProductCreatePage = new ChangePageCMD(PageSwapToProductCreatePage);
-            SwapPageProductListPage = new ChangePageCMD(PageSwapToProductListPage);
-            SwapPageStatisticTopXPage = new ChangePageCMD(PageSwapToStatisticTopXPage);
-            SwapPageStatisticCustomer = new ChangePageCMD(PageSwapToStatisticCustomerPage);
-            SwapPageStatisticAgreement = new ChangePageCMD(PageSwapToStatisticAgreementPage);
+            SwapPage = new ChangePageCMD(PageSwap);
             Frame = new WelcomePage();
         }
-        public void PageSwapToWelcomePage()
+        public void PageSwap()
         {
-            Frame = new WelcomePage();
-        }
-        public void PageSwapToProductListPage()
-        {
-            Frame = new ProductListPage();
-        }
-        public void PageSwapToCustomerCreatePage()
-        {
-            Frame = new CustomerCreatePage();
-        }
-        public void PageSwapToCustomerListPage()
-        {
-            Frame = new CustomerListPage();
-        }
-        public void PageSwapToAgreementPage()
-        {
-            Frame = new AgreementPage();
-        }
+            if (SelectedIndex == 0)
+            {
+                Frame = new CustomerCreatePage();
 
-        public void PageSwapToProductCreatePage()
-        {
-            Frame = new ProductCreatePage();
-        }
+            }
 
-        public void PageSwapToStatisticTopXPage()
-        {
-            Frame = new StatisticProductTopPage();
-        }
+            switch (SelectedIndex)
+            {
+                case 0:
+                    Frame = new CustomerCreatePage();
+                    break;
+                case 1:
+                    Frame = new CustomerListPage();
+                    break;
+                case 2:
+                    Frame = new AgreementPage();
+                    break;
+                case 3:
+                    Frame = new ProductCreatePage();
+                    break;
+                case 5:
+                    Frame = new StatisticCustomerPage();
+                    break;
+                case 6:
+                    Frame = new StatisticAgreementPage();
+                    break;
+                case 7:
+                    Frame = new StatisticProductTopPage();
+                    break;
+            }
 
-        public void PageSwapToStatisticCustomerPage()
-        {
-            Frame = new StatisticCustomerPage();
-        }
-
-        public void PageSwapToStatisticAgreementPage()
-        {
-            Frame = new StatisticAgreementPage();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

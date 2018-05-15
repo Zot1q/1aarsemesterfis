@@ -10,7 +10,7 @@
         <StackPanel Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <Label HorizontalAlignment="left" Margin="0, 5" Content="Navn: "/>
-                <TextBox x:Name="txtCustomerNumber" Text="" Width="80" Height="20"/>
+                <TextBox x:Name="txtCustomerNumber" Text="" Width="80" Height="30"/>
                 <Label Content="Abonnement Nr: " VerticalAlignment="Center"/>
                 <Label x:Name="lblSubcriptionId" Content="" VerticalAlignment="Center"/>
             </StackPanel>
@@ -25,19 +25,19 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label HorizontalAlignment="Left" Margin="0, 5" Content="Rabat: "/>
-                <TextBox Name="txtDiscount" Width="80" Height="20" Text="{Binding Agreement.Discount, Mode=OneWayToSource}"/>
+                <TextBox x:Name="txtDiscount" Width="80" Height="30" Text="{Binding Agreement.Discount, Mode=OneWayToSource}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <Label HorizontalAlignment="left" Margin="0, 5" Content="Løbetid"/>
-                <TextBox x:Name="txtDuration" Text="{Binding TimeToAdd, Mode=OneWayToSource}" Width="80" Height="20"/>
+                <TextBox x:Name="txtDuration" Text="{Binding TimeToAdd, Mode=OneWayToSource}" Width="80" Height="30"/>
                 <Label Margin="0, 5" Content="(6 - 24 mnd)" Foreground="Red" FontWeight="Bold"/>
             </StackPanel>
             <Line/>
             <Line/>
 
         </StackPanel>
-        <Button Content="Opret" HorizontalAlignment="Left" Margin="234,332,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CreateAgreement}"/>
+        <Button Content="Opret" HorizontalAlignment="Left" Margin="234,332,0,0" VerticalAlignment="Top" Width="75" Height="30" Command="{Binding CreateAgreement}"/>
 
     </Grid>
 </Window>
