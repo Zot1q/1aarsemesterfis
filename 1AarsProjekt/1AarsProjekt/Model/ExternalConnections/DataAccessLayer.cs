@@ -77,35 +77,72 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
-        public void InsertProduct(Product product)
+        //public void InsertProduct(Product product)
+        //{
+        //    try
+        //    {
+        //        OpenConnection();
+        //        string query = "INSERT INTO tblProducts ([ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode]) VALUES (@ProdNumber, @CompanyID, @InterchangeID, @ProductName1, @ProductName2, @ItemUnit, @ProductDescription, @Synonyms, @ProductGroup, @Weight, @MinQuantity, @Price, @Discount, @NetPrice, @PCode, @DistCode)";
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        command.Parameters.Add(CreateParam("@ProdNumber", product.ProductID));
+        //        command.Parameters.Add(CreateParam("@CompanyID", product.CompanyID));
+        //        command.Parameters.Add(CreateParam("@InterchangeID", product.InterchangeID));
+        //        command.Parameters.Add(CreateParam("@ProductName1", product.ProductName1));
+        //        command.Parameters.Add(CreateParam("@ProductName2", product.ProductName2));
+        //        command.Parameters.Add(CreateParam("@ItemUnit", product.ItemUnit));
+        //        command.Parameters.Add(CreateParam("@ProductDescription", product.ProductDescription));
+        //        command.Parameters.Add(CreateParam("@Synonyms", product.Synonyms));
+        //        command.Parameters.Add(CreateParam("@ProductGroup", product.ProductGroup));
+        //        command.Parameters.Add(CreateParam("@Weight", product.Weight.ToString()));
+        //        command.Parameters.Add(CreateParam("@MinQuantity", product.MinQuantity));
+        //        command.Parameters.Add(CreateParam("@Price", product.Price));
+        //        command.Parameters.Add(CreateParam("@Discount", product.Discount));
+        //        command.Parameters.Add(CreateParam("@NetPrice", product.NetPrice));
+        //        command.Parameters.Add(CreateParam("@PCode", product.PCode));
+        //        command.Parameters.Add(CreateParam("@DistCode", product.DistCode));
+        //        command.ExecuteNonQuery();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error" + ex);
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        CloseConnection();
+        //    }
+        //}
+
+        public void InsertProduct(Product prod)
         {
             try
             {
                 OpenConnection();
-                string query = "INSERT INTO tblProducts ([ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode]) VALUES (@ProdNumber, @CompanyID, @InterchangeID, @ProductName1, @ProductName2, @ItemUnit, @ProductDescription, @Synonyms, @ProductGroup, @Weight, @MinQuantity, @Price, @Discount, @NetPrice, @PCode, @DistCode)";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(CreateParam("@ProdNumber", product.ProductID));
-                command.Parameters.Add(CreateParam("@CompanyID", product.CompanyID));
-                command.Parameters.Add(CreateParam("@InterchangeID", product.InterchangeID));
-                command.Parameters.Add(CreateParam("@ProductName1", product.ProductName1));
-                command.Parameters.Add(CreateParam("@ProductName2", product.ProductName2));
-                command.Parameters.Add(CreateParam("@ItemUnit", product.ItemUnit));
-                command.Parameters.Add(CreateParam("@ProductDescription", product.ProductDescription));
-                command.Parameters.Add(CreateParam("@Synonyms", product.Synonyms));
-                command.Parameters.Add(CreateParam("@ProductGroup", product.ProductGroup));
-                command.Parameters.Add(CreateParam("@Weight", product.Weight.ToString()));
-                command.Parameters.Add(CreateParam("@MinQuantity", product.MinQuantity));
-                command.Parameters.Add(CreateParam("@Price", product.Price));
-                command.Parameters.Add(CreateParam("@Discount", product.Discount));
-                command.Parameters.Add(CreateParam("@NetPrice", product.NetPrice));
-                command.Parameters.Add(CreateParam("@PCode", product.PCode));
-                command.Parameters.Add(CreateParam("@DistCode", product.DistCode));
+                SqlCommand command = new SqlCommand(
+                    "INSERT INTO tblProducts ([ProdNumber], Price, [ProductName1], [ProductName2], [ProductDescription], [CompanyID], [InterchangeID], [ItemUnit], [Synonyms], [Weight], [Discount], [NetPrice], [PCode], [DistCode], [ProductGroup]) " +
+                    "VALUES (@ProdNumber, @Price, @ProductName1, @ProductName2, @ProductDescription, @CompanyID, @InterchangeID, @ItemUnit, @Synonyms, @Weight, @Discount, @NetPrice, @PCode, @DistCode, @ProductGroup)", connection);
+                command.Parameters.Add(CreateParam("@ProdNumber", prod.ProductID));
+                command.Parameters.Add(CreateParam("@Price", prod.Price));
+                command.Parameters.Add(CreateParam("@ProductName1", prod.Productname1));
+                command.Parameters.Add(CreateParam("@ProductName2", prod.Productname2));
+                command.Parameters.Add(CreateParam("@ProductDescription", prod.Productdescription));
+                command.Parameters.Add(CreateParam("@ProductGroup", prod.ProductGroup));
+                command.Parameters.Add(CreateParam("@CompanyID", prod.CompanyID));
+                command.Parameters.Add(CreateParam("@InterchangeID", prod.InterchangeID));
+                command.Parameters.Add(CreateParam("@ItemUnit", prod.ItemUnit));
+                command.Parameters.Add(CreateParam("@Synonyms", prod.Synonyms));
+                command.Parameters.Add(CreateParam("@Weight", prod.Weight));
+                command.Parameters.Add(CreateParam("@Discount", prod.Discount));
+                command.Parameters.Add(CreateParam("@NetPrice", prod.NetPrice));
+                command.Parameters.Add(CreateParam("@PCode", prod.Pcode));
+                command.Parameters.Add(CreateParam("@DistCode", prod.DistCode));
+
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex);
-                throw;
+                Console.WriteLine(ex);
+
             }
             finally
             {
@@ -157,6 +194,52 @@ namespace _1AarsProjekt.Model.DB
         //        CloseConnection();
         //    }
         //}
+        public static List<Product> CreateProductList()
+        {
+            try
+            {
+
+                List<Product> prodList = new List<Product>();
+
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblProducts", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                char pad = '0';
+                while (reader.Read())
+                {
+                    Product prod = new Product();
+
+                    prod.ProductID = Convert.ToString((int)reader["ProdNumber"]).PadLeft(9, pad);
+                    prod.Price = (string)reader["Price"];
+                    prod.Productname1 = (string)reader["ProductName1"];
+                    prod.Productname2 = (string)reader["ProductName2"];
+                    prod.Productdescription = (string)reader["ProductDescription"];
+                    prod.ProductGroup = (string)reader["ProductGroup"];
+                    prod.CompanyID = (int)reader["CompanyID"];
+                    prod.InterchangeID = (string)reader["InterchangeID"];
+                    prod.ItemUnit = (string)reader["ItemUnit"];
+                    prod.Synonyms = (string)reader["Synonyms"];
+                    prod.Weight = (string)reader["Weight"];
+                    prod.Discount = (string)reader["Discount"];
+                    prod.NetPrice = (string)reader["NetPrice"];
+                    prod.Pcode = (string)reader["PCode"];
+                    prod.DistCode = (string)reader["DistCode"];
+                    prodList.Add(prod);
+
+                }
+                return prodList;
+            }
+            catch (Exception ex)
+            {
+                //ErrorLog(ex);
+                Console.WriteLine(ex);
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
         public static List<Agreement> GetAgreements()
         {
             try

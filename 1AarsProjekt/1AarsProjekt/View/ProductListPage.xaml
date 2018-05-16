@@ -11,7 +11,7 @@
       Title="ProductListPage">
 
     <Grid Background="White">
-        <ListBox ItemsSource="{Binding ProductList}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
+        <!--<ListBox ItemsSource="{Binding ProductList}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -64,8 +64,26 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>
-
+        </ListBox>-->
+        <ListView Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding ProductList}" Margin="10" Name="lvProducts">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Prod Nr." Width="120" DisplayMemberBinding="{Binding AgreementID}" />
+                    <GridViewColumn Header="Prod Navn1" Width="120" DisplayMemberBinding="{Binding Discount}" />
+                    <GridViewColumn Header="Prod Navn2" Width="120" DisplayMemberBinding="{Binding ExpirationDate}" />
+                    <GridViewColumn Header="Vare Enhed" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
+                    <GridViewColumn Header="Alias" Width="120" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Header="Prod Group" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Vægt" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Antal" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Rabat" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Net. Pris" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="PCode" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="DistCode" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Button Content="Rediger" HorizontalAlignment="Left" Margin="44,354,0,0" Height="30" Width="100" VerticalAlignment="Top" Command="{Binding OpenCustomerEditWindow}"/>
         <Button Content="Slet" HorizontalAlignment="Left" Margin="180,354,0,0" VerticalAlignment="Top" Width="100" Height="30" Command="{Binding CustDelete}"/>
     </Grid>
