@@ -15,8 +15,6 @@ namespace _1AarsProjekt.Model.AgreementManagement
 
         public void CreateAgreementTest(Agreement agreement)
         {
-            Agreement agree = new Agreement();
-            agreement.ProductGroup = "Varme";
             agreement.Status = true;
             CreateAgreement(agreement);
         }

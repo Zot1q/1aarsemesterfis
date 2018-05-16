@@ -1,4 +1,5 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
+using _1AarsProjekt.Model.ProductManagement;
 using _1AarsProjekt.Viewmodel.Commands;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,11 @@ namespace _1AarsProjekt.Viewmodel
 {
     class AgreementCreateVM : INotifyPropertyChanged
     {
+        public Agreement Agreement { get; set; }
         AgreementMethods agreementMethod = new AgreementMethods();
         public ChangePageCMD CreateAgreement { get; set; }
-        public Agreement Agreement { get; set; }
-
+        public ProductMethods productMethod = new ProductMethods();
+        public List<string> mainGroup { get; set; }
         public int TimeToAdd { get; set; }
 
         public AgreementCreateVM(int custID)
@@ -24,18 +26,20 @@ namespace _1AarsProjekt.Viewmodel
             Agreement = new Agreement();
             Agreement.CustomerID = custID;
             CreateAgreement = new ChangePageCMD(AgreementCreate);
+            GetProductGroups();
         }
         public void AgreementCreate()
         {
             Agreement.ExpirationDate = DateTime.Now.AddMonths(TimeToAdd);
-            
-            MessageBox.Show(Agreement.ExpirationDate.ToString());
             agreementMethod.CreateAgreementTest(Agreement);
-           
         }
-
-
-
+        private void GetProductGroups()
+        {
+            List<Product> listProducts = productMethod.ListProducts();
+            mainGroup = listProducts.Select(x => x.ProductGroup.Substring(0,2)).OrderBy(x=> x).ToList();
+            mainGroup = mainGroup.Distinct().ToList();
+        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {

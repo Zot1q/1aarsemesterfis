@@ -9,32 +9,25 @@
     <Grid>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <Label HorizontalAlignment="left" Margin="0, 5" Content="Navn: "/>
-                <TextBox x:Name="txtCustomerNumber" Text="" Width="80" Height="30"/>
-                <Label Content="Abonnement Nr: " VerticalAlignment="Center"/>
                 <Label x:Name="lblSubcriptionId" Content="" VerticalAlignment="Center"/>
             </StackPanel>
             <Label FontWeight="Bold" HorizontalAlignment="left" Margin="0, 5" Content="Hovedgruppe: "/>
             <StackPanel Orientation="Horizontal">
-                <CheckBox Name="checkBox1" VerticalAlignment="Center" Margin="5, 3, 0 , 0">Rør og Fittings</CheckBox>
-                <CheckBox Name="checkBox2" VerticalAlignment="Center" Margin="15, 3, 0 , 0">Varme</CheckBox>
-                <CheckBox Name="checkBox3" VerticalAlignment="Center" Margin="15, 3, 0 , 0">Sanitet</CheckBox>
-                <ComboBox  SelectedIndex="0" Width="200" VerticalAlignment="Center">
-                    <Label x:Name="ProductGroup" Content="Vælg Produktgrupper"/>
+                <ComboBox ItemsSource="{Binding mainGroup}" SelectedIndex="0" SelectedItem="{Binding Agreement.ProductGroup}" Width="200" VerticalAlignment="Center">
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,30">
                 <Label HorizontalAlignment="Left" Margin="0, 5" Content="Rabat: "/>
                 <TextBox x:Name="txtDiscount" Width="80" Height="30" Text="{Binding Agreement.Discount, Mode=OneWayToSource}"/>
             </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
+            <Line/>
+            <Line/>
+            <StackPanel Orientation="Horizontal" Margin="0,30">
                 <Label HorizontalAlignment="left" Margin="0, 5" Content="Løbetid"/>
                 <TextBox x:Name="txtDuration" Text="{Binding TimeToAdd, Mode=OneWayToSource}" Width="80" Height="30"/>
                 <Label Margin="0, 5" Content="(6 - 24 mnd)" Foreground="Red" FontWeight="Bold"/>
             </StackPanel>
-            <Line/>
-            <Line/>
+
 
         </StackPanel>
         <Button Content="Opret" HorizontalAlignment="Left" Margin="234,332,0,0" VerticalAlignment="Top" Width="75" Height="30" Command="{Binding CreateAgreement}"/>
