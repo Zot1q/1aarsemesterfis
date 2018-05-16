@@ -119,16 +119,14 @@ namespace _1AarsProjekt.Model.DB
             {
                 OpenConnection();
                 SqlCommand command = new SqlCommand(
-                    "INSERT INTO tblProducts ([ProdNumber], Price, [ProductName1], [ProductName2], [ProductDescription], [CompanyID], [InterchangeID], [ItemUnit], [Synonyms], [Weight], [Discount], [NetPrice], [PCode], [DistCode], [ProductGroup]) " +
-                    "VALUES (@ProdNumber, @Price, @ProductName1, @ProductName2, @ProductDescription, @CompanyID, @InterchangeID, @ItemUnit, @Synonyms, @Weight, @Discount, @NetPrice, @PCode, @DistCode, @ProductGroup)", connection);
+                    "INSERT INTO tblProducts ([ProdNumber], Price, [ProductName1], [ProductName2], [ProductDescription], [ItemUnit], [Synonyms], [Weight], [Discount], [NetPrice], [PCode], [DistCode], [ProductGroup]) " +
+                    "VALUES (@ProdNumber, @Price, @ProductName1, @ProductName2, @ProductDescription, @ItemUnit, @Synonyms, @Weight, @Discount, @NetPrice, @PCode, @DistCode, @ProductGroup)", connection);
                 command.Parameters.Add(CreateParam("@ProdNumber", prod.ProductID));
                 command.Parameters.Add(CreateParam("@Price", prod.Price));
                 command.Parameters.Add(CreateParam("@ProductName1", prod.Productname1));
                 command.Parameters.Add(CreateParam("@ProductName2", prod.Productname2));
                 command.Parameters.Add(CreateParam("@ProductDescription", prod.Productdescription));
                 command.Parameters.Add(CreateParam("@ProductGroup", prod.ProductGroup));
-                command.Parameters.Add(CreateParam("@CompanyID", prod.CompanyID));
-                command.Parameters.Add(CreateParam("@InterchangeID", prod.InterchangeID));
                 command.Parameters.Add(CreateParam("@ItemUnit", prod.ItemUnit));
                 command.Parameters.Add(CreateParam("@Synonyms", prod.Synonyms));
                 command.Parameters.Add(CreateParam("@Weight", prod.Weight));
@@ -215,8 +213,6 @@ namespace _1AarsProjekt.Model.DB
                     prod.Productname2 = (string)reader["ProductName2"];
                     prod.Productdescription = (string)reader["ProductDescription"];
                     prod.ProductGroup = (string)reader["ProductGroup"];
-                    prod.CompanyID = (int)reader["CompanyID"];
-                    prod.InterchangeID = (string)reader["InterchangeID"];
                     prod.ItemUnit = (string)reader["ItemUnit"];
                     prod.Synonyms = (string)reader["Synonyms"];
                     prod.Weight = (string)reader["Weight"];
@@ -422,8 +418,8 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand("DELETE FROM dbo.tblProducts WHERE ProductID = @ProductID", connection);
-                command.Parameters.Add(CreateParam("@ProductID", selectedProd.ProductID));
+                SqlCommand command = new SqlCommand("DELETE FROM dbo.tblProducts WHERE ProdNumber = @ProdNumber", connection);
+                command.Parameters.Add(CreateParam("@ProdNumber", selectedProd.ProductID));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)

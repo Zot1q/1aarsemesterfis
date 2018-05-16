@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1AarsProjekt.View"
         mc:Ignorable="d"
-        Title="ProductEditWindow" Height="450" Width="555">
+        Height="450" Width="555" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="266"/>
+                <ColumnDefinition Width="266"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38"/>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Left" Height="454" VerticalAlignment="Top" Width="150" Grid.Column="0" Grid.Row="1">
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Produkt Navn: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Produkt Navn: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Varenummer: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Produkt Beskrivelse: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Synonym: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Produkt Gruppe: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Vægt: "/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Antal: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Pris: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Rabat: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Netto Pris: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="P-kode: "/>
+                <Label HorizontalAlignment="left" Margin="0, 10" Content="Dist Kode: "/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Right" Height="420" VerticalAlignment="Top"  Width="150" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
+
+                <TextBox x:Name="txtProductName1" Text="{Binding Product.ProductName1}" Width="80" Height="30" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtProductName2" Text="{Binding Product.ProductName2}" Width="80" Height="30" Margin="0, 15" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtItemUnit" Text="{Binding Product.ItemUnit}" Width="80" Height="30" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtProductDescription" Text="{Binding Product.ProductDescription}" Width="80" Height="30" Margin="0, 20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtSynonyms" Text="{Binding Product.Synonyms}" Width="80" Height="30" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtProductGroup" Text="{Binding Product.ProductGroup}" Width="80" Height="30" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                
+                <TextBox x:Name="txtWeight" Text="{Binding Product.Weight}" Width="80" Height="30" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Right" Margin="0" Height="310" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
+
+                <TextBox x:Name="txtMinQuantity" Text="{Binding Product.MinQuantity}" Width="80" Height="30" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtPrice" Text="{Binding Product.Price}" Width="80" Height="30" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtDiscount" Text="{Binding Product.Discount}" Width="80" Height="30" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtNetPrice" Text="{Binding Product.NetPrice}" Width="80" Height="30" Margin="0, 5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtPCode" Text="{Binding Product.PCode}" Width="80" Height="30" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtDistCode" Text="{Binding Product.DistCode}" Width="80" Height="30" Margin="0, 10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </StackPanel>
+
+            <Label Content="Redigere Produkt" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Height="20" Width="80">
+                <Button x:Name="btnCreateProduct" Command="{Binding CreateProduct}" Content="Gem" Height="30" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,-10,0,0"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

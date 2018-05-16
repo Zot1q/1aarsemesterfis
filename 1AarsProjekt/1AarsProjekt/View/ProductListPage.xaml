@@ -11,80 +11,32 @@
       Title="ProductListPage">
 
     <Grid Background="White">
-        <!--<ListBox ItemsSource="{Binding ProductList}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Label Content="{Binding ProdNumber}" ContentStringFormat="Produkt Nummer: {0}" FontWeight="Bold"/>
-                        <Expander>
-                            <StackPanel>
-                                <Label Content="{Binding CompanyID}" ContentStringFormat="CVR NR: {0}"/>
-                                <Line/>
-                                <Label  Content="{Binding InterchangeID}" ContentStringFormat="Udvekslings NR: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ProductName1}" ContentStringFormat="Produkt Navn: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ProductName2}" ContentStringFormat="Produkt Navn: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ItemUnit}" ContentStringFormat="Varenummer: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ProductDescription}" ContentStringFormat="Produkt Beskrivelse: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding Synonyms}" ContentStringFormat="Synonym: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ProductGroup}" ContentStringFormat="Produkt Gruppe: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding Weight}" ContentStringFormat="Vægt: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding MinQuantity}" ContentStringFormat="Antal: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding Price}" ContentStringFormat="Price: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding Discount}" ContentStringFormat="Rabat: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding NetPrice}" ContentStringFormat="Net Pris: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding PCode}" ContentStringFormat="PCode: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding DistCode}" ContentStringFormat="DistCode: {0}"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel.Resources>
-                                        <Style TargetType="{x:Type Button}">
-                                            <Setter Property="Margin" Value="10,0,0,0"/>
-                                        </Style>
-                                    </StackPanel.Resources>
-                                    <StackPanel.DataContext>
-                                        <Viewmodel:ProductListVM/>
-                                    </StackPanel.DataContext>
-                                    <Button Content="Slet kunde" Width="100" Height="30"        x:Name="btn_DeleteYesNo" Command="{Binding CustDelete}"/>
-                                    <Button Content="Rediger kunde" Width="100" Height="30" x:Name="btn_Edit" Command=""/>
-                                </StackPanel>
-                            </StackPanel>
-                        </Expander>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>-->
-        <ListView Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding ProductList}" Margin="10" Name="lvProducts">
+        <ListView HorizontalAlignment="Left" ItemsSource="{Binding ProductList}" SelectedItem="{Binding SelectedIndex}" Name="lvProducts">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Prod Nr." Width="120" DisplayMemberBinding="{Binding AgreementID}" />
-                    <GridViewColumn Header="Prod Navn1" Width="120" DisplayMemberBinding="{Binding Discount}" />
-                    <GridViewColumn Header="Prod Navn2" Width="120" DisplayMemberBinding="{Binding ExpirationDate}" />
-                    <GridViewColumn Header="Vare Enhed" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
-                    <GridViewColumn Header="Alias" Width="120" DisplayMemberBinding="{Binding Status}" />
-                    <GridViewColumn Header="Prod Group" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Vægt" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Antal" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Rabat" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Net. Pris" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="PCode" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="DistCode" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Prod Nr." Width="120" DisplayMemberBinding="{Binding ProductID}" />
+                    <GridViewColumn Header="Prod Navn1" Width="120" DisplayMemberBinding="{Binding Productname1}" />
+                    <GridViewColumn Header="Prod Navn2" Width="120" DisplayMemberBinding="{Binding Productname2}" />
+                    <GridViewColumn Header="Vare Enhed" Width="120" DisplayMemberBinding="{Binding ItemUnit}" />
+                    <GridViewColumn Header="Alias" Width="120" DisplayMemberBinding="{Binding Synonyms}" />
+                    <GridViewColumn Header="Prod Group" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
+                    <GridViewColumn Header="Vægt" Width="120" DisplayMemberBinding="{Binding Weight}" />
+                    <GridViewColumn Header="Antal" Width="120" DisplayMemberBinding="{Binding MinQuantity}" />
+                    <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding Price}" />
+                    <GridViewColumn Header="Rabat" Width="120" DisplayMemberBinding="{Binding Discount}" />
+                    <GridViewColumn Header="Net. Pris" Width="120" DisplayMemberBinding="{Binding NetPrice}" />
+                    <GridViewColumn Header="PCode" Width="120" DisplayMemberBinding="{Binding PCode}" />
+                    <GridViewColumn Header="DistCode" Width="120" DisplayMemberBinding="{Binding DistCode}" />
                 </GridView>
             </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Redigere produkt" Command="{Binding OpenProductEditWindow}"/>
+                    <MenuItem Header="Slet produkt" Command="{Binding ProductDelete}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
-        <Button Content="Rediger" HorizontalAlignment="Left" Margin="44,354,0,0" Height="30" Width="100" VerticalAlignment="Top" Command="{Binding OpenCustomerEditWindow}"/>
-        <Button Content="Slet" HorizontalAlignment="Left" Margin="180,354,0,0" VerticalAlignment="Top" Width="100" Height="30" Command="{Binding CustDelete}"/>
+        <!--<Button Content="Rediger" HorizontalAlignment="Left" Margin="64,399,0,0" Height="30" Width="100" VerticalAlignment="Top" Command="{Binding OpenCustomerEditWindow}"/>
+        <Button Content="Slet" HorizontalAlignment="Left" Margin="183,399,0,0" VerticalAlignment="Top" Width="100" Height="30" Command="{Binding CustDelete}"/>-->
     </Grid>
 </Page>
