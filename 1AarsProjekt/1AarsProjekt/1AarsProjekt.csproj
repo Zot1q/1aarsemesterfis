@@ -96,6 +96,9 @@
     <Compile Include="View\AgreementCreateWindow.xaml.cs">
       <DependentUpon>AgreementCreateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AgreementListPage.xaml.cs">
+      <DependentUpon>AgreementListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CustomerEditWindow.xaml.cs">
       <DependentUpon>CustomerEditWindow.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
     <Compile Include="View\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AgreementListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AgreementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
