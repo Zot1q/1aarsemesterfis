@@ -119,8 +119,8 @@ namespace _1AarsProjekt.Model.DB
             {
                 OpenConnection();
                 SqlCommand command = new SqlCommand(
-                    "INSERT INTO tblProducts ([ProdNumber], Price, [ProductName1], [ProductName2], [ProductDescription], [ItemUnit], [Synonyms], [Weight], [Discount], [NetPrice], [PCode], [DistCode], [ProductGroup]) " +
-                    "VALUES (@ProdNumber, @Price, @ProductName1, @ProductName2, @ProductDescription, @ItemUnit, @Synonyms, @Weight, @Discount, @NetPrice, @PCode, @DistCode, @ProductGroup)", connection);
+                    "INSERT INTO tblProducts ([ProdNumber], Price, [ProductName1], [ProductName2], [ProductDescription], [ItemUnit], [Synonyms], [Weight], [Discount], [NetPrice], [PCode], [DistCode], [ProductGroup], [MinQuantity]) " +
+                    "VALUES (@ProdNumber, @Price, @ProductName1, @ProductName2, @ProductDescription, @ItemUnit, @Synonyms, @Weight, @Discount, @NetPrice, @PCode, @DistCode, @ProductGroup, @MinQuantity)", connection);
                 command.Parameters.Add(CreateParam("@ProdNumber", prod.ProductID));
                 command.Parameters.Add(CreateParam("@Price", prod.Price));
                 command.Parameters.Add(CreateParam("@ProductName1", prod.Productname1));
@@ -134,12 +134,39 @@ namespace _1AarsProjekt.Model.DB
                 command.Parameters.Add(CreateParam("@NetPrice", prod.NetPrice));
                 command.Parameters.Add(CreateParam("@PCode", prod.Pcode));
                 command.Parameters.Add(CreateParam("@DistCode", prod.DistCode));
+                command.Parameters.Add(CreateParam("@MinQuantity", prod.MinQuantity));
 
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public void AddToProductLog(int count, string action, string fileName)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand(
+                    "INSERT INTO tblLogProducts ([Date], [RowsAffected], [Action], [FileName]) " +
+                    "VALUES (@Date, @RowsAffected, @Action, @FileName)", connection);
+                command.Parameters.Add(CreateParam("@Date", DateTime.Now.ToString()));
+                command.Parameters.Add(CreateParam("@RowsAffected", count));
+                command.Parameters.Add(CreateParam("@Action", action));
+                command.Parameters.Add(CreateParam("@FileName", fileName));
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fejl i linie {0} - " + ex);
 
             }
             finally
@@ -234,6 +261,53 @@ namespace _1AarsProjekt.Model.DB
             finally
             {
                 CloseConnection();
+            }
+        }
+
+        public List<Product> CreateList(int i)
+        {
+            try
+            {
+                char pad = '0';
+                List<Product> prodList = new List<Product>();
+
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblProducts WHERE [ProductGroup] BETWEEN @ProductGroup And @ProductGroup2", connection);
+                cmd.Parameters.Add(CreateParam("@ProductGroup", "00"));
+                cmd.Parameters.Add(CreateParam("@ProductGroup2", "01"));
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Product prod = new Product();
+
+                    prod.ProductID = Convert.ToString((int)reader["ProdNumber"]).PadLeft(9, pad);
+                    prod.Price = (string)reader["Price"];
+                    prod.Productname1 = (string)reader["ProductName1"];
+                    prod.Productname2 = (string)reader["ProductName2"];
+                    prod.Productdescription = (string)reader["ProductDescription"];
+                    prod.ProductGroup = (string)reader["ProductGroup"];
+                    //prod.CompanyID = (int)reader["CompanyID"];
+                    //prod.InterchangeID = (string)reader["InterchangeID"];
+                    prod.ItemUnit = (string)reader["ItemUnit"];
+                    prod.Synonyms = (string)reader["Synonyms"];
+                    prod.Weight = (string)reader["Weight"];
+                    prod.Discount = (string)reader["Discount"];
+                    prod.NetPrice = (string)reader["NetPrice"];
+                    prod.Pcode = (string)reader["PCode"];
+                    prod.DistCode = (string)reader["DistCode"];
+                    prod.MinQuantity = (string)reader["MinQuantity"].ToString();
+                    prodList.Add(prod);
+
+                }
+                CloseConnection();
+                return prodList;
+            }
+            catch (Exception ex)
+            {
+                //ErrorLog(ex);
+                Console.WriteLine(ex);
+                throw;
             }
         }
         public static List<Agreement> GetAgreements()
@@ -386,6 +460,45 @@ namespace _1AarsProjekt.Model.DB
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public void UpdateProductInDB(Product prod)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand(
+                    "UPDATE tblProducts " +
+                    "SET Price = @Price, ProductName1 = @ProductName1, ProductName2 = @ProductName2, ProductDescription = @ProductDescription, " +
+                    "ItemUnit = @ItemUnit, Synonyms = @Synonyms, Weight = @Weight, Discount = @Discount, NetPrice = @NetPrice, PCode = @PCode, DistCode = @DistCode, ProductGroup = @ProductGroup, MinQuantity = @MinQuantity " +
+                    "WHERE ProdNumber = @ProdNumber", connection);
+                command.Parameters.Add(CreateParam("@ProdNumber", prod.ProductID));
+                command.Parameters.Add(CreateParam("@Price", prod.Price));
+                command.Parameters.Add(CreateParam("@ProductName1", prod.Productname1));
+                command.Parameters.Add(CreateParam("@ProductName2", prod.Productname2));
+                command.Parameters.Add(CreateParam("@ProductDescription", prod.Productdescription));
+                command.Parameters.Add(CreateParam("@ProductGroup", prod.ProductGroup));
+                command.Parameters.Add(CreateParam("@ItemUnit", prod.ItemUnit));
+                command.Parameters.Add(CreateParam("@Synonyms", prod.Synonyms));
+                command.Parameters.Add(CreateParam("@Weight", prod.Weight));
+                command.Parameters.Add(CreateParam("@Discount", prod.Discount));
+                command.Parameters.Add(CreateParam("@NetPrice", prod.NetPrice));
+                command.Parameters.Add(CreateParam("@PCode", prod.Pcode));
+                command.Parameters.Add(CreateParam("@DistCode", prod.DistCode));
+                command.Parameters.Add(CreateParam("@MinQuantity", prod.MinQuantity));
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fejl i linie {0} - " + ex);
+
             }
             finally
             {
