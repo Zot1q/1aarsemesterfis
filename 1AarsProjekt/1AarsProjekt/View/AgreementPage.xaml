@@ -7,60 +7,50 @@
       xmlns:agreement="clr-namespace:_1AarsProjekt.Viewmodel"
       mc:Ignorable="d" 
       d:DesignHeight="425" d:DesignWidth="750"
-      Title="AgreementWindow" Background="White">
+      Title="AgreementWindow" Background="White" HorizontalAlignment="Right">
     <Page.Resources>
-        <agreement:AgreementListVM x:Key="agreeVm"/>
+        <agreement:AgreementVM x:Key="agreeVm"/>
     </Page.Resources>
     <Page.DataContext>
         <StaticResource ResourceKey="agreeVm"/>
     </Page.DataContext>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <Label Content="Vælg en kunde som du vil oprette et abonnement for" Grid.Column="0" HorizontalAlignment="Left" FontSize="20"/>
-        <ListBox SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=CustList}" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="500">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Label Content="{Binding CompanyName}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
-                        <Expander>
-                            <StackPanel>
-                                <Label Content="{Binding Address}" ContentStringFormat="Addresse: {0}"/>
-                                <Line/>
-                                <Label  Content="{Binding Email}" ContentStringFormat="E-mail: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding Phone}" ContentStringFormat="Tlf Nr: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ContactPers}" ContentStringFormat="Kontakt Person: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ExpectRevenue}" ContentStringFormat="Forventet Omsætning: {0} DKK"/>
-                                <Line/>
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel.Resources>
-                                        <Style TargetType="{x:Type Button}">
-                                            <Setter Property="Margin" Value="10,0,0,0"/>
-                                        </Style>
-                                    </StackPanel.Resources>
-                                    <StackPanel.DataContext>
-                                        <StaticResource ResourceKey="agreeVm"/>
-                                    </StackPanel.DataContext>
-                                    <Button Content="Opret aftale" Width="100" Height="30"        x:Name="btn_OpenCreateAgreeWin" Command="{Binding OpenAgreementWin}"/>
-                                    <Button Content="Se kundes aftaler" Width="100" Height="30" x:Name="btn_Edit" Command=""/>
-                                </StackPanel>
-
-                            </StackPanel>
-                        </Expander>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Label Width="90" x:Name="IndexLabel" Content="{Binding SelectedIndex}" Margin="220,10,245,10" Grid.Row="2"/>
+    
+    <Grid Background="White">
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Top" Height="370">
+            <TextBlock Text="Opret aftale for en kunde" HorizontalAlignment="Left" FontSize="28"/>
+            <ListView HorizontalAlignment="Center" VerticalAlignment="Bottom" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="300">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Navn" Width="100" DisplayMemberBinding="{Binding CompanyName}" />
+                    <GridViewColumn Header="Addresse" Width="120" DisplayMemberBinding="{Binding Address}" />
+                    <GridViewColumn Header="E-mail" Width="100" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="Kontakt person" Width="140" DisplayMemberBinding="{Binding ContactPers}" />
+                    <GridViewColumn Header="Status" Width="120" DisplayMemberBinding="{Binding Status}" />
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Opret aftale" Command="{Binding OpenAgreementWin}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+        </StackPanel>
+        <StackPanel Width="120" Height="50" VerticalAlignment="Bottom">
+            <Button Content="Opret aftale" Command="{Binding OpenAgreementWin}"/>
+        </StackPanel>
 
     </Grid>
 </Page>
+<!--<StackPanel Orientation="Horizontal">
+    <StackPanel.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="10,0,0,0"/>
+        </Style>
+    </StackPanel.Resources>
+    <StackPanel.DataContext>
+        <StaticResource ResourceKey="agreeVm"/>
+    </StackPanel.DataContext>
+    <Button Content="Opret aftale" Width="100" Height="30"        x:Name="btn_OpenCreateAgreeWin" Command="{Binding OpenAgreementWin}"/>
+    <Button Content="Se kundes aftaler" Width="100" Height="30" x:Name="btn_Edit" Command=""/>
+</StackPanel>-->

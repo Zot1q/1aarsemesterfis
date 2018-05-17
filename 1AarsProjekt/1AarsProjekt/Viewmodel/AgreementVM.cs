@@ -1,4 +1,6 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
+using _1AarsProjekt.Model.CustomerManagement;
+using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel.Commands;
 using System;
 using System.Collections.Generic;
@@ -12,17 +14,39 @@ namespace _1AarsProjekt.Viewmodel
 {
     class AgreementVM : INotifyPropertyChanged
     {
-        public Agreement Agreement { get; set; }
-        public ChangePageCMD CreateAgreement { get; set; }
+        CustomerMethods cust = new CustomerMethods();
+        private List<Customer> custList;
+
+        public List<Customer> CustList
+        {
+            get { return custList; }
+            set
+            {
+                custList = value;
+            }
+        }
+        private int selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                selectedIndex = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public ChangePageCMD OpenAgreementWin { get; set; }
         public AgreementVM()
         {
-            Agreement = new Agreement();
-            CreateAgreement = new ChangePageCMD(CreateAgree);
+            OpenAgreementWin = new ChangePageCMD(AgreementWinOpen);
+            CustList = cust.ListCustomers();
         }
-        public void CreateAgree()
+        public void AgreementWinOpen()
         {
-            AgreementMethods agreementMethod = new AgreementMethods();
-            agreementMethod.CreateAgreement(Agreement);
+            AgreementCreateWindow createAgreementWindow = new AgreementCreateWindow(CustList.ElementAt(SelectedIndex).CustomerID);
+            createAgreementWindow.Show();
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

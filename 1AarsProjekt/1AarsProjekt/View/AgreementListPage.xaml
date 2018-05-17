@@ -9,12 +9,12 @@
       Title="AgreementListWindow">
 
     <Grid Background="White">
-        <ListView HorizontalAlignment="Left" ItemsSource="{Binding }" SelectedItem="{Binding SelectedIndex}" Name="lvAgreements">
+        <ListView HorizontalAlignment="Left" ItemsSource="{Binding AgreementList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreements">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Kunde navn" Width="120" DisplayMemberBinding="{Binding ProductID}" />
-                    <GridViewColumn Header="Kunde ID" Width="120" DisplayMemberBinding="{Binding Productname1}" />
-                    <GridViewColumn Header="Aftale ID" Width="120" DisplayMemberBinding="{Binding Productname2}" />
+                    <GridViewColumn Header="Kunde navn" Width="120" DisplayMemberBinding="{Binding }" />
+                    <GridViewColumn Header="Kunde ID" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Aftale ID" Width="120" DisplayMemberBinding="{Binding AgreementID}" />
                     <GridViewColumn Header="Varegruppe" Width="120" DisplayMemberBinding="{Binding ItemUnit}" />
                     <GridViewColumn Header="Rabat" Width="120" DisplayMemberBinding="{Binding Synonyms}" />
                     <GridViewColumn Header="Status" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />

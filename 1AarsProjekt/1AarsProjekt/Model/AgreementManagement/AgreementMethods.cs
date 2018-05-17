@@ -10,8 +10,6 @@ namespace _1AarsProjekt.Model.AgreementManagement
 {
     public class AgreementMethods
     {
-        List<Agreement> AgreementList = new List<Agreement>();
-
         public void CreateAgreementTest(Agreement agreement)
         {
             agreement.Status = true;
@@ -30,6 +28,12 @@ namespace _1AarsProjekt.Model.AgreementManagement
         public void DeleteAgreement(Agreement selectedAgreement)
         {
             selectedAgreement.Status = false;
+        }
+
+        public List<Agreement> ListAgreements()
+        {
+            List<Agreement> AgreementList = DataAccessLayer.GetAgreements();
+            return AgreementList;
         }
     }
 }
