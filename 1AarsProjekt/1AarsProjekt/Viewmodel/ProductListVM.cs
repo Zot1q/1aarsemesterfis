@@ -37,8 +37,40 @@ namespace _1AarsProjekt.Viewmodel
                 NotifyPropertyChanged();
             }
         }
+
+        private string _searchText;
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+
+                NotifyPropertyChanged("SearchText");
+                NotifyPropertyChanged("MyFilteredItems");
+            }
+        }
+
+        public IEnumerable<Product> MyFilteredItems
+        {
+            get
+            {
+                if (SearchText == null)
+                    return ProductList;
+
+                return ProductList.Where
+                    (
+                    item => item.Productname1.ToUpper().StartsWith(SearchText.ToUpper()) ||
+                    item.Productname2.ToUpper().StartsWith(SearchText.ToUpper()) ||
+                    item.Productdescription.ToUpper().StartsWith(SearchText.ToUpper()) ||
+                    item.ProductID.ToUpper().StartsWith(SearchText.ToUpper())
+                    );
+            }
+        }
         public ProductListVM()
         {
+            ProductList = new List<Product>();
             OpenProductEditWindow = new ChangePageCMD(EditProductWindow);
             ProductDelete = new ChangePageCMD(DeleteProduct);
             ProductList = product.ListProducts();
