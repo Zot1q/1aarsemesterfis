@@ -16,49 +16,49 @@ namespace _1AarsProjekt.Model.CSV
     {
         private string NewFile { get; set; }
 
-        //void Main(string[] args)
-        //{
+        void Main(string[] args)
+        {
 
-        //    CreateCSV();
-        //    bool result = FindNewestFile();
-        //    if (true)
-        //    {
-        //        //ImportFiles();
-        //        List<string> newList = ImportLocalList();
-        //        List<string> oldList = BuildListFromDB();
-        //        CompareFiles(newList, oldList);
-        //    }
+            CreateCSV();
+            bool result = FindNewestFile();
+            if (true)
+            {
+                //ImportFiles();
+                List<string> newList = ImportLocalList();
+                List<string> oldList = BuildListFromDB();
+                CompareFiles(newList, oldList);
+            }
 
-        //}
+        }
 
-        //public bool FindNewestFile()
-        //{
-        //    ServerAccessLayer.DownloadFiles();
-        //    List<DateTime> fileDate = new List<DateTime>();
+        public bool FindNewestFile()
+        {
+            ServerAccessLayer.DownloadFiles();
+            List<DateTime> fileDate = new List<DateTime>();
 
-        //    string[] fileArray = Directory.GetFiles(@"c:\Test\csv\", "*.csv");
+            string[] fileArray = Directory.GetFiles(@"c:\Test\csv\", "*.csv");
 
-        //    foreach (var file in fileArray)
-        //    {
-        //        fileDate.Add(DateTime.ParseExact(file.Substring(file.Length - 12, 8), "ddMMyyyy", CultureInfo.InvariantCulture));
-        //    }
-        //    fileDate.Sort();
-        //    NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 1].ToString("ddMMyyyy");
+            foreach (var file in fileArray)
+            {
+                fileDate.Add(DateTime.ParseExact(file.Substring(file.Length - 12, 8), "ddMMyyyy", CultureInfo.InvariantCulture));
+            }
+            fileDate.Sort();
+            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 1].ToString("ddMMyyyy");
 
-        //    return CheckNewestFile(NewFile);
-        //}
+            return CheckNewestFile(NewFile);
+        }
 
-        //private bool CheckNewestFile(string NewFile)
-        //{
-            //if (!DataAccessLayer.CheckFilenameInLog().Contains(NewFile))
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-        //}
+        private bool CheckNewestFile(string NewFile)
+        {
+            if (!DataAccessLayer.CheckFilenameInLog().Contains(NewFile))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private List<string> ImportLocalList()
         {
@@ -157,109 +157,109 @@ namespace _1AarsProjekt.Model.CSV
             NewProducts(addList.Except(updateList).ToList());
         }
 
-        //private List<string> BuildListFromDB()
-        //{
-            
-
-            ////List<Product> linesFromDB = DataAccessLayer.CreateList();
-            //List<string> list = new List<string>();
+        private List<string> BuildListFromDB()
+        {
 
 
-            //foreach (Product prod in linesFromDB)
-            //{
-            //    list.Add(prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
-            //            prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";");
-            //}
-            //return list;
-        //}
+            List<Product> linesFromDB = DataAccessLayer.CreateProductList();
+            List<string> list = new List<string>();
+
+
+            foreach (Product prod in linesFromDB)
+            {
+                list.Add(prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
+                        prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";");
+            }
+            return list;
+        }
 
         private void NewProducts(List<string[]> lines)
         {
-            //if (lines.Count >= 1)
-            //{
-            //    Product prod = new Product();
+            if (lines.Count >= 1)
+            {
+                Product prod = new Product();
 
-            //    for (int i = 0; i < lines.Count; i++)
-            //    {
-            //        prod.ProductID = lines[i].ElementAt(0);
-            //        prod.Productname1 = lines[i].ElementAt(1);
-            //        prod.Productname2 = lines[i].ElementAt(2);
-            //        prod.ItemUnit = lines[i].ElementAt(3);
-            //        prod.Productdescription = lines[i].ElementAt(4);
-            //        prod.Synonyms = lines[i].ElementAt(5);
-            //        prod.ProductGroup = lines[i].ElementAt(6);
-            //        prod.Weight = lines[i].ElementAt(7);
-            //        prod.MinQuantity = lines[i].ElementAt(8);
-            //        prod.Price = lines[i].ElementAt(9);
-            //        prod.Discount = lines[i].ElementAt(10);
-            //        prod.NetPrice = lines[i].ElementAt(11);
-            //        prod.Pcode = lines[i].ElementAt(12);
-            //        prod.DistCode = lines[i].ElementAt(13);
-            //        DataAccessLayer.AddProductToDB(prod);
-            //    }
-            //    DataAccessLayer.AddToProductLog(lines.Count(), "Nye emner tilføjet", NewFile);
-            //}
+                for (int i = 0; i < lines.Count; i++)
+                {
+                    prod.ProductID = lines[i].ElementAt(0);
+                    prod.Productname1 = lines[i].ElementAt(1);
+                    prod.Productname2 = lines[i].ElementAt(2);
+                    prod.ItemUnit = lines[i].ElementAt(3);
+                    prod.Productdescription = lines[i].ElementAt(4);
+                    prod.Synonyms = lines[i].ElementAt(5);
+                    prod.ProductGroup = lines[i].ElementAt(6);
+                    prod.Weight = lines[i].ElementAt(7);
+                    prod.MinQuantity = lines[i].ElementAt(8);
+                    prod.Price = lines[i].ElementAt(9);
+                    prod.Discount = lines[i].ElementAt(10);
+                    prod.NetPrice = lines[i].ElementAt(11);
+                    prod.Pcode = lines[i].ElementAt(12);
+                    prod.DistCode = lines[i].ElementAt(13);
+                    DataAccessLayer.InsertProduct(prod);
+                }
+                DataAccessLayer.AddToProductLog(lines.Count(), "Nye emner tilføjet", NewFile);
+            }
 
         }
         private void UpdateProducts(List<string[]> lines)
         {
-            //if (lines.Count >= 1)
-            //{
-            //    Product prod = new Product();
+            if (lines.Count >= 1)
+            {
+                Product prod = new Product();
 
-            //    for (int i = 0; i < lines.Count; i++)
-            //    {
-            //        prod.ProductID = lines[i].ElementAt(0);
-            //        prod.Productname1 = lines[i].ElementAt(1);
-            //        prod.Productname2 = lines[i].ElementAt(2);
-            //        prod.ItemUnit = lines[i].ElementAt(3);
-            //        prod.Productdescription = lines[i].ElementAt(4);
-            //        prod.Synonyms = lines[i].ElementAt(5);
-            //        prod.ProductGroup = lines[i].ElementAt(6);
-            //        prod.Weight = lines[i].ElementAt(7);
-            //        prod.MinQuantity = lines[i].ElementAt(8);
-            //        prod.Price = lines[i].ElementAt(9);
-            //        prod.Discount = lines[i].ElementAt(10);
-            //        prod.NetPrice = lines[i].ElementAt(11);
-            //        prod.Pcode = lines[i].ElementAt(12);
-            //        prod.DistCode = lines[i].ElementAt(13);
-            //        DataAccessLayer.UpdateProductInDB(prod);
-            //    }
-            //    DataAccessLayer.AddToProductLog(lines.Count(), "Emner opdateret", NewFile);
-            //}
+                for (int i = 0; i < lines.Count; i++)
+                {
+                    prod.ProductID = lines[i].ElementAt(0);
+                    prod.Productname1 = lines[i].ElementAt(1);
+                    prod.Productname2 = lines[i].ElementAt(2);
+                    prod.ItemUnit = lines[i].ElementAt(3);
+                    prod.Productdescription = lines[i].ElementAt(4);
+                    prod.Synonyms = lines[i].ElementAt(5);
+                    prod.ProductGroup = lines[i].ElementAt(6);
+                    prod.Weight = lines[i].ElementAt(7);
+                    prod.MinQuantity = lines[i].ElementAt(8);
+                    prod.Price = lines[i].ElementAt(9);
+                    prod.Discount = lines[i].ElementAt(10);
+                    prod.NetPrice = lines[i].ElementAt(11);
+                    prod.Pcode = lines[i].ElementAt(12);
+                    prod.DistCode = lines[i].ElementAt(13);
+                    DataAccessLayer.UpdateProductInDB(prod);
+                }
+                DataAccessLayer.AddToProductLog(lines.Count(), "Emner opdateret", NewFile);
+            }
 
         }
 
         private void DeleteProducts(List<string[]> lines)
-        {           
-            //Product prod = new Product();
+        {
+            Product prod = new Product();
 
-            //for (int i = 0; i < lines.Count; i++)
-            //{
-            //    prod.ProductID = lines[i].ElementAt(0);
-            //    DataAccessLayer.DeleteProductInDB(prod);
-            //}
-            //DataAccessLayer.AddToProductLog(lines.Count(), "Emner slettet", NewFile);
+            for (int i = 0; i < lines.Count; i++)
+            {
+                prod.ProductID = lines[i].ElementAt(0);
+                DataAccessLayer.ProductDelete(prod);
+            }
+            DataAccessLayer.AddToProductLog(lines.Count(), "Emner slettet", NewFile);
         }
         private void CreateCSV()
         {
-            //List<Product> linesFromDB = new List<Product>();
-            //string header = "CompanyID;InterchangeId;ProductID;ProductName1;ProductName2;ItemUnit;ProductDesreptionLong;Synonyms;ProductGroup;Weight;MinQuantity;Price;Discount;NetPrice;Pcode;DistCode;";
+            List<Product> linesFromDB = new List<Product>();
+            string header = "CompanyID;InterchangeId;ProductID;ProductName1;ProductName2;ItemUnit;ProductDesreptionLong;Synonyms;ProductGroup;Weight;MinQuantity;Price;Discount;NetPrice;Pcode;DistCode;";
 
-            //linesFromDB = DataAccessLayer.CreateList(00);
+            linesFromDB = DataAccessLayer.CreateList(00);
 
-            //string filename = @"C:\Test\CsvUdskrift.txt";
+            string filename = @"C:\Test\CsvUdskrift.txt";
 
-            //using (StreamWriter write = new StreamWriter(filename, true))
-            //{
-            //    write.WriteLine(header);
+            using (StreamWriter write = new StreamWriter(filename, true))
+            {
+                write.WriteLine(header);
 
-            //    foreach (Product prod in linesFromDB)
-            //    {
-            //        write.Write("38168" + ";" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + ";" + prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
-            //            prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";" + Environment.NewLine);
-            //    }
-            //}
+                foreach (Product prod in linesFromDB)
+                {
+                    write.Write("38168" + ";" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + ";" + prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
+                        prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";" + Environment.NewLine);
+                }
+            }
         }
     }
 }

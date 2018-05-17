@@ -31,7 +31,7 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region INSERT
-        public void InsertAgreement(Agreement agreement)
+        public static void InsertAgreement(Agreement agreement)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
-        public void InsertCustomer(Customer cust)
+        public static void InsertCustomer(Customer cust)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace _1AarsProjekt.Model.DB
         //    }
         //}
 
-        public void InsertProduct(Product prod)
+        public static void InsertProduct(Product prod)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace _1AarsProjekt.Model.DB
             }
         }
 
-        public void AddToProductLog(int count, string action, string fileName)
+        public static void AddToProductLog(int count, string action, string fileName)
         {
             try
             {
@@ -264,7 +264,7 @@ namespace _1AarsProjekt.Model.DB
             }
         }
 
-        public List<Product> CreateList(int i)
+        public static List<Product> CreateList(int i)
         {
             try
             {
@@ -437,10 +437,35 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
+
+        public static List<string> CheckFilenameInLog()
+        {
+            try
+            {
+                List<string> nameList = new List<string>();
+
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblLogProducts", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    nameList.Add((string)reader["FileName"]);
+                }
+                CloseConnection();
+                return nameList = nameList.Distinct().ToList();
+            }
+            catch (Exception ex)
+            {
+                //ErrorLog(ex);
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
         #endregion
 
         #region UPDATE
-        public void UpdateCustomer(Customer CustToEdit)
+        public static void UpdateCustomer(Customer CustToEdit)
         {
             try
             {
@@ -467,7 +492,7 @@ namespace _1AarsProjekt.Model.DB
             }
         }
 
-        public void UpdateProductInDB(Product prod)
+        public static void UpdateProductInDB(Product prod)
         {
             try
             {
@@ -508,7 +533,7 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region DELETE
-        public void CustomerDelete(Customer selectedCust)
+        public static void CustomerDelete(Customer selectedCust)
         {
             try
             {
@@ -526,7 +551,7 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
-        public void ProductDelete(Product selectedProd)
+        public static void ProductDelete(Product selectedProd)
         {
             try
             {
@@ -548,7 +573,7 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region CREATEPARAMS
-        private SqlParameter CreateParam(string paramName, string paramValue)
+        private static SqlParameter CreateParam(string paramName, string paramValue)
         {//parameter metoder der laver parameteren om til enten VarChar eller int, således det kan komme ind i databasen.
             SqlParameter param = new SqlParameter();
             param.ParameterName = paramName;
@@ -556,7 +581,7 @@ namespace _1AarsProjekt.Model.DB
             param.SqlDbType = SqlDbType.VarChar;
             return param;
         }
-        private SqlParameter CreateParam(string paramName, int paramValue)
+        private static SqlParameter CreateParam(string paramName, int paramValue)
         {
             SqlParameter param = new SqlParameter();
             param.ParameterName = paramName;
@@ -564,7 +589,7 @@ namespace _1AarsProjekt.Model.DB
             param.SqlDbType = SqlDbType.Int;
             return param;
         }
-        private SqlParameter CreateParam(string paramName, DateTime paramValue)
+        private static SqlParameter CreateParam(string paramName, DateTime paramValue)
         {
             SqlParameter param = new SqlParameter();
             param.ParameterName = paramName;
