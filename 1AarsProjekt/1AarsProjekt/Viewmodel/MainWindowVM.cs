@@ -7,24 +7,21 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace _1AarsProjekt.Viewmodel
 {
     public class MainWindowVM : INotifyPropertyChanged
     {
-        private Page frame;
-        private int selectedIndex;
+        #region SelectedIndexes
+        public int CustomerIndex { get; set; }
+        public int AgreementIndex { get; set; }
+        public int ProductIndex { get; set; }
+        public int StatisticIndex { get; set; }
+        #endregion
 
-        public int SelectedIndex
-        {
-            get { return selectedIndex; }
-            set
-            {
-                selectedIndex = value;
-                NotifyPropertyChanged();
-            }
-        }
+        private Page frame;
 
         public Page Frame
         {
@@ -36,21 +33,23 @@ namespace _1AarsProjekt.Viewmodel
             }
         }
 
-        public ChangePageCMD SwapPage { get; set; }
+        public ChangePageCMD SwapPageCustomerPages { get; set; }
+        public ChangePageCMD SwapPageAgreementPages { get; set; }
+        public ChangePageCMD SwapPageProductPages { get; set; }
+        public ChangePageCMD SwapPageStatisticPages { get; set; }
+
         public MainWindowVM()
         {
-            SwapPage = new ChangePageCMD(PageSwap);
+            SwapPageCustomerPages = new ChangePageCMD(PageSwapCustomerPages);
+            SwapPageAgreementPages = new ChangePageCMD(PageSwapAgreementPages);
+            SwapPageProductPages = new ChangePageCMD(PageSwapProductPages);
+            SwapPageStatisticPages = new ChangePageCMD(PageSwapStatisticPages);
             Frame = new WelcomePage();
         }
-        public void PageSwap()
+
+        public void PageSwapCustomerPages()
         {
-            if (SelectedIndex == 0)
-            {
-                Frame = new CustomerCreatePage();
-
-            }
-
-            switch (SelectedIndex)
+            switch (CustomerIndex)
             {
                 case 0:
                     Frame = new CustomerCreatePage();
@@ -58,27 +57,54 @@ namespace _1AarsProjekt.Viewmodel
                 case 1:
                     Frame = new CustomerListPage();
                     break;
-                case 2:
+            }
+        }
+
+        public void PageSwapAgreementPages()
+        {
+            
+            switch (AgreementIndex)
+            {
+                case 0:
                     Frame = new AgreementPage();
                     break;
-                case 3:
+                case 1:
+                    //Frame = new AgreementListPage();
+                    MessageBox.Show("Denne side er ikke lavet endnu");
+                    break;
+            }
+        }
+
+        public void PageSwapProductPages()
+        {
+            switch (ProductIndex)
+            {
+                case 0:
                     Frame = new ProductCreatePage();
                     break;
-                case 4:
+                case 1:
                     Frame = new ProductListPage();
                     break;
-                case 5:
+            }
+        }
+
+        public void PageSwapStatisticPages()
+        {
+            switch (StatisticIndex)
+            {
+                case 0:
                     Frame = new StatisticCustomerPage();
                     break;
-                case 6:
+                case 1:
                     Frame = new StatisticAgreementPage();
                     break;
-                case 7:
+                case 2:
                     Frame = new StatisticProductTopPage();
                     break;
             }
-
         }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
