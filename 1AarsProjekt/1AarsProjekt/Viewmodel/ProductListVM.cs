@@ -50,10 +50,9 @@ namespace _1AarsProjekt.Viewmodel
         }
         public void DeleteProduct()
         {
-            DataAccessLayer db = new DataAccessLayer();
             Product selectedProd = new Product();
             selectedProd = _productList.ElementAt(SelectedIndex);
-            db.ProductDelete(selectedProd);
+            DataAccessLayer.ProductDelete(selectedProd);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

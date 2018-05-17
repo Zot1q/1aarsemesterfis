@@ -11,11 +11,10 @@ namespace _1AarsProjekt.Model.ProductManagement
     {
         public List<Product> ProductList { get; set; }
         Product product = new Product();
-        DataAccessLayer db = new DataAccessLayer();
 
         public void CreateProduct(Product product)
         {
-            db.InsertProduct(product);
+           DataAccessLayer.InsertProduct(product);
         }
         public List<Product> ListProducts()
         {

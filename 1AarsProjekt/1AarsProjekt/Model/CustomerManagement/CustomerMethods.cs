@@ -11,11 +11,10 @@ namespace _1AarsProjekt.Model.CustomerManagement
     public class CustomerMethods
     {
         List<Customer> CustomerList = new List<Customer>();
-        DataAccessLayer db = new DataAccessLayer();
         public void CreateCustomer(Customer cust)
         {
             cust.Status = true;
-            db.InsertCustomer(cust);
+            DataAccessLayer.InsertCustomer(cust);
         }
         public List<Customer> ListCustomers()
         {
@@ -25,11 +24,11 @@ namespace _1AarsProjekt.Model.CustomerManagement
         public void DeleteCustomer(Customer selectedCust)
         {
             selectedCust.Status = false;
-            db.CustomerDelete(selectedCust);
+            DataAccessLayer.CustomerDelete(selectedCust);
         }
         public void EditCustomer(Customer CustToEdit)
         {
-            db.UpdateCustomer(CustToEdit);
+            DataAccessLayer.UpdateCustomer(CustToEdit);
             MessageBox.Show(CustToEdit.CompanyName.ToString(), "ændret");
         }
     }

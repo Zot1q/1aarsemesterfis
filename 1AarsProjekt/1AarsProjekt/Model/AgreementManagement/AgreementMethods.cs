@@ -11,7 +11,6 @@ namespace _1AarsProjekt.Model.AgreementManagement
     public class AgreementMethods
     {
         List<Agreement> AgreementList = new List<Agreement>();
-        DataAccessLayer db = new DataAccessLayer();
 
         public void CreateAgreementTest(Agreement agreement)
         {
@@ -25,7 +24,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
 
         public void CreateAgreement(Agreement agree)
         {
-            db.InsertAgreement(agree);
+            DataAccessLayer.InsertAgreement(agree);
         }
 
         public void DeleteAgreement(Agreement selectedAgreement)
