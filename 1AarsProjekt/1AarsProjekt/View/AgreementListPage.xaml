@@ -4,28 +4,39 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AgreementListWindow">
+      Title="AgreementListWindow"
+      HorizontalAlignment="Right">
 
     <Grid Background="White">
-        <ListView HorizontalAlignment="Left" ItemsSource="{Binding AgreementList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreements">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Kunde navn" Width="120" DisplayMemberBinding="{Binding }" />
-                    <GridViewColumn Header="Kunde ID" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Aftale ID" Width="120" DisplayMemberBinding="{Binding AgreementID}" />
-                    <GridViewColumn Header="Varegruppe" Width="120" DisplayMemberBinding="{Binding ItemUnit}" />
-                    <GridViewColumn Header="Rabat" Width="120" DisplayMemberBinding="{Binding Synonyms}" />
-                    <GridViewColumn Header="Status" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
-                </GridView>
-            </ListView.View>
-            <ListView.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Redigere aftale" Command="{Binding OpenAgreementEditWindow}"/>
-                    <MenuItem Header="Slet aftale" Command="{Binding ProductDelete}"/>
-                </ContextMenu>
-            </ListView.ContextMenu>
-        </ListView>
+        <TextBlock Text="Rediger aftale" Margin="60,50,0,0" FontSize="28"/>
+        <TextBlock Text="*Højre klik på en aftale for at redigere den" Margin="480,73,0,0"/>
+        <materialDesign:PackIcon Kind="Help" Width="20" Height="20" Foreground="Gray"  Margin="460,70,0,0"/>
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Height="370">
+
+            <ListView HorizontalAlignment="Center" VerticalAlignment="Bottom" ItemsSource="{Binding AgreementList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="300">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Kunde ID" Width="80" DisplayMemberBinding="{Binding }" />
+                        <GridViewColumn Header="Aftale ID" Width="80" DisplayMemberBinding="{Binding AgreementID}" />
+                        <GridViewColumn Header="Produktgruppe" Width="140" DisplayMemberBinding="{Binding ProductGroup}" />
+                        <GridViewColumn Header="Rabat" Width="100" DisplayMemberBinding="{Binding Discount}" />
+                        <GridViewColumn Header="Udløbsdato" Width="120" DisplayMemberBinding="{Binding ExpirationDate}" />
+                        <GridViewColumn Header="Status" Width="80" DisplayMemberBinding="{Binding Status}" />
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Opret aftale" Command="{Binding OpenAgreementWin}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </StackPanel>
+        <StackPanel Width="120" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button Content="Opret aftale" Command="{Binding OpenAgreementWin}"/>
+        </StackPanel>
+
     </Grid>
 </Page>

@@ -69,8 +69,8 @@ namespace _1AarsProjekt.Viewmodel
                     Frame = new AgreementPage();
                     break;
                 case 1:
-                    //Frame = new AgreementListPage();
-                    MessageBox.Show("Denne side er ikke lavet endnu");
+                    Frame = new AgreementListPage();
+                    //MessageBox.Show("Denne side er ikke lavet endnu");
                     break;
             }
         }
