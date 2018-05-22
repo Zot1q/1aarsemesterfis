@@ -1,0 +1,35 @@
+﻿<Window x:Class="_1AarsProjekt.View.AgreementEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_1AarsProjekt.View"
+        mc:Ignorable="d"
+        Title="Rediger Aftale" Height="450" Width="750">
+    <Grid>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lblSubcriptionId" Content="" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Label FontWeight="Bold" HorizontalAlignment="left" Margin="0, 5" Content="Hovedgruppe: "/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox ItemsSource="{Binding mainGroup}" SelectedIndex="0" SelectedItem="{Binding Agreement.ProductGroup}" Width="200" VerticalAlignment="Center">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,30">
+                <Label HorizontalAlignment="Left" Margin="0, 5" Content="Rabat: "/>
+                <TextBox x:Name="txtDiscount" Width="80" Height="30" Text="{Binding Agreement.Discount, Mode=OneWayToSource}"/>
+            </StackPanel>
+            <Line/>
+            <Line/>
+            <StackPanel Orientation="Horizontal" Margin="0,30">
+                <Label HorizontalAlignment="left" Margin="0, 5" Content="Løbetid"/>
+                <TextBox x:Name="txtDuration" Text="{Binding TimeToAdd, Mode=OneWayToSource}" Width="80" Height="30"/>
+                <Label Margin="0, 5" Content="(6 - 24 mnd)" Foreground="Red" FontWeight="Bold"/>
+            </StackPanel>
+
+        </StackPanel>
+        <Button Content="Rediger" HorizontalAlignment="Left" Margin="234,332,0,0" VerticalAlignment="Top" Width="75" Height="30" Command="{Binding EditAgreement}"/>
+
+    </Grid>
+</Window>

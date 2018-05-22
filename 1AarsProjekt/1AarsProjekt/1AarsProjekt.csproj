@@ -83,6 +83,7 @@
     <Compile Include="Model\ProductManagement\ProductMethods.cs" />
     <Compile Include="Model\StatisticManagement\Statistic.cs" />
     <Compile Include="Viewmodel\AgreementCreateVM.cs" />
+    <Compile Include="Viewmodel\AgreementEditVM.cs" />
     <Compile Include="Viewmodel\AgreementListVM.cs" />
     <Compile Include="Viewmodel\AgreementVM.cs" />
     <Compile Include="Viewmodel\Commands\ChangePageCMD.cs" />
@@ -98,6 +99,9 @@
     <Compile Include="Viewmodel\StatisticProductTopVM.cs" />
     <Compile Include="View\AgreementCreateWindow.xaml.cs">
       <DependentUpon>AgreementCreateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AgreementEditWindow.xaml.cs">
+      <DependentUpon>AgreementEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AgreementListPage.xaml.cs">
       <DependentUpon>AgreementListPage.xaml</DependentUpon>
@@ -129,6 +133,10 @@
     <Compile Include="View\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AgreementEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AgreementListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

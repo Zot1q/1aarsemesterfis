@@ -28,6 +28,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
         public void DeleteAgreement(Agreement selectedAgreement)
         {
             selectedAgreement.Status = false;
+            DataAccessLayer.AgreementDelete(selectedAgreement);
         }
 
         public List<Agreement> ListAgreements()

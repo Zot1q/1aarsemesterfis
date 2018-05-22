@@ -356,12 +356,13 @@ namespace _1AarsProjekt.Model.DB
             try
             {
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [Discount], [ExpirationDate], [ProductGroup], [CustomerID], [Status] FROM dbo.tblAgreement", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.tblAgreement WHERE Status = 1", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Agreement> agreementList = new List<Agreement>();
                 while (reader.Read())
                 {
                     Agreement agree = new Agreement();
+                    agree.AgreementID = (int)reader["AgreementID"];
                     agree.Discount = (decimal)reader["Discount"];
                     agree.ExpirationDate = (DateTime)reader["ExpirationDate"];
                     agree.ProductGroup = (string)reader["ProductGroup"];
@@ -599,6 +600,26 @@ namespace _1AarsProjekt.Model.DB
                 OpenConnection();
                 SqlCommand command = new SqlCommand("DELETE FROM dbo.tblProducts WHERE ProdNumber = @ProdNumber", connection);
                 command.Parameters.Add(CreateParam("@ProdNumber", selectedProd.ProductID));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public static void AgreementDelete(Agreement selectedAgreement)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("UPDATE dbo.tblAgreement SET Status = 0 WHERE AgreementID = @AgreementID", connection);
+                command.Parameters.Add(CreateParam("@AgreementID", selectedAgreement.AgreementID));
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)

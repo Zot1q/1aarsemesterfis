@@ -17,16 +17,16 @@ namespace _1AarsProjekt.Viewmodel
     public class AgreementListVM : INotifyPropertyChanged
     {
         CustomerMethods cust = new CustomerMethods();
+        AgreementMethods agreeMethod = new AgreementMethods();
+
         private List<Agreement> _agreementList;
 
-        public List<Agreement> AgreementList
+        public  List<Agreement> AgreementList
         {
             get { return _agreementList; }
-            set
-            {
-                _agreementList = value;
-            }
+            set { _agreementList = value; }
         }
+
         private int selectedIndex;
 
         public int SelectedIndex
@@ -38,11 +38,21 @@ namespace _1AarsProjekt.Viewmodel
                 NotifyPropertyChanged();
             }
         }
+        public ChangePageCMD AgreementDelete { get; set; }
         public AgreementListVM()
         {
-            AgreementMethods agreeMethod = new AgreementMethods();
+            AgreementDelete = new ChangePageCMD(DeleteAgreement);
             AgreementList = agreeMethod.ListAgreements();
         }
+
+        public void DeleteAgreement()
+        {
+            Agreement selectedAgreement = AgreementList.ElementAt(SelectedIndex);
+            agreeMethod.DeleteAgreement(selectedAgreement);
+            AgreementList = agreeMethod.ListAgreements();
+        }
+
+
         public void AgreementWinOpen()
         {
             //AgreementCreateWindow createAgreementWindow = new AgreementCreateWindow(CustList.ElementAt(SelectedIndex).CustomerID);
