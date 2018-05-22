@@ -218,6 +218,44 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region SELECT
+        public static bool AgreementCheck(Agreement AgreementToCheck)
+        {
+            try
+            {
+                bool AgreementExist = false;
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblAgreement WHERE CustomerID = @CustomerID AND ProductGroup = @ProductGroup", connection);
+                cmd.Parameters.Add(CreateParam("@CustomerID", AgreementToCheck.CustomerID));
+                cmd.Parameters.Add(CreateParam("@ProductGroup", AgreementToCheck.ProductGroup));
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Agreement agree = new Agreement();
+                    agree.AgreementID = (int)reader["AgreementID"];
+                    agree.Discount = (decimal)reader["Discount"];
+                    agree.ExpirationDate = (DateTime)reader["ExpirationDate"];
+                    agree.ProductGroup = (string)reader["ProductGroup"];
+                    agree.CustomerID = (int)reader["CustomerID"];
+                    agree.Status = (bool)reader["Status"];
+                    AgreementExist = true;
+                }
+                return AgreementExist;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            
+        }
+
+
+
+
         public static List<Product> CreateProductList()
         {
             try

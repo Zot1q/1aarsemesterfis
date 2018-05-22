@@ -31,7 +31,22 @@ namespace _1AarsProjekt.Viewmodel
         public void AgreementCreate()
         {
             Agreement.ExpirationDate = DateTime.Now.AddMonths(TimeToAdd);
-            agreementMethod.CreateAgreementTest(Agreement);
+
+            if (agreementMethod.CheckAgreement(Agreement))
+            {
+                MessageBoxResult boxResult = MessageBox.Show("Vil du redigere den eksisterende aftale?", "Denne kunde har allerede en aftale for denne produktgruppe", MessageBoxButton.YesNo);
+                if (boxResult == MessageBoxResult.Yes)
+                {
+                    MessageBox.Show("Åbner rediger vindue");
+                    Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
+                }
+            }
+            else
+            {
+                agreementMethod.CreateAgreementTest(Agreement);
+                MessageBox.Show("Aftale oprettet!");
+            }
+            //bool AgreementCheck = agreementMethod.CheckAgreement(Agreement);
         }
         private void GetProductGroups()
         {
