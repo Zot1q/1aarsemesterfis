@@ -301,7 +301,7 @@ namespace _1AarsProjekt.Model.DB
             }
         }
 
-        public static List<Product> CreateList(int i)
+        public static List<Product> CreateList(string str)
         {
             try
             {
@@ -309,9 +309,8 @@ namespace _1AarsProjekt.Model.DB
                 List<Product> prodList = new List<Product>();
 
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM tblProducts WHERE [ProductGroup] BETWEEN @ProductGroup And @ProductGroup2", connection);
-                cmd.Parameters.Add(CreateParam("@ProductGroup", "00"));
-                cmd.Parameters.Add(CreateParam("@ProductGroup2", "01"));
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblProducts WHERE [ProductGroup] LIKE @ProductGroup", connection);
+                cmd.Parameters.Add(CreateParam("@ProductGroup", str + "%"));
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -324,8 +323,6 @@ namespace _1AarsProjekt.Model.DB
                     prod.Productname2 = (string)reader["ProductName2"];
                     prod.Productdescription = (string)reader["ProductDescription"];
                     prod.ProductGroup = (string)reader["ProductGroup"];
-                    //prod.CompanyID = (int)reader["CompanyID"];
-                    //prod.InterchangeID = (string)reader["InterchangeID"];
                     prod.ItemUnit = (string)reader["ItemUnit"];
                     prod.Synonyms = (string)reader["Synonyms"];
                     prod.Weight = (string)reader["Weight"];
@@ -492,6 +489,39 @@ namespace _1AarsProjekt.Model.DB
                 }
                 CloseConnection();
                 return nameList = nameList.Distinct().ToList();
+            }
+            catch (Exception ex)
+            {
+                //ErrorLog(ex);
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public static List<Agreement> CreateAgreementList()
+        {
+            try
+            {
+                List<Agreement> agrList = new List<Agreement>();
+
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblAgreement WHERE [Status] = 1", connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Agreement agree = new Agreement();
+
+                    agree.AgreementID = (int)reader["AgreementID"];
+                    agree.ExpirationDate = (DateTime)reader["ExpirationDate"];
+                    agree.ProductGroup = (string)reader["ProductGroup"];
+                    agree.Status = (bool)reader["Status"];
+                    agree.CustomerID = (int)reader["CustomerID"];
+                    agrList.Add(agree);
+
+                }
+                CloseConnection();
+                return agrList;
             }
             catch (Exception ex)
             {

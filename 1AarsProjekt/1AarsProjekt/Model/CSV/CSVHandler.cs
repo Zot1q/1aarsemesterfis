@@ -1,4 +1,5 @@
-﻿using _1AarsProjekt.Model.DB;
+﻿using _1AarsProjekt.Model.AgreementManagement;
+using _1AarsProjekt.Model.DB;
 using _1AarsProjekt.Model.ExternalConnections;
 using _1AarsProjekt.Model.ProductManagement;
 using System;
@@ -19,16 +20,45 @@ namespace _1AarsProjekt.Model.CSV
         void Main(string[] args)
         {
 
-            CreateCSV();
-            bool result = FindNewestFile();
-            if (true)
+            ////LinuxAccessLayer.UploadFiles();
+            //CreateCSV();
+
+            int i = DataAccessLayer.CheckFilenameInLog().Count;
+
+            if (i == 0)
             {
-                //ImportFiles();
+                ImportNewestFile();
                 List<string> newList = ImportLocalList();
-                List<string> oldList = BuildListFromDB();
-                CompareFiles(newList, oldList);
+                List<string[]> newListSplitted = SplitStrings(newList);
+                NewProducts(newListSplitted);
+            }
+            else if (i >= 1)
+            {
+                bool result = FindNewestFile();
+
+                if (result)
+                {
+                    List<string> newList = ImportLocalList();
+                    List<string> oldList = BuildListFromDB();
+                    CompareFiles(newList, oldList);
+                }
             }
 
+        }
+
+        public void ImportNewestFile()
+        {
+            ServerAccessLayer.DownloadFiles();
+            List<DateTime> fileDate = new List<DateTime>();
+
+            string[] fileArray = Directory.GetFiles(@"c:\Test\csv\", "*.csv");
+
+            foreach (var file in fileArray)
+            {
+                fileDate.Add(DateTime.ParseExact(file.Substring(file.Length - 12, 8), "ddMMyyyy", CultureInfo.InvariantCulture));
+            }
+            fileDate.Sort();
+            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 1].ToString("ddMMyyyy");
         }
 
         public bool FindNewestFile()
@@ -63,7 +93,6 @@ namespace _1AarsProjekt.Model.CSV
         private List<string> ImportLocalList()
         {
             List<string> newList = new List<string>();
-            //List<string> oldList = BuildListFromDB();
 
             string filePath = @"c:\Test\csv\" + NewFile + ".csv";
 
@@ -77,8 +106,6 @@ namespace _1AarsProjekt.Model.CSV
             }
             newList.RemoveAt(0);
             return newList = newList.Distinct().ToList(); //Using .Distinct to compare the lines in list, and remove them if there is duplicates.
-
-            //CompareFiles(newList, oldList);
         }
 
         private string RemoveHTML(string input)
@@ -137,7 +164,6 @@ namespace _1AarsProjekt.Model.CSV
         private void UpdateOrNewEntry(List<string[]> addList, List<string[]> oldList)
         {
             List<string[]> updateList = new List<string[]>();
-            //List<string[]> newList = new List<string[]>();
 
             for (int i = 0; i < addList.Count; i++)
             {
@@ -152,7 +178,6 @@ namespace _1AarsProjekt.Model.CSV
                     }
                 }
             }
-            //newList = addList.Except(updateList).ToList();
             UpdateProducts(updateList);
             NewProducts(addList.Except(updateList).ToList());
         }
@@ -241,23 +266,38 @@ namespace _1AarsProjekt.Model.CSV
             }
             DataAccessLayer.AddToProductLog(lines.Count(), "Emner slettet", NewFile);
         }
+  
         private void CreateCSV()
         {
+            List<Agreement> agreements = new List<Agreement>();
+            agreements = DataAccessLayer.CreateAgreementList();
+
             List<Product> linesFromDB = new List<Product>();
             string header = "CompanyID;InterchangeId;ProductID;ProductName1;ProductName2;ItemUnit;ProductDesreptionLong;Synonyms;ProductGroup;Weight;MinQuantity;Price;Discount;NetPrice;Pcode;DistCode;";
 
-            linesFromDB = DataAccessLayer.CreateList(00);
-
-            string filename = @"C:\Test\CsvUdskrift.txt";
-
-            using (StreamWriter write = new StreamWriter(filename, true))
+            foreach (Agreement agree in agreements)
             {
-                write.WriteLine(header);
+                linesFromDB = DataAccessLayer.CreateList(agree.ProductGroup);
+                char pad = '0';
 
-                foreach (Product prod in linesFromDB)
+                string custID = Convert.ToString(agree.CustomerID).PadLeft(5, pad);
+
+                string filePath = @"C:\Test\";
+                string fileName = "ApEngros_" + custID + "_" + DateTime.Now.ToString("ddMMyyyy") + ".txt";
+                bool exists = File.Exists(filePath + fileName);
+
+                using (StreamWriter write = new StreamWriter(filePath + fileName, true))
                 {
-                    write.Write("38168" + ";" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + ";" + prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
-                        prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";" + Environment.NewLine);
+                    if (!exists)
+                    {
+                        write.WriteLine(header);
+                    }
+
+                    foreach (Product prod in linesFromDB)
+                    {
+                        write.Write(custID + ";" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + ";" + prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
+                            prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";" + Environment.NewLine);
+                    }
                 }
             }
         }

@@ -32,5 +32,30 @@ namespace _1AarsProjekt.Model.ExternalConnections
                 }
             }
         }
+
+        public static void UploadFiles()
+        {
+            string remoteDirectory = "/home/echo/test/";
+            string localDirectory = @"C:\Test\FilesToUpload\";
+
+            using (var sftp = new SftpClient(@"10.152.120.37", "echo", "ec.12ho."))
+            {
+                sftp.Connect();
+                sftp.CreateDirectory(remoteDirectory);//Create folder if necessary else skip
+                var files = Directory.GetFiles(localDirectory);
+
+                foreach (var file in files)
+                {
+                    string remoteFileName = file;
+
+                    using (Stream file1 = new FileStream(file, FileMode.Open))
+                    {
+                        remoteFileName = remoteFileName.Substring(remoteFileName.Length - 27);//Take out the filename
+
+                        sftp.UploadFile(file1, remoteDirectory + remoteFileName, null);
+                    }
+                }
+            }
+        }
     }
 }
