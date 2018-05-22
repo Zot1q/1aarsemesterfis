@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _1AarsProjekt.Viewmodel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace _1AarsProjekt.View
     /// </summary>
     public partial class AgreementEditWindow : Window
     {
-        public AgreementEditWindow()
+        public AgreementEditWindow(object selectedAgreement)
         {
             InitializeComponent();
+            DataContext = new AgreementEditVM(selectedAgreement);
         }
     }
 }

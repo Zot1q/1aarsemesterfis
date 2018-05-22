@@ -1,5 +1,4 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
-using _1AarsProjekt.Model.CustomerManagement;
 using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel.Commands;
 using System;
@@ -16,7 +15,6 @@ namespace _1AarsProjekt.Viewmodel
 {
     public class AgreementListVM : INotifyPropertyChanged
     {
-        CustomerMethods cust = new CustomerMethods();
         AgreementMethods agreeMethod = new AgreementMethods();
 
         private List<Agreement> _agreementList;
@@ -24,7 +22,11 @@ namespace _1AarsProjekt.Viewmodel
         public  List<Agreement> AgreementList
         {
             get { return _agreementList; }
-            set { _agreementList = value; }
+            set
+            {
+                _agreementList = value;
+                NotifyPropertyChanged();
+            }
         }
 
         private int selectedIndex;
@@ -38,10 +40,14 @@ namespace _1AarsProjekt.Viewmodel
                 NotifyPropertyChanged();
             }
         }
+
         public ChangePageCMD AgreementDelete { get; set; }
+        public ChangePageCMD OpenAgreementEditWindow { get; set; }
+
         public AgreementListVM()
         {
             AgreementDelete = new ChangePageCMD(DeleteAgreement);
+            OpenAgreementEditWindow = new ChangePageCMD(AgreementEditWindowOpen);
             AgreementList = agreeMethod.ListAgreements();
         }
 
@@ -52,13 +58,12 @@ namespace _1AarsProjekt.Viewmodel
             AgreementList = agreeMethod.ListAgreements();
         }
 
-
-        public void AgreementWinOpen()
+        public void AgreementEditWindowOpen()
         {
-            //AgreementCreateWindow createAgreementWindow = new AgreementCreateWindow(CustList.ElementAt(SelectedIndex).CustomerID);
-            //createAgreementWindow.Show();
-
+            AgreementEditWindow agreementEditWindow = new AgreementEditWindow(AgreementList.ElementAt(SelectedIndex));
+            agreementEditWindow.Show();
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {

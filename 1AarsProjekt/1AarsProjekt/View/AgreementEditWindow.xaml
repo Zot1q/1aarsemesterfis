@@ -13,12 +13,12 @@
             </StackPanel>
             <Label FontWeight="Bold" HorizontalAlignment="left" Margin="0, 5" Content="Hovedgruppe: "/>
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding mainGroup}" SelectedIndex="0" SelectedItem="{Binding Agreement.ProductGroup}" Width="200" VerticalAlignment="Center">
+                <ComboBox ItemsSource="{Binding mainGroup}" SelectedIndex="{Binding SelectedProductGroup}" SelectedItem="{Binding AgreementToEdit.ProductGroup}" Width="200" VerticalAlignment="Center">
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,30">
                 <Label HorizontalAlignment="Left" Margin="0, 5" Content="Rabat: "/>
-                <TextBox x:Name="txtDiscount" Width="80" Height="30" Text="{Binding Agreement.Discount, Mode=OneWayToSource}"/>
+                <TextBox x:Name="txtDiscount" Width="80" Height="30" Text="{Binding AgreementToEdit.Discount}"/>
             </StackPanel>
             <Line/>
             <Line/>

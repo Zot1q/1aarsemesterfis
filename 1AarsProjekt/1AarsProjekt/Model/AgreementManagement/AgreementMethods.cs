@@ -36,5 +36,10 @@ namespace _1AarsProjekt.Model.AgreementManagement
             List<Agreement> AgreementList = DataAccessLayer.GetAgreements();
             return AgreementList;
         }
+
+        public void EditAgreement(Agreement AgreementToEdit)
+        {
+            DataAccessLayer.UpdateAgreement(AgreementToEdit);
+        }
     }
 }

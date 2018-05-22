@@ -45,14 +45,14 @@ namespace _1AarsProjekt.Model.DB
                 command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));
 
-                InsertLog(new ErrorLog(0, "An agreement for CustomerID: " + agreement.CustomerID + " Inserted in the database", DateTime.Now.ToString(), 5));
+                //InsertLog(new ErrorLog(0, "An agreement for CustomerID: " + agreement.CustomerID + " Inserted in the database", DateTime.Now.ToString(), 5));
 
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                Error(ex);
-                InsertLog(new ErrorLog(1, "Error ocurred while inserting an agreement into the database", DateTime.Now.ToString(), 0));
+                //Error(ex);
+                //InsertLog(new ErrorLog(1, "Error ocurred while inserting an agreement into the database", DateTime.Now.ToString(), 0));
                 MessageBox.Show("Error" + ex);
             }
             finally
@@ -218,48 +218,6 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region SELECT
-        //public static List<Product> GetProducts()
-        //{
-        //    try
-        //    {
-        //        Product product = new Product();
-        //        OpenConnection();
-        //        SqlCommand cmd = new SqlCommand("SELECT [ProdNumber], [CompanyID], [InterchangeID], [ProductName1], [ProductName2], [ItemUnit], [ProductDescription], [Synonyms], [ProductGroup], [Weight], [MinQuantity], [Price], [Discount], [NetPrice], [PCode], [DistCode] FROM tblProducts", connection);
-        //        SqlDataReader reader = cmd.ExecuteReader();
-        //        List<Product> productList = new List<Product>();
-        //        while (reader.Read())
-        //        {
-        //            product = new Product();
-        //            product.ProductID = (int)reader["ProdNumber"];
-        //            product.CompanyID = (int)reader["CompanyID"];
-        //            product.InterchangeID = (string)reader["InterchangeID"];
-        //            product.ProductName1 = (string)reader["ProductName1"];
-        //            product.ProductName2 = (string)reader["ProductName2"];
-        //            product.ItemUnit = (string)reader["ItemUnit"];
-        //            product.ProductDescription = (string)reader["ProductDescription"];
-        //            product.Synonyms = (string)reader["Synonyms"];
-        //            product.ProductGroup = (string)reader["ProductGroup"];
-        //            product.Weight = (string)reader["Weight"];
-        //            product.MinQuantity = (string)reader["MinQuantiy"];
-        //            product.Price = (string)reader["Price"];
-        //            product.Discount = (string)reader["Discount"];
-        //            product.NetPrice = (string)reader["NetPrice"];
-        //            product.PCode = (string)reader["PCode"];
-        //            product.DistCode = (string)reader["DistCode"];
-        //            productList.Add(product);
-        //        }
-        //        return productList;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error" + ex);
-        //        throw;
-        //    }
-        //    finally
-        //    {
-        //        CloseConnection();
-        //    }
-        //}
         public static List<Product> CreateProductList()
         {
             try
@@ -566,6 +524,30 @@ namespace _1AarsProjekt.Model.DB
             {
                 Console.WriteLine("Fejl i linie {0} - " + ex);
 
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public static void UpdateAgreement(Agreement AgreementToEdit)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("UPDATE tblAgreement SET ExpirationDate = @ExpirationDate, Discount = @Discount, " +
+                    "ProductGroup = @ProductGroup, Status = @Status WHERE (AgreementID = @AgreementID)", connection);
+                command.Parameters.Add(CreateParam("@AgreementID", AgreementToEdit.AgreementID));
+                command.Parameters.Add(CreateParam("@ExpirationDate", AgreementToEdit.ExpirationDate));
+                command.Parameters.Add(CreateParam("@Discount", AgreementToEdit.Discount.ToString()));
+                command.Parameters.Add(CreateParam("@ProductGroup", AgreementToEdit.ProductGroup));
+                command.Parameters.Add(CreateParam("@Status", AgreementToEdit.Status.ToString()));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
