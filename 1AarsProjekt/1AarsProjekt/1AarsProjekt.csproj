@@ -95,7 +95,7 @@
     <Compile Include="Viewmodel\ProductVM.cs" />
     <Compile Include="Viewmodel\StatisticAgreementVM.cs" />
     <Compile Include="Viewmodel\StatisticCustomerVM.cs" />
-    <Compile Include="Viewmodel\StatisticVM.cs" />
+    <Compile Include="Viewmodel\StatisticProductTopVM.cs" />
     <Compile Include="View\AgreementCreateWindow.xaml.cs">
       <DependentUpon>AgreementCreateWindow.xaml</DependentUpon>
     </Compile>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Viewmodel
 {
-    class StatisticVM
+    class StatisticProductTopVM
     {
     }
 }

@@ -23,6 +23,7 @@ namespace _1AarsProjekt.View
         public StatisticProductTopPage()
         {
             InitializeComponent();
+            DataContext = new StatisticProductTopPage();
         }
     }
 }
