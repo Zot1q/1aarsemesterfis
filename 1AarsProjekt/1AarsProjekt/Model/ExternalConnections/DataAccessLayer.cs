@@ -1,11 +1,13 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
 using _1AarsProjekt.Model.CustomerManagement;
+using _1AarsProjekt.Model.LOG;
 using _1AarsProjekt.Model.ProductManagement;
 using _1AarsProjekt.View;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,10 +44,15 @@ namespace _1AarsProjekt.Model.DB
                 command.Parameters.Add(CreateParam("@ProductGroup", agreement.ProductGroup));
                 command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));
+
+                InsertLog(new ErrorLog(0, "An agreement for CustomerID: " + agreement.CustomerID + " Inserted in the database", DateTime.Now.ToString(), 5));
+
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
+                Error(ex);
+                InsertLog(new ErrorLog(1, "Error ocurred while inserting an agreement into the database", DateTime.Now.ToString(), 0));
                 MessageBox.Show("Error" + ex);
             }
             finally
@@ -66,10 +73,15 @@ namespace _1AarsProjekt.Model.DB
                 command.Parameters.Add(CreateParam("@ContactPers", cust.ContactPers));
                 command.Parameters.Add(CreateParam("@ExpectRevenue", Convert.ToString(cust.ExpectRevenue)));
                 command.Parameters.Add(CreateParam("@Status", cust.Status.ToString()));
+
+                InsertLog(new ErrorLog(0, "Customer: Inserted in the database", DateTime.Now.ToString(), 7));
+
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
+                Error(ex);
+                InsertLog(new ErrorLog(1, "Error ocurred while inserting a customer into the database", DateTime.Now.ToString(), 0));
                 MessageBox.Show("Error" + ex);
             }
             finally
@@ -136,10 +148,14 @@ namespace _1AarsProjekt.Model.DB
                 command.Parameters.Add(CreateParam("@DistCode", prod.DistCode));
                 command.Parameters.Add(CreateParam("@MinQuantity", prod.MinQuantity));
 
+                InsertLog(new ErrorLog(0, "Product Inserted in the database", DateTime.Now.ToString(), 14));
+
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
+                Error(ex);
+                InsertLog(new ErrorLog(1, "Error ocurred while inserting a product into the database", DateTime.Now.ToString(), 0));
                 Console.WriteLine(ex);
 
             }
@@ -166,8 +182,33 @@ namespace _1AarsProjekt.Model.DB
             }
             catch (Exception ex)
             {
+                Error(ex);
                 Console.WriteLine("Fejl i linie {0} - " + ex);
 
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        public static void InsertLog(ErrorLog log)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO tblLog ([ErrorID], [LogMessage], [ErrorNr], [AmountOfData], [DateAndTime]) VALUES (@ErrorID, @LogMessage, @ErrorNr, @AmountOfData, @DateAndTime)", connection);
+                cmd.Parameters.Add(CreateParam("@ErrorID", log.ErrorID));
+                cmd.Parameters.Add(CreateParam("@LogMessage", log.LogMessage));
+                cmd.Parameters.Add(CreateParam("@ErrorNr", log.ErrorNr));
+                cmd.Parameters.Add(CreateParam("@AmountOfData", log.AmountOfData));
+                cmd.Parameters.Add(CreateParam("@DateAndTime", log.DateAndTime));
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -599,6 +640,15 @@ namespace _1AarsProjekt.Model.DB
         }
 
         #endregion
+
+        public static void Error(Exception ex)
+        {
+            string filePath = @"C:\Log\Error.txt";
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine("Date: {0} " + "Error: {1} ", DateTime.Now, ex.Message);
+            }
+        }
 
     }
 }
