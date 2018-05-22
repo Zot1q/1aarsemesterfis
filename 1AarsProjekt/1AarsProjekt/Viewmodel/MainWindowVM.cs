@@ -33,6 +33,7 @@ namespace _1AarsProjekt.Viewmodel
             }
         }
 
+        public ChangePageCMD SwapPageWelcomePages { get; set; }
         public ChangePageCMD SwapPageCustomerPages { get; set; }
         public ChangePageCMD SwapPageAgreementPages { get; set; }
         public ChangePageCMD SwapPageProductPages { get; set; }
@@ -40,6 +41,7 @@ namespace _1AarsProjekt.Viewmodel
 
         public MainWindowVM()
         {
+            SwapPageWelcomePages = new ChangePageCMD(PageSwapWelcomePages);
             SwapPageCustomerPages = new ChangePageCMD(PageSwapCustomerPages);
             SwapPageAgreementPages = new ChangePageCMD(PageSwapAgreementPages);
             SwapPageProductPages = new ChangePageCMD(PageSwapProductPages);
@@ -47,6 +49,10 @@ namespace _1AarsProjekt.Viewmodel
             Frame = new WelcomePage();
         }
 
+        public void PageSwapWelcomePages()
+        {
+            Frame = new WelcomePage();
+        }
         public void PageSwapCustomerPages()
         {
             switch (CustomerIndex)
