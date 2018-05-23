@@ -218,28 +218,29 @@ namespace _1AarsProjekt.Model.DB
         #endregion
 
         #region SELECT
-        public static bool AgreementCheck(Agreement AgreementToCheck)
+
+        public static Agreement AgreementCheck(Agreement AgreementToCheck)
         {
             try
             {
-                bool AgreementExist = false;
+                Agreement Agreement = new Agreement();
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM tblAgreement WHERE CustomerID = @CustomerID AND ProductGroup = @ProductGroup", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblAgreement WHERE CustomerID = @CustomerID AND ProductGroup = @ProductGroup " +
+                    "AND AgreementID != @AgreementID", connection);
                 cmd.Parameters.Add(CreateParam("@CustomerID", AgreementToCheck.CustomerID));
                 cmd.Parameters.Add(CreateParam("@ProductGroup", AgreementToCheck.ProductGroup));
+                cmd.Parameters.Add(CreateParam("@AgreementID", AgreementToCheck.AgreementID));
                 SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    Agreement agree = new Agreement();
-                    agree.AgreementID = (int)reader["AgreementID"];
-                    agree.Discount = (decimal)reader["Discount"];
-                    agree.ExpirationDate = (DateTime)reader["ExpirationDate"];
-                    agree.ProductGroup = (string)reader["ProductGroup"];
-                    agree.CustomerID = (int)reader["CustomerID"];
-                    agree.Status = (bool)reader["Status"];
-                    AgreementExist = true;
+                    Agreement.AgreementID = (int)reader["AgreementID"];
+                    Agreement.Discount = (decimal)reader["Discount"];
+                    Agreement.ExpirationDate = (DateTime)reader["ExpirationDate"];
+                    Agreement.ProductGroup = (string)reader["ProductGroup"];
+                    Agreement.CustomerID = (int)reader["CustomerID"];
+                    Agreement.Status = (bool)reader["Status"];
                 }
-                return AgreementExist;
+                return Agreement;
             }
             catch (Exception ex)
             {
@@ -250,10 +251,8 @@ namespace _1AarsProjekt.Model.DB
             {
                 CloseConnection();
             }
-            
+
         }
-
-
 
 
         public static List<Product> CreateProductList()

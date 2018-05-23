@@ -1,5 +1,6 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
 using _1AarsProjekt.Model.ProductManagement;
+using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel.Commands;
 using System;
 using System.Collections.Generic;
@@ -32,13 +33,16 @@ namespace _1AarsProjekt.Viewmodel
         {
             Agreement.ExpirationDate = DateTime.Now.AddMonths(TimeToAdd);
 
-            if (agreementMethod.CheckAgreement(Agreement))
+            Agreement AgreementResult = agreementMethod.CheckAgreement(Agreement);
+            if (AgreementResult.AgreementID != 0)
             {
                 MessageBoxResult boxResult = MessageBox.Show("Vil du redigere den eksisterende aftale?", "Denne kunde har allerede en aftale for denne produktgruppe", MessageBoxButton.YesNo);
                 if (boxResult == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Åbner rediger vindue");
                     Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
+                    AgreementEditWindow agreementEditWindow = new AgreementEditWindow(AgreementResult);
+                    agreementEditWindow.Show();
+
                 }
             }
             else
@@ -46,8 +50,8 @@ namespace _1AarsProjekt.Viewmodel
                 agreementMethod.CreateAgreementTest(Agreement);
                 MessageBox.Show("Aftale oprettet!");
             }
-            //bool AgreementCheck = agreementMethod.CheckAgreement(Agreement);
         }
+
         private void GetProductGroups()
         {
             List<Product> listProducts = productMethod.ListProducts();

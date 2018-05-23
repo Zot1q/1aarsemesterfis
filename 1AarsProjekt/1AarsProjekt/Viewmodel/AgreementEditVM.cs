@@ -1,5 +1,6 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
 using _1AarsProjekt.Model.ProductManagement;
+using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel.Commands;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
@@ -39,6 +41,7 @@ namespace _1AarsProjekt.Viewmodel
 
 
         public ProductMethods productMethod = new ProductMethods();
+        public AgreementMethods agreementMethod = new AgreementMethods();
         public List<string> mainGroup { get; set; }
         public int TimeToAdd { get; set; }
 
@@ -56,6 +59,24 @@ namespace _1AarsProjekt.Viewmodel
             AgreementToEdit.ExpirationDate = DateTime.Now.AddMonths(TimeToAdd);
             AgreementMethods agreementMethods = new AgreementMethods();
             agreementMethods.EditAgreement(AgreementToEdit);
+
+            Agreement AgreementResult = agreementMethod.CheckAgreement(AgreementToEdit);
+            if (AgreementResult.AgreementID != 0)
+            {
+                MessageBoxResult boxResult = MessageBox.Show("Vil du redigere den eksisterende aftale?", "Denne kunde har allerede en aftale for denne produktgruppe", MessageBoxButton.YesNo);
+                if (boxResult == MessageBoxResult.Yes)
+                {
+                    Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
+                    AgreementEditWindow agreementEditWindow = new AgreementEditWindow(AgreementResult);
+                    agreementEditWindow.Show();
+
+                }
+            }
+            else
+            {
+                agreementMethods.EditAgreement(AgreementToEdit);
+                MessageBox.Show("Aftale redigeret!");
+            }
         }
 
         public void CastToType(object selectedAgreement)
