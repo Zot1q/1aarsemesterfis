@@ -112,6 +112,9 @@
     <Compile Include="View\CustomerListPage.xaml.cs">
       <DependentUpon>CustomerListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ProductChangePriceWindow.xaml.cs">
+      <DependentUpon>ProductChangePriceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProductEditWindow.xaml.cs">
       <DependentUpon>ProductEditWindow.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ProductChangePriceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProductEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
