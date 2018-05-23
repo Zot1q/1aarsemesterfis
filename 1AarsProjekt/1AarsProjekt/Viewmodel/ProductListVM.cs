@@ -85,7 +85,20 @@ namespace _1AarsProjekt.Viewmodel
             Product selectedProd = new Product();
             selectedProd = _productList.ElementAt(SelectedIndex);
             DataAccessLayer.ProductDelete(selectedProd);
+            ProductList = product.ListProducts();
+            NotifyPropertyChanged("");
         }
+
+
+
+
+
+        //public void UpdateList()
+        //{
+
+        //    ProductList = product.ListProducts();
+        //    MyFilteredItems = ProductList;
+        //}
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
