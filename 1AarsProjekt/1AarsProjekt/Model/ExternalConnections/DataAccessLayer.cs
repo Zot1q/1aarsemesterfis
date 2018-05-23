@@ -148,7 +148,7 @@ namespace _1AarsProjekt.Model.DB
                 command.Parameters.Add(CreateParam("@DistCode", prod.DistCode));
                 command.Parameters.Add(CreateParam("@MinQuantity", prod.MinQuantity));
 
-                InsertLog(new ErrorLog(0, "Product Inserted in the database", DateTime.Now.ToString(), 14));
+                //InsertLog(new ErrorLog(0, "Product Inserted in the database", DateTime.Now.ToString(), 14));
 
                 command.ExecuteNonQuery();
             }
@@ -271,16 +271,16 @@ namespace _1AarsProjekt.Model.DB
                     Product prod = new Product();
 
                     prod.ProductID = Convert.ToString((int)reader["ProdNumber"]).PadLeft(9, pad);
-                    prod.Price = (string)reader["Price"];
+                    prod.Price = (double)reader["Price"];
                     prod.Productname1 = (string)reader["ProductName1"];
                     prod.Productname2 = (string)reader["ProductName2"];
                     prod.Productdescription = (string)reader["ProductDescription"];
                     prod.ProductGroup = (string)reader["ProductGroup"];
                     prod.ItemUnit = (string)reader["ItemUnit"];
                     prod.Synonyms = (string)reader["Synonyms"];
-                    prod.Weight = (string)reader["Weight"];
-                    prod.Discount = (string)reader["Discount"];
-                    prod.NetPrice = (string)reader["NetPrice"];
+                    prod.Weight = (double)reader["Weight"];
+                    prod.Discount = (double)reader["Discount"];
+                    prod.NetPrice = (double)reader["NetPrice"];
                     prod.Pcode = (string)reader["PCode"];
                     prod.DistCode = (string)reader["DistCode"];
                     prodList.Add(prod);
@@ -317,16 +317,16 @@ namespace _1AarsProjekt.Model.DB
                     Product prod = new Product();
 
                     prod.ProductID = Convert.ToString((int)reader["ProdNumber"]).PadLeft(9, pad);
-                    prod.Price = (string)reader["Price"];
+                    prod.Price = (double)reader["Price"];
                     prod.Productname1 = (string)reader["ProductName1"];
                     prod.Productname2 = (string)reader["ProductName2"];
                     prod.Productdescription = (string)reader["ProductDescription"];
                     prod.ProductGroup = (string)reader["ProductGroup"];
                     prod.ItemUnit = (string)reader["ItemUnit"];
                     prod.Synonyms = (string)reader["Synonyms"];
-                    prod.Weight = (string)reader["Weight"];
-                    prod.Discount = (string)reader["Discount"];
-                    prod.NetPrice = (string)reader["NetPrice"];
+                    prod.Weight = (double)reader["Weight"];
+                    prod.Discount = (double)reader["Discount"];
+                    prod.NetPrice = (double)reader["NetPrice"];
                     prod.Pcode = (string)reader["PCode"];
                     prod.DistCode = (string)reader["DistCode"];
                     prod.MinQuantity = (string)reader["MinQuantity"].ToString();
@@ -692,6 +692,15 @@ namespace _1AarsProjekt.Model.DB
             param.SqlDbType = SqlDbType.VarChar;
             return param;
         }
+        private static SqlParameter CreateParam(string paramName, double paramValue)
+        {//parameter metoder der laver parameteren om til enten VarChar eller int, således det kan komme ind i databasen.
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = paramName;
+            param.Value = paramValue;
+            param.SqlDbType = SqlDbType.Float;
+            return param;
+        }
+
         private static SqlParameter CreateParam(string paramName, int paramValue)
         {
             SqlParameter param = new SqlParameter();
