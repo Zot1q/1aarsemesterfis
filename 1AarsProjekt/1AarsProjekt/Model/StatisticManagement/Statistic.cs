@@ -12,8 +12,8 @@ namespace _1AarsProjekt.Model.StatisticManagement
     public class Statistic
     {
         List<Agreement> AgreementList = new List<Agreement>();
+        List<Agreement> TopProductGroupList = new List<Agreement>();
         List<Customer> CustomerList = new List<Customer>();
-        DataAccessLayer db = new DataAccessLayer();
 
         public List<Agreement> ListAgreements()
         {
@@ -24,6 +24,11 @@ namespace _1AarsProjekt.Model.StatisticManagement
         {
             CustomerList = DataAccessLayer.GetCustomersStatistic();
             return CustomerList;
+        }
+        public List<Agreement> ListTopProductGroup()
+        {
+            TopProductGroupList = DataAccessLayer.GetAgreements();
+            return TopProductGroupList;
         }
     }
 }

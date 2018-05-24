@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _1AarsProjekt.Viewmodel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace _1AarsProjekt.View
         public StatisticProductTopPage()
         {
             InitializeComponent();
-            DataContext = new StatisticProductTopPage();
+            DataContext = new StatisticProductTopVM();
         }
     }
 }
