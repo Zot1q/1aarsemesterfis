@@ -1,8 +1,10 @@
-﻿using _1AarsProjekt.Model.CSV;
+﻿using _1AarsProjekt.Model.AgreementManagement;
+using _1AarsProjekt.Model.CSV;
 using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -27,10 +29,14 @@ namespace _1AarsProjekt
         public MainWindow()
         {
             CSVHandler handler = new CSVHandler();
-            //handler.Main();
-            Thread thread = new Thread(handler.CreateProductListToDB);
-            thread.Start();
+            AgreementMethods agreement = new AgreementMethods();
 
+            Thread csvthread = new Thread(handler.CreateProductListToDB);
+            Thread agreeThread = new Thread(agreement.ExpiredAgreements);
+
+
+            csvthread.Start();
+            agreeThread.Start();
 
             InitializeComponent();
             DataContext = new MainWindowVM();

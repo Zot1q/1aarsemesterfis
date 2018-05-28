@@ -47,16 +47,25 @@ namespace _1AarsProjekt.Model.AgreementManagement
             DataAccessLayer.UpdateAgreement(AgreementToEdit);
         }
 
-        public void ExpiredAgreements()
+        public async void ExpiredAgreements()
         {
-            List<Agreement> checkExpiredList = DataAccessLayer.GetAgreements();
-            for (int i = 0; i < checkExpiredList.Count; i++)
+            while (true)
             {
-                if (checkExpiredList.ElementAt(i).ExpirationDate < DateTime.Now)
+                List<Agreement> checkExpiredList = DataAccessLayer.GetAgreements();
+                for (int i = 0; i < checkExpiredList.Count; i++)
                 {
-                    checkExpiredList.ElementAt(i).Status = false;
+                    if (checkExpiredList.ElementAt(i).ExpirationDate < DateTime.Now)
+                    {
+                        checkExpiredList.ElementAt(i).Status = false;
+                    }
                 }
+                await PutTaskDelay();
             }
+        }
+
+        private async Task PutTaskDelay()
+        {
+            await Task.Delay(TimeSpan.FromDays(1));
         }
     }
 }

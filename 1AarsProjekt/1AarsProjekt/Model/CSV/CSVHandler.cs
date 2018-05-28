@@ -17,36 +17,48 @@ namespace _1AarsProjekt.Model.CSV
     {
         private string NewFile { get; set; }
 
-        public void CreateProductListToDB()
+        public async void CreateProductListToDB()
         {
-            int i = DataAccessLayer.CheckFilenameInLog().Count;
-
-            if (i == 0)
+            while (true)
             {
-                ImportNewestFile();
-                List<string> newList = ImportLocalList();
-                List<string[]> newListSplitted = SplitStrings(newList);
-                NewProducts(newListSplitted);
-            }
-            else if (i >= 1)
-            {
-                bool result = FindNewestFile();
+                int i = DataAccessLayer.CheckFilenameInLog().Count;
 
-                if (result)
+                if (i == 0)
                 {
+                    ImportNewestFile();
                     List<string> newList = ImportLocalList();
-                    List<string> oldList = BuildListFromDB();
-                    CompareFiles(newList, oldList);
+                    List<string[]> newListSplitted = SplitStrings(newList);
+                    NewProducts(newListSplitted);
                 }
+                else if (i >= 1)
+                {
+                    bool result = FindNewestFile();
+
+                    if (result)
+                    {
+                        List<string> newList = ImportLocalList();
+                        List<string> oldList = BuildListFromDB();
+                        CompareFiles(newList, oldList);
+                    }
+                }
+                await PutTaskDelay(1);
             }
         }
+
+        private async Task PutTaskDelay(int i)
+        {
+            await Task.Delay(TimeSpan.FromDays(i));
+        }
+    
 
         public void ImportNewestFile()
         {
             ServerAccessLayer.DownloadFiles();
             List<DateTime> fileDate = new List<DateTime>();
 
-            string[] fileArray = Directory.GetFiles(@"c:\Test\csv\", "*.csv");
+            string localDirectory = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
+
+            string[] fileArray = Directory.GetFiles(localDirectory, "*.csv");
 
             foreach (var file in fileArray)
             {
@@ -61,7 +73,9 @@ namespace _1AarsProjekt.Model.CSV
             ServerAccessLayer.DownloadFiles();
             List<DateTime> fileDate = new List<DateTime>();
 
-            string[] fileArray = Directory.GetFiles(@"c:\Test\csv\", "*.csv");
+            string localDirectory = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
+
+            string[] fileArray = Directory.GetFiles(localDirectory, "*.csv");
 
             foreach (var file in fileArray)
             {
@@ -88,8 +102,9 @@ namespace _1AarsProjekt.Model.CSV
         private List<string> ImportLocalList()
         {
             List<string> newList = new List<string>();
+            string localDirectory = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
 
-            string filePath = @"c:\Test\csv\" + NewFile + ".csv";
+            string filePath = localDirectory + NewFile + ".csv";
 
             using (var sr = new StreamReader(filePath, Encoding.Default))
             {
@@ -262,42 +277,44 @@ namespace _1AarsProjekt.Model.CSV
             DataAccessLayer.AddToProductLog(lines.Count(), "Emner slettet", NewFile);
         }
   
-        private void CreateCSV()
+        private async void CreateCSV()
         {
-            List<Agreement> agreements = new List<Agreement>();
-            agreements = DataAccessLayer.CreateAgreementList();
-
-            List<Product> linesFromDB = new List<Product>();
-            string header = "CompanyID;InterchangeId;ProductID;ProductName1;ProductName2;ItemUnit;ProductDesreptionLong;Synonyms;ProductGroup;Weight;MinQuantity;Price;Discount;NetPrice;Pcode;DistCode;";
-
-            foreach (Agreement agree in agreements)
+            while (true)
             {
-                linesFromDB = DataAccessLayer.CreateList(agree.ProductGroup);
-                char pad = '0';
+                List<Agreement> agreements = new List<Agreement>();
+                agreements = DataAccessLayer.CreateAgreementList();
 
-                string custID = Convert.ToString(agree.CustomerID).PadLeft(5, pad);
+                List<Product> linesFromDB = new List<Product>();
+                string header = "CompanyID;InterchangeId;ProductID;ProductName1;ProductName2;ItemUnit;ProductDesreptionLong;Synonyms;ProductGroup;Weight;MinQuantity;Price;Discount;NetPrice;Pcode;DistCode;";
 
-                string filePath = @"C:\Test\";
-                string fileName = "ApEngros_" + custID + "_" + DateTime.Now.ToString("ddMMyyyy") + ".txt";
-                bool exists = File.Exists(filePath + fileName);
-
-                using (StreamWriter write = new StreamWriter(filePath + fileName, true))
+                foreach (Agreement agree in agreements)
                 {
-                    if (!exists)
-                    {
-                        write.WriteLine(header);
-                    }
+                    linesFromDB = DataAccessLayer.CreateList(agree.ProductGroup);
+                    char pad = '0';
 
-                    foreach (Product prod in linesFromDB)
+                    string custID = Convert.ToString(agree.CustomerID).PadLeft(5, pad);
+                    string localDirectory = Directory.GetCurrentDirectory() + @"\CSVFilesToUpload\";
+                    //string filePath = @"C:\Test\";
+                    string fileName = "ApEngros_" + custID + "_" + DateTime.Now.ToString("ddMMyyyy") + ".txt";
+                    bool exists = File.Exists(localDirectory + fileName);
+
+                    using (StreamWriter write = new StreamWriter(localDirectory + fileName, true))
                     {
-                        write.Write(custID + ";" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + ";" + prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
-                            prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";" + Environment.NewLine);
+                        if (!exists)
+                        {
+                            write.WriteLine(header);
+                        }
+
+                        foreach (Product prod in linesFromDB)
+                        {
+                            write.Write(custID + ";" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + ";" + prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
+                                prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";" + Environment.NewLine);
+                        }
                     }
                 }
+                ServerAccessLayer.UploadFiles();
+                await PutTaskDelay(7);
             }
-
-            ServerAccessLayer.UploadFiles();
-            //CreateCSV();
         }
     }
 }
