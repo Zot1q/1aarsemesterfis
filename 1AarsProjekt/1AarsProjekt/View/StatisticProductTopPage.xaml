@@ -4,11 +4,39 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="750"
       Title="StatisticPage" Background="#ffffff">
 
-    <Grid>
-        <Label Content="Top(x) produktgrupper" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <ListView HorizontalAlignment="Center" ItemsSource="{Binding TopList}" SelectedItem="{Binding SelectedIndex}" SelectionMode="Multiple" Name="lvProducts" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Width="auto">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Aftale Nr." Width="120" DisplayMemberBinding="{Binding AgreementID}" />
+                    <GridViewColumn Header="Produkt gruppe" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
+                    <GridViewColumn Header="Kunde ID" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Redigere produkt" Command="{Binding OpenProductEditWindow}"/>
+                    <MenuItem Header="Slet produkt" Command="{Binding ProductDelete}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+        <TextBox x:Name="TopX" Text ="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="521.4,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Vis top:" Grid.Column="1" HorizontalAlignment="Left" Margin="463.4,23,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

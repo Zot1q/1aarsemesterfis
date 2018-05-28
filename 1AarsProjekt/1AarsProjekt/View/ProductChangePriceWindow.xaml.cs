@@ -11,20 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace _1AarsProjekt.View
 {
     /// <summary>
-    /// Interaction logic for StatisticPage.xaml
+    /// Interaction logic for ProductChangePriceWindow.xaml
     /// </summary>
-    public partial class StatisticProductTopPage : Page
+    public partial class ProductChangePriceWindow : Window
     {
-        public StatisticProductTopPage()
+        public ProductChangePriceWindow()
         {
             InitializeComponent();
-            DataContext = new StatisticProductTopVM();
+            DataContext = new ProductListVM();
         }
     }
 }

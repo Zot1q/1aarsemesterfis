@@ -15,11 +15,11 @@ namespace _1AarsProjekt.Model.ProductManagement
         public string Productdescription { get; set; }
         public string Synonyms { get; set; }
         public string ProductGroup { get; set; }
-        public string Weight { get; set; }
+        public double Weight { get; set; }
         public string MinQuantity { get; set; }
-        public string Price { get; set; }
-        public string Discount { get; set; }
-        public string NetPrice { get; set; }
+        public double Price { get; set; }
+        public double Discount { get; set; }
+        public double NetPrice { get; set; }
         public string Pcode { get; set; }
         public string DistCode { get; set; }
     }

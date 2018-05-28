@@ -14,16 +14,23 @@ namespace _1AarsProjekt.Viewmodel
 {
     class ProductListVM : INotifyPropertyChanged
     {
-        ProductMethods product = new ProductMethods();
+        ProductMethods productMethod = new ProductMethods();
+        public ChangePageCMD ChangePriceWindow { get; set; }
         public ChangePageCMD OpenProductEditWindow { get; set; }
         public ChangePageCMD ProductDelete { get; set; }
+        public List<string> MainGroup { get; set; }
+        public List<string> SubGroup { get; set; }
 
         private List<Product> _productList;
 
         public List<Product> ProductList
         {
             get { return _productList; }
-            set { _productList = value; }
+            set
+            {
+                _productList = value;
+                NotifyPropertyChanged();
+            }
         }
 
         private int _selectedIndex;
@@ -72,8 +79,23 @@ namespace _1AarsProjekt.Viewmodel
         {
             ProductList = new List<Product>();
             OpenProductEditWindow = new ChangePageCMD(EditProductWindow);
+            ChangePriceWindow = new ChangePageCMD(ChangeProductPriceWindow);
             ProductDelete = new ChangePageCMD(DeleteProduct);
-            ProductList = product.ListProducts();
+            ProductList = productMethod.ListProducts();
+            GetProducts();
+        }
+        public void GetProducts()
+        {
+            List<Product> listProducts = productMethod.ListProducts();
+            MainGroup = listProducts.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
+            SubGroup = listProducts.Select(x => x.ProductGroup.Substring(3, 3)).OrderBy(x => x).ToList();
+            MainGroup = MainGroup.Distinct().ToList();
+            SubGroup = SubGroup.Distinct().ToList();
+        }
+        public void ChangeProductPriceWindow()
+        {
+            ProductChangePriceWindow priceWindow = new ProductChangePriceWindow();
+            priceWindow.Show();
         }
         public void EditProductWindow()
         {
@@ -82,10 +104,13 @@ namespace _1AarsProjekt.Viewmodel
         }
         public void DeleteProduct()
         {
-            Product selectedProd = new Product();
-            selectedProd = _productList.ElementAt(SelectedIndex);
+            Product selectedProd = ProductList.ElementAt(SelectedIndex);
             DataAccessLayer.ProductDelete(selectedProd);
+            ProductList = productMethod.ListProducts();
         }
+        //Agreement selectedAgreement = AgreementList.ElementAt(SelectedIndex);
+        //agreeMethod.DeleteAgreement(selectedAgreement);
+        //    AgreementList = agreeMethod.ListAgreements();
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
