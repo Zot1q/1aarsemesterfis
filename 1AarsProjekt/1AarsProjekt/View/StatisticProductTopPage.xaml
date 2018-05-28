@@ -25,9 +25,9 @@
         <ListView HorizontalAlignment="Center" ItemsSource="{Binding TopList}" SelectedItem="{Binding SelectedIndex}" SelectionMode="Multiple" Name="lvProducts" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Width="auto">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Aftale Nr." Width="200" DisplayMemberBinding="{Binding AgreementID}" />
+                    <!--<GridViewColumn Header="Aftale Nr." Width="200" DisplayMemberBinding="{Binding AgreementID}" />-->
                     <GridViewColumn Header="Produkt gruppe" Width="200" DisplayMemberBinding="{Binding ProductGroup}" />
-                    <GridViewColumn Header="Kunde ID" Width="200" DisplayMemberBinding="{Binding CustomerID}" />
+                    <!--<GridViewColumn Header="Kunde ID" Width="200" DisplayMemberBinding="{Binding CustomerID}" />-->
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>

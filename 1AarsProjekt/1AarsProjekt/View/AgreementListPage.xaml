@@ -57,7 +57,7 @@
             </ListView>
         </StackPanel>
         <StackPanel Width="120" Height="50" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right">
-            <Button Content="Opret aftale" Command="{Binding OpenAgreementWin}" Background="#94C514" Foreground="#246882"/>
+            <!--<Button Content="Opret aftale" Command="{Binding OpenAgreementWin}" Background="#94C514" Foreground="#246882"/>-->
         </StackPanel>
     </Grid>
 </Page>
