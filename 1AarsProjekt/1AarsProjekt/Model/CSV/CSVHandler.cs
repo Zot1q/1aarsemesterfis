@@ -17,7 +17,7 @@ namespace _1AarsProjekt.Model.CSV
     {
         private string NewFile { get; set; }
 
-        void Main(string[] args)
+        public void Main()
         {
 
             ////LinuxAccessLayer.UploadFiles();
