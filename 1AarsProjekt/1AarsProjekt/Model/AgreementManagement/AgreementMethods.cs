@@ -46,5 +46,17 @@ namespace _1AarsProjekt.Model.AgreementManagement
         {
             DataAccessLayer.UpdateAgreement(AgreementToEdit);
         }
+
+        public void ExpiredAgreements()
+        {
+            List<Agreement> checkExpiredList = DataAccessLayer.GetAgreements();
+            for (int i = 0; i < checkExpiredList.Count; i++)
+            {
+                if (checkExpiredList.ElementAt(i).ExpirationDate < DateTime.Now)
+                {
+                    checkExpiredList.ElementAt(i).Status = false;
+                }
+            }
+        }
     }
 }
