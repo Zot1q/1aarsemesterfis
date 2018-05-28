@@ -597,6 +597,30 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
+        public static void UpdateProductPriceInDB(Product prod)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand(
+                    "UPDATE tblProducts " +
+                    "SET Price = @Price " +
+                    "WHERE ProdNumber = @ProdNumber", connection);
+                command.Parameters.Add(CreateParam("@ProdNumber", prod.ProductID));
+                command.Parameters.Add(CreateParam("@Price", prod.Price));
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fejl i linie {0} - " + ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
 
         public static void UpdateAgreement(Agreement AgreementToEdit)
         {

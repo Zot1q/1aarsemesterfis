@@ -20,17 +20,14 @@
         </StackPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="50 0 0 0" Orientation="Horizontal" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <Label Content="Hoved Gruppe" VerticalAlignment="Center" FontSize="20"/>
-                <ComboBox ItemsSource="{Binding MainGroup}" SelectedIndex="0" SelectedItem="{Binding Product.ProductGroup}" Width="200" Margin="0 0 50 0" VerticalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <Label Content="Under Gruppe" VerticalAlignment="Center" FontSize="20"/>
-                <ComboBox ItemsSource="{Binding SubGroup}" SelectedIndex="0" SelectedItem="{Binding Product.ProductGroup}" Width="200" VerticalAlignment="Center"/>
+                <Label Content="Vælg en hovedgruppe: " VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding MainGroup}" SelectedIndex="{Binding SelectedProductGroup}" SelectedItem="{Binding ProductGroupUpdate.ProductGroup}" Width="200" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="Ny Pris:"/>
-            <TextBox x:Name="txtNewPrice" Text="{Binding Product.Price}" Height="30" Width="120"/>
+            <Label Content="Indtast en ny pris i procent: "/>
+            <TextBox Text="{Binding TxtNewPrice}" Width="30" Height="30"/>
+            <Button Content="Gem" Margin="15 0 0 0" Command="{Binding UpdatedPrice}"/>
         </StackPanel>
     </Grid>
 </Window>
