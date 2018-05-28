@@ -28,7 +28,7 @@ namespace _1AarsProjekt
         {
             CSVHandler handler = new CSVHandler();
             //handler.Main();
-            Thread thread = new Thread(handler.Main);
+            Thread thread = new Thread(handler.CreateProductListToDB);
             thread.Start();
 
 

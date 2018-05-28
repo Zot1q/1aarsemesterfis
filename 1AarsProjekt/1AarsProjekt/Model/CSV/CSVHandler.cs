@@ -17,12 +17,8 @@ namespace _1AarsProjekt.Model.CSV
     {
         private string NewFile { get; set; }
 
-        public void Main()
+        public void CreateProductListToDB()
         {
-
-            ////LinuxAccessLayer.UploadFiles();
-            CreateCSV();
-
             int i = DataAccessLayer.CheckFilenameInLog().Count;
 
             if (i == 0)
@@ -43,7 +39,6 @@ namespace _1AarsProjekt.Model.CSV
                     CompareFiles(newList, oldList);
                 }
             }
-
         }
 
         public void ImportNewestFile()
@@ -301,7 +296,8 @@ namespace _1AarsProjekt.Model.CSV
                 }
             }
 
-
+            ServerAccessLayer.UploadFiles();
+            //CreateCSV();
         }
     }
 }
