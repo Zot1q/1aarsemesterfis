@@ -28,8 +28,8 @@
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Varenummer: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Produkt Beskrivelse: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Synonym: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
-                    <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Produkt Gruppe: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Vægt: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
+                    <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Antal: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Height="420" VerticalAlignment="Top"  Width="150" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
                     <TextBox x:Name="txtProductName1" Text="{Binding Product.ProductName1}" Width="80" Height="30" Margin="0 5 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -37,26 +37,28 @@
                     <TextBox x:Name="txtItemUnit" Text="{Binding Product.ItemUnit}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtProductDescription" Text="{Binding Product.ProductDescription}" Width="80" Height="30" Margin="0 10 0 0 " HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtSynonyms" Text="{Binding Product.Synonyms}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtProductGroup" Text="{Binding Product.ProductGroup}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtWeight" Text="{Binding Product.Weight}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtMinQuantity" Text="{Binding Product.MinQuantity}" Width="80" Height="30" Margin="0 16 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Left" Height="250" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
-                    <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Antal: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
+                <StackPanel HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Pris: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Rabat: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Netto Pris: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="P-kode: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Dist Kode: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
+                    <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Hovedgruppe: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
+                    <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Undergruppe: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                 </StackPanel>
 
 
-                <StackPanel HorizontalAlignment="Right" Height="250" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
-                    <TextBox x:Name="txtMinQuantity" Text="{Binding Product.MinQuantity}" Width="80" Height="30" Margin="0 5 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <StackPanel HorizontalAlignment="Right" Height="400" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
                     <TextBox x:Name="txtPrice" Text="{Binding Product.Price}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtDiscount" Text="{Binding Product.Discount}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtNetPrice" Text="{Binding Product.NetPrice}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtPCode" Text="{Binding Product.PCode}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtDistCode" Text="{Binding Product.DistCode}" Width="80" Height="30" Margin="0 10 0 0 " HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="mainGroup" ItemsSource="{Binding mainGroup}" SelectedItem="{Binding SelectedMainGroup}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="subGroup" ItemsSource="{Binding SubGroup}" SelectedItem="{Binding selectedSubGroup}" Width="80" Height="30" Margin="0 10 0 0 " HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 </StackPanel>
             </StackPanel>
             
