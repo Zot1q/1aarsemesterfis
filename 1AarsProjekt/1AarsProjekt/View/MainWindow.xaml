@@ -73,14 +73,14 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Grid.RenderTransform>
+            
+            <ScrollViewer CanContentScroll="True" Visibility="Visible">
             <StackPanel>
                 <Button Background="{x:Null}" Height="100" BorderBrush="{x:Null}" Command="{Binding SwapPageWelcomePages}">
                     <Image Margin="0 0 0 0" Source="/1AarsProjekt;component/Images/EchoLogo1.png"/>
                 </Button>
 
-
-
-                <Expander Name="Kunde">
+                <Expander Name="Kunde" Margin="-10 0 0 0">
                     <Expander.Header>
                         <StackPanel>
                             <BulletDecorator>
@@ -101,22 +101,22 @@
                         <ListBoxItem Height="45" Padding="0">
                             <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
                                 <materialDesign:PackIcon Kind="Plus" Width="20" Height="20" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Opret ny kunde" Margin="5 5 0 0"/>
+                                <TextBlock Text="Opret ny kunde" Margin="5 8 0 0" FontSize="12"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem Height="45" Padding="0">
                             <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
                                 <materialDesign:PackIcon Kind="Pen" Width="15" Height="15" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Administration" Margin="10"/>
+                                    <TextBlock Text="Administration" Margin="10 8 0 0" FontSize="12"/>
                             </StackPanel>
                         </ListBoxItem>
                     </ListBox>
                 </Expander>
 
-                <Expander Name="Aftale">
+                <Expander Name="Aftale" Margin="-10 0 0 0">
                     <Expander.Header>
                         <StackPanel>
-                            <BulletDecorator Margin="-25,0,-38,0" >
+                            <BulletDecorator >
                                 <BulletDecorator.Bullet>
                                     <materialDesign:PackIcon Kind="FileDocument" Width="25" Height="25" Foreground="#246882" Margin="5" VerticalAlignment="Center"/>
                                 </BulletDecorator.Bullet>
@@ -133,26 +133,26 @@
                         </i:Interaction.Triggers>
 
                         <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
                                 <materialDesign:PackIcon Kind="Plus" Width="20" Height="20" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Opret ny aftale" Margin="10"/>
+                                    <TextBlock Text="Opret ny aftale" Margin="5 8 0 0" FontSize="12"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
                                 <materialDesign:PackIcon Kind="Pen" Width="15" Height="15" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Administration" Margin="5 5 0 0"/>
+                                    <TextBlock Text="Administration" Margin="10 8 0 0" FontSize="12"/>
                             </StackPanel>
                         </ListBoxItem>
                     </ListBox>
                 </Expander>
 
-                <Expander Name="Produkt">
+                <Expander Name="Produkt" Margin="-10 0 0 0">
                     <Expander.Header>
                         <StackPanel>
-                            <BulletDecorator Margin="-25,0,-38,0" >
+                            <BulletDecorator>
                                 <BulletDecorator.Bullet>
-                                    <materialDesign:PackIcon Kind="Shopping" Width="30" Height="30" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                    <materialDesign:PackIcon Kind="Shopping" Width="25" Height="25" Foreground="#246882" Margin="5" VerticalAlignment="Center"/>
                                 </BulletDecorator.Bullet>
                                 <TextBlock Text="Produkt" Margin="10" FontSize="18" FontFamily="Champagne &amp; Limousines"/>
                             </BulletDecorator>
@@ -167,64 +167,60 @@
                         </i:Interaction.Triggers>
 
                         <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Opret" Margin="10"/>
+                            <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                                <materialDesign:PackIcon Kind="Plus" Width="20" Height="20" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Opret nyt produkt" Margin="5 8 0 0" FontSize="12"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Søg/vis/slet/rediger" Margin="10"/>
+                            <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                                <materialDesign:PackIcon Kind="Pen" Width="15" Height="15" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Administration" Margin="10 8 0 0" FontSize="12"/>
                             </StackPanel>
                         </ListBoxItem>
                     </ListBox>
                 </Expander>
 
 
-                <Expander Name="Statistik">
-                    <Expander.Header>
-                        <StackPanel>
-                            <BulletDecorator Margin="-25,0,-38,0" >
-                                <BulletDecorator.Bullet>
-                                    <materialDesign:PackIcon Kind="Stairs" Width="30" Height="30" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                </BulletDecorator.Bullet>
-                                <TextBlock Text="Statistik" Margin="10" FontSize="18" FontFamily="Champagne &amp; Limousines"/>
-                            </BulletDecorator>
-                        </StackPanel>
-                    </Expander.Header>
-                    <ListBox SelectedIndex="{Binding StatisticIndex, Mode=OneWayToSource}" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding SwapPageStatisticPages}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Kunde status" Margin="10"/>
+                    <Expander Name="Statistik" Margin="-10 0 0 0">
+                        <Expander.Header>
+                            <StackPanel>
+                                <BulletDecorator>
+                                    <BulletDecorator.Bullet>
+                                        <materialDesign:PackIcon Kind="Stairs" Width="25" Height="25" Foreground="#246882" Margin="5" VerticalAlignment="Center"/>
+                                    </BulletDecorator.Bullet>
+                                    <TextBlock Text="Statistik" Margin="10" FontSize="18" FontFamily="Champagne &amp; Limousines"/>
+                                </BulletDecorator>
                             </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Aftale oversigt" Margin="10"/>
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Top produkter" Margin="10"/>
-                            </StackPanel>
-                        </ListBoxItem>
-                    </ListBox>
-                </Expander>
-
-
-
-
-
-            </StackPanel>
+                        </Expander.Header>
+                        <ListBox SelectedIndex="{Binding StatisticIndex, Mode=OneWayToSource}" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SwapPageStatisticPages}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <ListBoxItem Height="45" Padding="0">
+                                <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                                    <materialDesign:PackIcon Kind="AccountCardDetails" Width="15" Height="15" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Kunde status" Margin="5 5 0 0" FontSize="12"/>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Height="45" Padding="0">
+                                <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                                    <materialDesign:PackIcon Kind="FileDocument" Width="15" Height="15" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Aftale oversigt" Margin="5 5 0 0" FontSize="12"/>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Height="45" Padding="0">
+                                <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                                    <materialDesign:PackIcon Kind="StarCircle" Width="15" Height="15" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Top produkter" Margin="5 5 0 0" FontSize="12"/>
+                                </StackPanel>
+                            </ListBoxItem>
+                        </ListBox>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
             <Button x:Name="ButtonClose" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#000" Width="30" Height="30" Padding="0">
                 <materialDesign:PackIcon Kind="Close" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Button>
