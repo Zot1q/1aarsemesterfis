@@ -10,55 +10,29 @@
       d:DesignHeight="425" d:DesignWidth="750"
       Title="CustomerListWindow" Background="White">
 
-    <!--<Page.Resources>
-        <Viewmodel:CustomerListVM x:Key="custListVM"/>
-    </Page.Resources>-->
-
-    <Page.Resources>
-        <Viewmodel:CustomerListVM x:Key="custListVM"/>
-    </Page.Resources>
-
-    <Page.DataContext>
-        <StaticResource ResourceKey="custListVM"/>
-    </Page.DataContext>
 
     <Grid Background="White">
-        <StackPanel Height="100" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Label Name="IndexLabel" Content="{Binding SelectedIndex}"/>
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Top" Height="370">
+            <TextBlock Text="Oversigt over kunder" HorizontalAlignment="Left" FontSize="28"/>
+            <ListView HorizontalAlignment="Center" VerticalAlignment="Bottom" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="300">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding CustomerID}" />
+                        <GridViewColumn Header="Navn" Width="100" DisplayMemberBinding="{Binding CompanyName}" />
+                        <GridViewColumn Header="Addresse" Width="120" DisplayMemberBinding="{Binding Address}" />
+                        <GridViewColumn Header="E-mail" Width="100" DisplayMemberBinding="{Binding Email}" />
+                        <GridViewColumn Header="Kontakt person" Width="140" DisplayMemberBinding="{Binding ContactPers}" />
+                        <GridViewColumn Header="Status" Width="120" DisplayMemberBinding="{Binding Status}" />
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Rediger kunde" Command="{Binding OpenCustomerEditWindow}"/>
+                        <MenuItem Header="Slet kunde" Command="{Binding CustDelete}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
         </StackPanel>
-        <ListBox Name="Lstbox" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" HorizontalAlignment="Center" Height="315" VerticalAlignment="Top" Width="500">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Label Content="{Binding CompanyName}" ContentStringFormat="Kunde: {0}" FontWeight="Bold"/>
-                        <Expander>
-                            <StackPanel>
-                                <Label Content="{Binding Address}" ContentStringFormat="Addresse: {0}"/>
-                                <Line/>
-                                <Label  Content="{Binding Email}" ContentStringFormat="E-mail: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding Phone}" ContentStringFormat="Tlf Nr: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ContactPers}" ContentStringFormat="Kontakt Person: {0}"/>
-                                <Line/>
-                                <Label Content="{Binding ExpectRevenue}" ContentStringFormat="Forventet Omsætning: {0}"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel.Resources>
-                                        <Style TargetType="{x:Type Button}">
-                                            <Setter Property="Margin" Value="10,0,0,0"/>
-                                        </Style>
-                                    </StackPanel.Resources>
-                                    <StackPanel.DataContext>
-                                        <StaticResource ResourceKey="custListVM"/>
-                                    </StackPanel.DataContext>
-                                    <Button Content="Slet kunde" Width="100" Height="30"        x:Name="btn_DeleteYesNo" Command="{Binding CustDelete}"/>
-                                    <Button Content="Rediger kunde" Width="100" Height="30" x:Name="btn_Edit" Command="{Binding OpenCustomerEditWindow}"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </Expander>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+
     </Grid>
 </Page>

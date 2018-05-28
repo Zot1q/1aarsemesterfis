@@ -50,12 +50,6 @@ namespace _1AarsProjekt.Viewmodel
         }
 
 
-        //private void Expander_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    SelectedIndex = ((ListBox)((ListBoxItem)sender).Parent).SelectedIndex;
-
-        //}
-
         public void EditCustWindow()
         {
             CustomerEditWindow customerEditWindow = new CustomerEditWindow(CustList.ElementAt(SelectedIndex));
@@ -68,6 +62,7 @@ namespace _1AarsProjekt.Viewmodel
             selectedCust = custList.ElementAt(SelectedIndex);
             custMethods.DeleteCustomer(selectedCust);
             CustList = custMethods.ListCustomers();
+            NotifyPropertyChanged("");
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
