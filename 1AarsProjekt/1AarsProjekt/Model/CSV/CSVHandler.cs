@@ -21,7 +21,7 @@ namespace _1AarsProjekt.Model.CSV
         {
 
             ////LinuxAccessLayer.UploadFiles();
-            //CreateCSV();
+            CreateCSV();
 
             int i = DataAccessLayer.CheckFilenameInLog().Count;
 
@@ -300,6 +300,8 @@ namespace _1AarsProjekt.Model.CSV
                     }
                 }
             }
+
+
         }
     }
 }
