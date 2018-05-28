@@ -22,7 +22,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Oversigt over kunder" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Grid.Column="1" Grid.Row="0"/>
+        <TextBlock Text="Oversigt over kunder" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Grid.Column="1" Grid.Row="0"/>
        
         <StackPanel VerticalAlignment="Top" Height="370" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="1">
             <ListView ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="370">

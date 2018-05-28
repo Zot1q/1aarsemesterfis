@@ -7,7 +7,7 @@
       xmlns:agreement="clr-namespace:_1AarsProjekt.Viewmodel"
       mc:Ignorable="d" 
       d:DesignHeight="425" d:DesignWidth="750"
-      Title="AgreementWindow" Background="White" HorizontalAlignment="Right">
+      Title="AgreementWindow" Background="White">
     <Page.Resources>
         <agreement:AgreementVM x:Key="agreeVm"/>
     </Page.Resources>
@@ -26,7 +26,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Opret aftale for en kunde" HorizontalAlignment="Center" FontSize="28" Grid.Column="1" VerticalAlignment="Center"/>
+        <!--<TextBlock Text="Opret aftale for en kunde" HorizontalAlignment="Center" FontSize="28" Grid.Column="1" VerticalAlignment="Center"/>-->
         <StackPanel Height="370" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
             <ListView ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="300">
             <ListView.View>
@@ -46,7 +46,7 @@
             </ListView.ContextMenu>
         </ListView>
         </StackPanel>
-        <StackPanel Width="120" Height="50" Grid.Column="1" Grid.Row="2">
+        <StackPanel Width="120" Height="50" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">
             <Button Content="Opret aftale" Command="{Binding OpenAgreementWin}" Background="#94C514" Foreground="#246882"/>
         </StackPanel>
 

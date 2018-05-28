@@ -20,7 +20,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Label Content="Opret en ny kunde" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1"/>
+        <!--<Label Content="Opret en ny kunde" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0"/>-->
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"> 
             <StackPanel Height="300" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
                 <Label HorizontalAlignment="Left" Margin="0 5 0 0" Content="Navn: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
