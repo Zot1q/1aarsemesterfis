@@ -4,6 +4,7 @@ using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -28,11 +29,15 @@ namespace _1AarsProjekt
         public MainWindow()
         {
             CSVHandler handler = new CSVHandler();
-            AgreementMethods agreementMethods = new AgreementMethods();
+            AgreementMethods agreement = new AgreementMethods();
+
+            string path = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
+            string path2 = AppDomain.CurrentDomain.BaseDirectory;
+
 
 
             Thread csvthread = new Thread(handler.CreateProductListToDB);
-            Thread agreeThread = new Thread(agreementMethods.ExpiredAgreements);
+            Thread agreeThread = new Thread(agreement.ExpiredAgreements);
 
 
             csvthread.Start();
