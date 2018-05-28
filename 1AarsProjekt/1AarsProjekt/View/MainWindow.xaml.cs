@@ -1,9 +1,11 @@
-﻿using _1AarsProjekt.View;
+﻿using _1AarsProjekt.Model.CSV;
+using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +26,12 @@ namespace _1AarsProjekt
     {
         public MainWindow()
         {
+            //CSVHandler handler = new CSVHandler();
+            ////handler.Main();
+            //Thread thread = new Thread(handler.Main);
+            //thread.Start();
+
+
             InitializeComponent();
             DataContext = new MainWindowVM();
         }
