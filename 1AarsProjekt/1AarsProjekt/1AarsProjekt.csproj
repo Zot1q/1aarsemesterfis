@@ -33,6 +33,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
@@ -249,27 +269,11 @@
     <Resource Include="Images\EchoLogo3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\001-list.png" />
-    <Resource Include="Images\002-shopping-bag.png" />
-    <Resource Include="Images\003-shopping-cart.png" />
-    <Resource Include="Images\004-agreement.png" />
-    <Resource Include="Images\005-handshake.png" />
-    <Resource Include="Images\006-contract.png" />
-    <Resource Include="Images\007-profile.png" />
-    <Resource Include="Images\008-add-user.png" />
-    <Resource Include="Images\009-home-1.png" />
-    <Resource Include="Images\010-home.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\line-chart.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\list.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\architecture-building-business-258160.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\welcomeecho.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\2017.jpg" />
   </ItemGroup>
