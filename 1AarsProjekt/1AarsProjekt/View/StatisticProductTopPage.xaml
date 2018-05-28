@@ -18,15 +18,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
 
         <ListView HorizontalAlignment="Center" ItemsSource="{Binding TopList}" SelectedItem="{Binding SelectedIndex}" SelectionMode="Multiple" Name="lvProducts" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Width="auto">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Aftale Nr." Width="120" DisplayMemberBinding="{Binding AgreementID}" />
-                    <GridViewColumn Header="Produkt gruppe" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
-                    <GridViewColumn Header="Kunde ID" Width="120" DisplayMemberBinding="{Binding CustomerID}" />
+                    <GridViewColumn Header="Aftale Nr." Width="200" DisplayMemberBinding="{Binding AgreementID}" />
+                    <GridViewColumn Header="Produkt gruppe" Width="200" DisplayMemberBinding="{Binding ProductGroup}" />
+                    <GridViewColumn Header="Kunde ID" Width="200" DisplayMemberBinding="{Binding CustomerID}" />
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>
@@ -36,7 +37,10 @@
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
-        <TextBox x:Name="TopX" Text ="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="521.4,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Vis top:" Grid.Column="1" HorizontalAlignment="Left" Margin="463.4,23,0,0" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Label Content="Vis top:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            <TextBox x:Name="TopX" Text ="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="23" TextWrapping="Wrap" Width="120"/>
+        </StackPanel>
+
     </Grid>
 </Page>

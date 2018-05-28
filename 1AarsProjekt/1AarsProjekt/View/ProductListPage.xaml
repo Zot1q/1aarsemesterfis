@@ -20,14 +20,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" Grid.Row="0" Margin="0 0 140 0" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="0 0 0 0" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
             <materialDesign:PackIcon Kind="Magnify" Width="30" Height="30" Foreground="Gray" Margin="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtBoxSearch" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="120" Height="30" Margin="5"/>
         </StackPanel>
 
-        <Button Content="Prisændring" Height="30" Width="110" Grid.Column="1" HorizontalAlignment="Right" Command="{Binding ChangePriceWindow}"/>
+        <Button Content="Prisændring" Height="30" Width="110" Grid.Column="1" HorizontalAlignment="Right" Command="{Binding ChangePriceWindow}" Grid.Row="2"/>
 
 
         <ListView HorizontalAlignment="Left" ItemsSource="{Binding MyFilteredItems}" SelectedItem="{Binding SelectedIndex}" SelectionMode="Multiple" Name="lvProducts" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Width="auto">
