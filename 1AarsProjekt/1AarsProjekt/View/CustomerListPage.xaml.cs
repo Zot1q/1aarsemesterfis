@@ -25,8 +25,8 @@ namespace _1AarsProjekt.View
         //public CustomerListVM listVM { get; set; } = new CustomerListVM();
         public CustomerListPage()
         {
-            //DataContext = listVM;
             InitializeComponent();
+            DataContext = new CustomerListVM();
         }
 
     }

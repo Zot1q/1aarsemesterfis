@@ -393,6 +393,7 @@ namespace _1AarsProjekt.Model.DB
                     cust.Phone = (int)reader["PhoneNr"];
                     cust.ContactPers = (string)reader["ContactPerson"];
                     cust.ExpectRevenue = float.Parse(reader["ExpectedRevenue"].ToString());
+                    cust.Status = (bool)reader["Status"];
                     customerList.Add(cust);
                 }
                 return customerList;
