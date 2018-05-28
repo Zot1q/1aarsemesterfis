@@ -64,7 +64,7 @@
         <Button x:Name="ButtonOpen" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Margin="10 0 0 0" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
             <materialDesign:PackIcon Kind="Menu" Foreground="#FF313131" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
-        <Button x:Name="ButtonCloseProgram" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#000" Width="30" Height="30" Padding="0" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+        <Button x:Name="ButtonCloseProgram" Command="{Binding CloseProgram}" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#000" Width="30" Height="30" Padding="0" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <materialDesign:PackIcon Kind="Close" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
         <Grid x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
