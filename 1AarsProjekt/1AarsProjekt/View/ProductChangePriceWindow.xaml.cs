@@ -23,7 +23,11 @@ namespace _1AarsProjekt.View
         public ProductChangePriceWindow()
         {
             InitializeComponent();
-            DataContext = new ProductListVM();
+            ProductChangePriceVM vm = new ProductChangePriceVM();
+            DataContext = vm;
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(this.Close);
+
         }
     }
 }
