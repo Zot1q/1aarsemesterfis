@@ -56,7 +56,9 @@ namespace _1AarsProjekt.Model.CSV
             ServerAccessLayer.DownloadFiles();
             List<DateTime> fileDate = new List<DateTime>();
 
-            string[] fileArray = Directory.GetFiles(@"c:\Test\csv\", "*.csv");
+            string localDirectory = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
+
+            string[] fileArray = Directory.GetFiles(localDirectory, "*.csv");
 
             foreach (var file in fileArray)
             {
@@ -71,7 +73,9 @@ namespace _1AarsProjekt.Model.CSV
             ServerAccessLayer.DownloadFiles();
             List<DateTime> fileDate = new List<DateTime>();
 
-            string[] fileArray = Directory.GetFiles(@"c:\Test\csv\", "*.csv");
+            string localDirectory = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
+
+            string[] fileArray = Directory.GetFiles(localDirectory, "*.csv");
 
             foreach (var file in fileArray)
             {
@@ -98,8 +102,9 @@ namespace _1AarsProjekt.Model.CSV
         private List<string> ImportLocalList()
         {
             List<string> newList = new List<string>();
+            string localDirectory = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
 
-            string filePath = @"c:\Test\csv\" + NewFile + ".csv";
+            string filePath = localDirectory + NewFile + ".csv";
 
             using (var sr = new StreamReader(filePath, Encoding.Default))
             {
@@ -288,12 +293,14 @@ namespace _1AarsProjekt.Model.CSV
                     char pad = '0';
 
                     string custID = Convert.ToString(agree.CustomerID).PadLeft(5, pad);
+                    string localDirectory = Directory.GetCurrentDirectory() + @"\CSVFilesToUpload\";
+                    Directory.CreateDirectory(localDirectory);
 
-                    string filePath = @"C:\Test\";
+                    //string filePath = @"C:\Test\";
                     string fileName = "ApEngros_" + custID + "_" + DateTime.Now.ToString("ddMMyyyy") + ".txt";
-                    bool exists = File.Exists(filePath + fileName);
+                    bool exists = File.Exists(localDirectory + fileName);
 
-                    using (StreamWriter write = new StreamWriter(filePath + fileName, true))
+                    using (StreamWriter write = new StreamWriter(localDirectory + fileName, true))
                     {
                         if (!exists)
                         {

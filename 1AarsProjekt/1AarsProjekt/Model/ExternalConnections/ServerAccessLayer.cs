@@ -13,7 +13,8 @@ namespace _1AarsProjekt.Model.ExternalConnections
         public static void DownloadFiles()
         {
             string remoteDirectory = "/home/indbakke/";
-            string localDirectory = @"C:\Test\csv\";
+            string localDirectory = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
+            Directory.CreateDirectory(localDirectory);
 
             using (var sftp = new SftpClient(@"10.152.120.37", "echo", "ec.12ho."))
             {
@@ -36,7 +37,9 @@ namespace _1AarsProjekt.Model.ExternalConnections
         public static void UploadFiles()
         {
             string remoteDirectory = "/home/echo/test/";
-            string localDirectory = @"C:\Test\FilesToUpload\";
+            string localDirectory = Directory.GetCurrentDirectory() + @"\CSVFilesToUpload\";
+            Directory.CreateDirectory(localDirectory);
+
 
             using (var sftp = new SftpClient(@"10.152.120.37", "echo", "ec.12ho."))
             {

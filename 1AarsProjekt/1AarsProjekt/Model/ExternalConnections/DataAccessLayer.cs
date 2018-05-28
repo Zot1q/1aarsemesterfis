@@ -19,6 +19,7 @@ namespace _1AarsProjekt.Model.DB
     class DataAccessLayer
     {
         private static Mutex mutex = new Mutex();
+
         private static SqlConnection connection = new SqlConnection();
 
         #region OPEN&CLOSE CONNECTION
@@ -771,7 +772,10 @@ namespace _1AarsProjekt.Model.DB
 
         public static void Error(Exception ex)
         {
-            string filePath = @"C:\Log\Error.txt";
+            string localDirectory = Directory.GetCurrentDirectory() + @"\ErrorLog\";
+            Directory.CreateDirectory(localDirectory);
+
+            string filePath = localDirectory + "Error.txt";
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
                 writer.WriteLine("Date: {0} " + "Error: {1} ", DateTime.Now, ex.Message);

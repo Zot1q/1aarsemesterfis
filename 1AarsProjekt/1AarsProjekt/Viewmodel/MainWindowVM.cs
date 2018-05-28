@@ -21,6 +21,7 @@ namespace _1AarsProjekt.Viewmodel
         public int StatisticIndex { get; set; }
         #endregion
 
+
         private Page frame;
 
         public Page Frame
@@ -38,7 +39,7 @@ namespace _1AarsProjekt.Viewmodel
         public ChangePageCMD SwapPageAgreementPages { get; set; }
         public ChangePageCMD SwapPageProductPages { get; set; }
         public ChangePageCMD SwapPageStatisticPages { get; set; }
-
+        public ChangePageCMD CloseProgram { get; set; }
         public MainWindowVM()
         {
             SwapPageWelcomePages = new ChangePageCMD(PageSwapWelcomePages);
@@ -46,7 +47,12 @@ namespace _1AarsProjekt.Viewmodel
             SwapPageAgreementPages = new ChangePageCMD(PageSwapAgreementPages);
             SwapPageProductPages = new ChangePageCMD(PageSwapProductPages);
             SwapPageStatisticPages = new ChangePageCMD(PageSwapStatisticPages);
+            CloseProgram = new ChangePageCMD(Close);
             Frame = new WelcomePage();
+        }
+        public void Close()
+        {
+            Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
         }
 
         public void PageSwapWelcomePages()
