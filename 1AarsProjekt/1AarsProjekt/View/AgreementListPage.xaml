@@ -29,7 +29,6 @@
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Opret aftale" Command="{Binding OpenAgreementWin}"/>
                         <MenuItem Header="Rediger aftale" Command="{Binding OpenAgreementEditWindow}"/>
                         <MenuItem Header="Slet aftale" Command="{Binding AgreementDelete}"/>
                     </ContextMenu>
