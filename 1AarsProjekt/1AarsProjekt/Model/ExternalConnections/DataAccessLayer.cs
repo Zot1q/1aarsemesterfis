@@ -706,6 +706,26 @@ namespace _1AarsProjekt.Model.DB
                 CloseConnection();
             }
         }
+        public static void CustomerAgreementDelete(Customer selectedCust)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand command = new SqlCommand("UPDATE dbo.tblAgreement SET Status = 0 WHERE CustomerID = @CustomerID", connection);
+                command.Parameters.Add(CreateParam("@CustomerID", selectedCust.CustomerID));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
         #endregion
 
         #region CREATEPARAMS
