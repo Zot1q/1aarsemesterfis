@@ -24,16 +24,16 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Oversigt over kunder" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Grid.Column="1" Grid.Row="0"/>
        
-        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Top" Height="370" Grid.Column="1" Grid.Row="1">
-            <ListView HorizontalAlignment="Center" VerticalAlignment="Bottom" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="300">
+        <StackPanel VerticalAlignment="Top" Height="370" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="1">
+            <ListView ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="370">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding CustomerID}" />
-                        <GridViewColumn Header="Navn" Width="100" DisplayMemberBinding="{Binding CompanyName}" />
-                        <GridViewColumn Header="Addresse" Width="120" DisplayMemberBinding="{Binding Address}" />
-                        <GridViewColumn Header="E-mail" Width="100" DisplayMemberBinding="{Binding Email}" />
-                        <GridViewColumn Header="Kontakt person" Width="140" DisplayMemberBinding="{Binding ContactPers}" />
-                        <GridViewColumn Header="Status" Width="120" DisplayMemberBinding="{Binding Status}" />
+                        <GridViewColumn Header="ID" Width="125" DisplayMemberBinding="{Binding CustomerID}" />
+                        <GridViewColumn Header="Navn" Width="125" DisplayMemberBinding="{Binding CompanyName}" />
+                        <GridViewColumn Header="Addresse" Width="125" DisplayMemberBinding="{Binding Address}" />
+                        <GridViewColumn Header="E-mail" Width="125" DisplayMemberBinding="{Binding Email}" />
+                        <GridViewColumn Header="Kontakt person" Width="125" DisplayMemberBinding="{Binding ContactPers}" />
+                        <GridViewColumn Header="Status" Width="125" DisplayMemberBinding="{Binding Status}" />
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>

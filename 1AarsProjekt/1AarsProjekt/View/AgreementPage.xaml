@@ -16,17 +16,27 @@
     </Page.DataContext>
     
     <Grid Background="White">
-        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Top" Height="370">
-            <TextBlock Text="Opret aftale for en kunde" HorizontalAlignment="Left" FontSize="28"/>
-            <ListView HorizontalAlignment="Center" VerticalAlignment="Bottom" ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Opret aftale for en kunde" HorizontalAlignment="Center" FontSize="28" Grid.Column="1" VerticalAlignment="Center"/>
+        <StackPanel Height="370" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+            <ListView ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="300">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Navn" Width="100" DisplayMemberBinding="{Binding CompanyName}" />
-                    <GridViewColumn Header="Addresse" Width="120" DisplayMemberBinding="{Binding Address}" />
-                    <GridViewColumn Header="E-mail" Width="100" DisplayMemberBinding="{Binding Email}" />
-                    <GridViewColumn Header="Kontakt person" Width="140" DisplayMemberBinding="{Binding ContactPers}" />
-                    <GridViewColumn Header="Status" Width="120" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Header="Navn" Width="125" DisplayMemberBinding="{Binding CompanyName}" />
+                    <GridViewColumn Header="Addresse" Width="125" DisplayMemberBinding="{Binding Address}" />
+                    <GridViewColumn Header="E-mail" Width="125" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="Kontakt person" Width="150" DisplayMemberBinding="{Binding ContactPers}" />
+                    <GridViewColumn Header="Status" Width="125" DisplayMemberBinding="{Binding Status}" />
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>
@@ -36,8 +46,8 @@
             </ListView.ContextMenu>
         </ListView>
         </StackPanel>
-        <StackPanel Width="120" Height="50" VerticalAlignment="Bottom">
-            <Button Content="Opret aftale" Command="{Binding OpenAgreementWin}"/>
+        <StackPanel Width="120" Height="50" Grid.Column="1" Grid.Row="2">
+            <Button Content="Opret aftale" Command="{Binding OpenAgreementWin}" Background="#94C514" Foreground="#246882"/>
         </StackPanel>
 
     </Grid>
