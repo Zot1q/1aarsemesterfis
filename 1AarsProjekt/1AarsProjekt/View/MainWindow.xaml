@@ -48,7 +48,6 @@
 
 
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
@@ -84,16 +83,15 @@
                 <Expander Name="Kunde">
                     <Expander.Header>
                         <StackPanel>
-                            <BulletDecorator Margin="-25,0,-38,0" >
+                            <BulletDecorator>
                                 <BulletDecorator.Bullet>
-                                    <materialDesign:PackIcon Kind="AccountPlus" Width="30" Height="30" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                    <materialDesign:PackIcon Kind="Account" Width="25" Height="25" Foreground="#246882" Margin="5" VerticalAlignment="Center"/>
                                 </BulletDecorator.Bullet>
                                 <TextBlock Text="Kunde" Margin="10" FontSize="18" FontFamily="Champagne &amp; Limousines"/>
                             </BulletDecorator>
                         </StackPanel>
                     </Expander.Header>
                     <ListBox SelectedIndex="{Binding CustomerIndex, Mode=OneWayToSource}" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
-
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding SwapPageCustomerPages}"/>
@@ -101,15 +99,15 @@
                         </i:Interaction.Triggers>
 
                         <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Opret" Margin="10"/>
+                            <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                                <materialDesign:PackIcon Kind="Plus" Width="20" Height="20" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Opret ny kunde" Margin="5 5 0 0"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Vis/slet/rediger" Margin="10"/>
+                            <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                                <materialDesign:PackIcon Kind="Pen" Width="15" Height="15" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Administration" Margin="10"/>
                             </StackPanel>
                         </ListBoxItem>
                     </ListBox>
@@ -120,7 +118,7 @@
                         <StackPanel>
                             <BulletDecorator Margin="-25,0,-38,0" >
                                 <BulletDecorator.Bullet>
-                                    <materialDesign:PackIcon Kind="Pen" Width="30" Height="30" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                    <materialDesign:PackIcon Kind="FileDocument" Width="25" Height="25" Foreground="#246882" Margin="5" VerticalAlignment="Center"/>
                                 </BulletDecorator.Bullet>
                                 <TextBlock Text="Aftale" Margin="10" FontSize="18" FontFamily="Champagne &amp; Limousines"/>
                             </BulletDecorator>
@@ -136,14 +134,14 @@
 
                         <ListBoxItem Height="45" Padding="0">
                             <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Opret" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Plus" Width="20" Height="20" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Opret ny aftale" Margin="10"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem Height="45" Padding="0">
                             <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HandPointingRight" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Vis/slet/rediger" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Pen" Width="15" Height="15" Foreground="#94C514" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Administration" Margin="5 5 0 0"/>
                             </StackPanel>
                         </ListBoxItem>
                     </ListBox>
