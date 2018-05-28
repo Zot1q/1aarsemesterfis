@@ -26,7 +26,7 @@ namespace _1AarsProjekt
     {
         public MainWindow()
         {
-            //CSVHandler handler = new CSVHandler();
+            CSVHandler handler = new CSVHandler();
             ////handler.Main();
             //Thread thread = new Thread(handler.Main);
             //thread.Start();
