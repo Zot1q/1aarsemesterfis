@@ -27,16 +27,16 @@ namespace _1AarsProjekt
     {
         public MainWindow()
         {
-            CSVHandler handler = new CSVHandler();
-            AgreementMethods agreementMethods = new AgreementMethods();
+            //CSVHandler handler = new CSVHandler();
+            //AgreementMethods agreementMethods = new AgreementMethods();
 
 
-            Thread csvthread = new Thread(handler.CreateProductListToDB);
-            Thread agreeThread = new Thread(agreementMethods.ExpiredAgreements);
+            //Thread csvthread = new Thread(handler.CreateProductListToDB);
+            //Thread agreeThread = new Thread(agreementMethods.ExpiredAgreements);
 
 
-            csvthread.Start();
-            agreeThread.Start();
+            //csvthread.Start();
+            //agreeThread.Start();
 
             InitializeComponent();
             DataContext = new MainWindowVM();
