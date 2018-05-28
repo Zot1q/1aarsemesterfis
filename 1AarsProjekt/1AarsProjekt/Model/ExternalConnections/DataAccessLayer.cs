@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -17,11 +18,13 @@ namespace _1AarsProjekt.Model.DB
 {
     class DataAccessLayer
     {
+        private static Mutex mutex = new Mutex();
         private static SqlConnection connection = new SqlConnection();
 
         #region OPEN&CLOSE CONNECTION
         static void OpenConnection()
         { //Open connection to the database
+            mutex.WaitOne();
             connection = new SqlConnection("Data Source=.;Initial Catalog=ApEngrosDb;Integrated Security=True");
             connection.Open();
         }
@@ -29,6 +32,7 @@ namespace _1AarsProjekt.Model.DB
         { //Closes connection to the database
             if (connection != null && connection.State == ConnectionState.Open)
                 connection.Close();
+            mutex.ReleaseMutex();
         }
         #endregion
 
