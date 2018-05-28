@@ -25,6 +25,7 @@ namespace _1AarsProjekt.Model.CustomerManagement
         {
             selectedCust.Status = false;
             DataAccessLayer.CustomerDelete(selectedCust);
+            DataAccessLayer.CustomerAgreementDelete(selectedCust);
         }
         public void EditCustomer(Customer CustToEdit)
         {
