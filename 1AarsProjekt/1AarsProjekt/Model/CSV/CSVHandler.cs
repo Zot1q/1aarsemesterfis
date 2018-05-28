@@ -294,6 +294,8 @@ namespace _1AarsProjekt.Model.CSV
 
                     string custID = Convert.ToString(agree.CustomerID).PadLeft(5, pad);
                     string localDirectory = Directory.GetCurrentDirectory() + @"\CSVFilesToUpload\";
+                    Directory.CreateDirectory(localDirectory);
+
                     //string filePath = @"C:\Test\";
                     string fileName = "ApEngros_" + custID + "_" + DateTime.Now.ToString("ddMMyyyy") + ".txt";
                     bool exists = File.Exists(localDirectory + fileName);

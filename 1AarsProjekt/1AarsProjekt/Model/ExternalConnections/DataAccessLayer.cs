@@ -773,6 +773,8 @@ namespace _1AarsProjekt.Model.DB
         public static void Error(Exception ex)
         {
             string localDirectory = Directory.GetCurrentDirectory() + @"\ErrorLog\";
+            Directory.CreateDirectory(localDirectory);
+
             string filePath = localDirectory + "Error.txt";
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
