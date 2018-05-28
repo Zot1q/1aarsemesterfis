@@ -31,11 +31,6 @@ namespace _1AarsProjekt
             CSVHandler handler = new CSVHandler();
             AgreementMethods agreement = new AgreementMethods();
 
-            string path = Directory.GetCurrentDirectory() + @"\DownloadedCSVFiles\";
-            string path2 = AppDomain.CurrentDomain.BaseDirectory;
-
-
-
             Thread csvthread = new Thread(handler.CreateProductListToDB);
             Thread agreeThread = new Thread(agreement.ExpiredAgreements);
 
