@@ -48,6 +48,7 @@ namespace _1AarsProjekt.Viewmodel
             else
             {
                 agreementMethod.CreateAgreementTest(Agreement);
+                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
                 MessageBox.Show("Aftale oprettet!");
             }
         }

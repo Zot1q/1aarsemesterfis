@@ -75,6 +75,7 @@ namespace _1AarsProjekt.Viewmodel
             else
             {
                 agreementMethods.EditAgreement(AgreementToEdit);
+                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
                 MessageBox.Show("Aftale redigeret!");
             }
         }

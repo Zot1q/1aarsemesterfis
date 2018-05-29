@@ -113,6 +113,7 @@
     <Compile Include="Viewmodel\CustomerCreateVM.cs" />
     <Compile Include="Viewmodel\MainWindowVM.cs" />
     <Compile Include="Viewmodel\ProductChangePriceVM.cs" />
+    <Compile Include="Viewmodel\ProductEditVM.cs" />
     <Compile Include="Viewmodel\ProductListVM.cs" />
     <Compile Include="Viewmodel\ProductVM.cs" />
     <Compile Include="Viewmodel\StatisticAgreementVM.cs" />

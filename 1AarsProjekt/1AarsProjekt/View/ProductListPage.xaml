@@ -31,7 +31,7 @@
         <Button Content="Prisændring" Height="30" Width="110" Grid.Column="1" HorizontalAlignment="Right" Command="{Binding ChangePriceWindow}" Grid.Row="2"/>
 
 
-        <ListView HorizontalAlignment="Left" ItemsSource="{Binding MyFilteredItems}" SelectedItem="{Binding SelectedIndex}" SelectionMode="Multiple" Name="lvProducts" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Width="auto">
+        <ListView HorizontalAlignment="Left" ItemsSource="{Binding MyFilteredItems}" SelectedIndex="{Binding SelectedIndex}" SelectionMode="Single" Name="lvProducts" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Width="auto">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Prod Nr." Width="120" DisplayMemberBinding="{Binding ProductID}" />
@@ -41,7 +41,7 @@
                     <GridViewColumn Header="Alias" Width="120" DisplayMemberBinding="{Binding Synonyms}" />
                     <GridViewColumn Header="Prod Group" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
                     <GridViewColumn Header="Vægt" Width="120" DisplayMemberBinding="{Binding Weight}" />
-                    <GridViewColumn Header="Antal" Width="120" DisplayMemberBinding="{Binding MinQuantity}" />
+                    <GridViewColumn Header="Min. antal" Width="120" DisplayMemberBinding="{Binding MinQuantity}" />
                     <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding Price}" />
                     <GridViewColumn Header="Rabat" Width="120" DisplayMemberBinding="{Binding Discount}" />
                     <GridViewColumn Header="Net. Pris" Width="120" DisplayMemberBinding="{Binding NetPrice}" />

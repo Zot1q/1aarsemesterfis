@@ -11,30 +11,41 @@ using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
-    class ProductVM : INotifyPropertyChanged
+    public class ProductEditVM : INotifyPropertyChanged
     {
-        public int localProductNumber { get; set; }
-        public ChangePageCMD CreateProduct { get; set; }
-
-        public Product Product { get; set; }
-
         public List<Product> listProducts { get; set; }
+        public ChangePageCMD EditProduct { get; set; }
+
+        public int localProductNumber { get; set; }
+
         public List<string> mainGroup { get; set; }
+
+        private Product _productToEdit;
+
+        public Product ProductToEdit
+        {
+            get { return _productToEdit; }
+            set
+            {
+                _productToEdit = value;
+                NotifyPropertyChanged();
+            }
+        }
         private List<string> subGroup;
 
         public List<string> SubGroup
         {
-            get {
-                return subGroup; }
+            get
+            {
+                return subGroup;
+            }
             set
             {
                 subGroup = value;
             }
         }
 
-
         private string selectedMainGroup;
-
         public string SelectedMainGroup
         {
             get
@@ -51,15 +62,16 @@ namespace _1AarsProjekt.Viewmodel
 
         public string selectedSubGroup { get; set; }
 
-        public ProductVM()
+        public ProductEditVM(object selectedProduct)
         {
             selectedMainGroup = "00";
-            Product = new Product();
-            CreateProduct = new ChangePageCMD(CreateProd);
+            EditProduct = new ChangePageCMD(ProductEdit);
+            CastToType(selectedProduct);
+            SetLocalProductNumber();
             GetProductGroups();
             GetSubGroup();
         }
-        public void CreateProd()
+        private void ProductEdit()
         {
             ProductMethods prodMethods = new ProductMethods();
             bool productNumberExist;
@@ -69,12 +81,27 @@ namespace _1AarsProjekt.Viewmodel
             }
             else
             {
-                Product.ProductID = localProductNumber.ToString();
-                Product.ProductGroup = SelectedMainGroup + "-" + selectedSubGroup;
+                ProductToEdit.ProductID = localProductNumber.ToString();
+                ProductToEdit.ProductGroup = SelectedMainGroup + "-" + selectedSubGroup;
                 ProductMethods productMethod = new ProductMethods();
-                productMethod.CreateProduct(Product);
-                MessageBox.Show("Produkt oprettet!");
+                //productMethod.EditProduct(ProductToEdit);
+                MessageBox.Show("Produkt Redigeret!");
             }
+        }
+
+        private void CastToType(object selectedProduct)
+        {
+            ProductToEdit = (Product)selectedProduct;
+        }
+
+        private void GetSubGroup()
+        {
+            List<string> tempList = listProducts.Select(x => x.ProductGroup).OrderBy(x => x).ToList();
+            tempList = tempList.Distinct().ToList();
+            subGroup = tempList.Where(s => s.Substring(0, 2).Contains(selectedMainGroup)).ToList();
+            subGroup = subGroup.Select(x => x.Substring(3)).ToList();
+            NotifyPropertyChanged("SubGroup");
+
         }
 
         private void GetProductGroups()
@@ -86,14 +113,12 @@ namespace _1AarsProjekt.Viewmodel
 
         }
 
-        private void GetSubGroup()
+        private void SetLocalProductNumber()
         {
-            List<string> tempList = listProducts.Select(x => x.ProductGroup).OrderBy(x => x).ToList();
-            tempList = tempList.Distinct().ToList();
-            subGroup = tempList.Where(s => s.Substring(0,2).Contains(selectedMainGroup)).ToList();
-            subGroup = subGroup.Select(x => x.Substring(3)).ToList();
-            NotifyPropertyChanged("SubGroup");
-
+            int result;
+            Int32.TryParse("123", out result);
+            result = localProductNumber;
+            localProductNumber = Int32.Parse(ProductToEdit.ProductID);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -56,6 +56,7 @@ namespace _1AarsProjekt.Viewmodel
             Agreement selectedAgreement = AgreementList.ElementAt(SelectedIndex);
             agreeMethod.DeleteAgreement(selectedAgreement);
             AgreementList = agreeMethod.ListAgreements();
+            MessageBox.Show("Aftale slettet!");
         }
 
         public void AgreementEditWindowOpen()

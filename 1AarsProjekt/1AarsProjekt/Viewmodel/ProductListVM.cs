@@ -99,14 +99,15 @@ namespace _1AarsProjekt.Viewmodel
         }
         public void EditProductWindow()
         {
-            ProductEditWindow editWindow = new ProductEditWindow();
+            ProductEditWindow editWindow = new ProductEditWindow(MyFilteredItems.ElementAt(SelectedIndex));
             editWindow.Show();
         }
         public void DeleteProduct()
         {
-            Product selectedProd = ProductList.ElementAt(SelectedIndex);
+            Product selectedProd = MyFilteredItems.ElementAt(SelectedIndex);
             DataAccessLayer.ProductDelete(selectedProd);
             ProductList = productMethod.ListProducts();
+            NotifyPropertyChanged("");
         }
         //Agreement selectedAgreement = AgreementList.ElementAt(SelectedIndex);
         //agreeMethod.DeleteAgreement(selectedAgreement);

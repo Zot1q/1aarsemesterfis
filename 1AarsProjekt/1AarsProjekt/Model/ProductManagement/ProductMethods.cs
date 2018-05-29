@@ -21,5 +21,11 @@ namespace _1AarsProjekt.Model.ProductManagement
             ProductList = DataAccessLayer.CreateProductList();
             return ProductList;
         }
+
+        public bool CheckProductNumber(int productNumber)
+        {
+            bool ProductNumberExist = DataAccessLayer.ProductNumberCheck(productNumber);
+            return ProductNumberExist;
+        }
     }
 }
