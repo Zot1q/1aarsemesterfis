@@ -15,11 +15,11 @@ namespace _1AarsProjekt.Viewmodel
     class CustomerCreateVM : INotifyPropertyChanged
     {
         public Customer Customer { get; set; }
-        public ChangePageCMD CreateCustomer { get; set; }
+        public MethodCommand CreateCustomer { get; set; }
         public CustomerCreateVM()
         {
             Customer = new Customer();
-            CreateCustomer = new ChangePageCMD(CreateCust);
+            CreateCustomer = new MethodCommand(CreateCust);
         }
         public void CreateCust()
         {
@@ -27,8 +27,7 @@ namespace _1AarsProjekt.Viewmodel
 
             if (boxResult == MessageBoxResult.Yes)
             {
-                CustomerMethods customerMethod = new CustomerMethods();
-                customerMethod.CreateCustomer(Customer);
+                CustomerMethods.CreateCustomer(Customer);
                 MessageBox.Show(String.Format("Kunde: {0} Er nu oprettet", Customer.CompanyName));
             }
             else

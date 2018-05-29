@@ -40,16 +40,14 @@ namespace _1AarsProjekt.Viewmodel
         }
 
 
-        public ProductMethods productMethod = new ProductMethods();
-        public AgreementMethods agreementMethod = new AgreementMethods();
-        public List<string> mainGroup { get; set; }
+        public List<string> MainGroup { get; set; }
         public int TimeToAdd { get; set; }
 
-        public ChangePageCMD EditAgreement { get; set; }
+        public MethodCommand EditAgreement { get; set; }
 
         public AgreementEditVM(object selectedAgreement)
         {
-            EditAgreement = new ChangePageCMD(AgreementEdit);
+            EditAgreement = new MethodCommand(AgreementEdit);
             CastToType(selectedAgreement);
             GetProductGroups();
             SetProductGroup();
@@ -57,10 +55,9 @@ namespace _1AarsProjekt.Viewmodel
         public void AgreementEdit()
         {
             AgreementToEdit.ExpirationDate = DateTime.Now.AddMonths(TimeToAdd);
-            AgreementMethods agreementMethods = new AgreementMethods();
-            agreementMethods.EditAgreement(AgreementToEdit);
+            AgreementMethods.EditAgreement(AgreementToEdit);
 
-            Agreement AgreementResult = agreementMethod.CheckAgreement(AgreementToEdit);
+            Agreement AgreementResult = AgreementMethods.CheckAgreement(AgreementToEdit);
             if (AgreementResult.AgreementID != 0)
             {
                 MessageBoxResult boxResult = MessageBox.Show("Vil du redigere den eksisterende aftale?", "Denne kunde har allerede en aftale for denne produktgruppe", MessageBoxButton.YesNo);
@@ -74,9 +71,9 @@ namespace _1AarsProjekt.Viewmodel
             }
             else
             {
-                agreementMethods.EditAgreement(AgreementToEdit);
-                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
+                AgreementMethods.EditAgreement(AgreementToEdit);
                 MessageBox.Show("Aftale redigeret!");
+                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
             }
         }
 
@@ -87,14 +84,14 @@ namespace _1AarsProjekt.Viewmodel
 
         private void GetProductGroups()
         {
-            List<Product> listProducts = productMethod.ListProducts();
-            mainGroup = listProducts.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
-            mainGroup = mainGroup.Distinct().ToList();
+            List<Product> listProducts = ProductMethods.ListProducts();
+            MainGroup = listProducts.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
+            MainGroup = MainGroup.Distinct().ToList();
         }
 
         private void SetProductGroup()
         {
-            SelectedProductGroup = mainGroup.FindIndex(productGroup => productGroup == AgreementToEdit.ProductGroup);
+            SelectedProductGroup = MainGroup.FindIndex(productGroup => productGroup == AgreementToEdit.ProductGroup);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

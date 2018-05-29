@@ -1,6 +1,5 @@
 ﻿using _1AarsProjekt.Model.AgreementManagement;
-using _1AarsProjekt.Model.DB;
-using _1AarsProjekt.Model.ExternalConnections;
+using _1AarsProjekt.ExternalConnections;
 using _1AarsProjekt.Model.ProductManagement;
 using System;
 using System.Collections.Generic;
@@ -202,8 +201,8 @@ namespace _1AarsProjekt.Model.CSV
 
             foreach (Product prod in linesFromDB)
             {
-                list.Add(prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
-                        prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";");
+                list.Add(prod.ProductID + ";" + prod.ProductName1 + ";" + prod.ProductName2 + ";" + prod.ItemUnit + ";" + prod.ProductDescription + ";" + prod.Synonyms + ";" +
+                        prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.PCode + ";" + prod.DistCode + ";");
             }
             return list;
         }
@@ -217,10 +216,10 @@ namespace _1AarsProjekt.Model.CSV
                 for (int i = 0; i < lines.Count; i++)
                 {
                     prod.ProductID = lines[i].ElementAt(0);
-                    prod.Productname1 = lines[i].ElementAt(1);
-                    prod.Productname2 = lines[i].ElementAt(2);
+                    prod.ProductName1 = lines[i].ElementAt(1);
+                    prod.ProductName2 = lines[i].ElementAt(2);
                     prod.ItemUnit = lines[i].ElementAt(3);
-                    prod.Productdescription = lines[i].ElementAt(4);
+                    prod.ProductDescription = lines[i].ElementAt(4);
                     prod.Synonyms = lines[i].ElementAt(5);
                     prod.ProductGroup = lines[i].ElementAt(6);
                     prod.Weight = Convert.ToDouble(lines[i].ElementAt(7));
@@ -228,7 +227,7 @@ namespace _1AarsProjekt.Model.CSV
                     prod.Price = Convert.ToDouble(lines[i].ElementAt(9));
                     prod.Discount = Convert.ToDouble(lines[i].ElementAt(10));
                     prod.NetPrice = Convert.ToDouble(lines[i].ElementAt(11));
-                    prod.Pcode = lines[i].ElementAt(12);
+                    prod.PCode = lines[i].ElementAt(12);
                     prod.DistCode = lines[i].ElementAt(13);
                     DataAccessLayer.InsertProduct(prod);
                 }
@@ -245,10 +244,10 @@ namespace _1AarsProjekt.Model.CSV
                 for (int i = 0; i < lines.Count; i++)
                 {
                     prod.ProductID = lines[i].ElementAt(0);
-                    prod.Productname1 = lines[i].ElementAt(1);
-                    prod.Productname2 = lines[i].ElementAt(2);
+                    prod.ProductName1 = lines[i].ElementAt(1);
+                    prod.ProductName2 = lines[i].ElementAt(2);
                     prod.ItemUnit = lines[i].ElementAt(3);
-                    prod.Productdescription = lines[i].ElementAt(4);
+                    prod.ProductDescription = lines[i].ElementAt(4);
                     prod.Synonyms = lines[i].ElementAt(5);
                     prod.ProductGroup = lines[i].ElementAt(6);
                     prod.Weight = Convert.ToDouble(lines[i].ElementAt(7));
@@ -256,7 +255,7 @@ namespace _1AarsProjekt.Model.CSV
                     prod.Price = Convert.ToDouble(lines[i].ElementAt(9));
                     prod.Discount = Convert.ToDouble(lines[i].ElementAt(10));
                     prod.NetPrice = Convert.ToDouble(lines[i].ElementAt(11));
-                    prod.Pcode = lines[i].ElementAt(12);
+                    prod.PCode = lines[i].ElementAt(12);
                     prod.DistCode = lines[i].ElementAt(13);
                     DataAccessLayer.UpdateProductInDB(prod);
                 }
@@ -309,8 +308,8 @@ namespace _1AarsProjekt.Model.CSV
 
                         foreach (Product prod in linesFromDB)
                         {
-                            write.Write(custID + ";" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + ";" + prod.ProductID + ";" + prod.Productname1 + ";" + prod.Productname2 + ";" + prod.ItemUnit + ";" + prod.Productdescription + ";" + prod.Synonyms + ";" +
-                                prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.Pcode + ";" + prod.DistCode + ";" + Environment.NewLine);
+                            write.Write(custID + ";" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + ";" + prod.ProductID + ";" + prod.ProductName1 + ";" + prod.ProductName2 + ";" + prod.ItemUnit + ";" + prod.ProductDescription + ";" + prod.Synonyms + ";" +
+                                prod.ProductGroup + ";" + prod.Weight + ";" + prod.MinQuantity + ";" + prod.Price + ";" + prod.Discount + ";" + prod.NetPrice + ";" + prod.PCode + ";" + prod.DistCode + ";" + Environment.NewLine);
                         }
                     }
                 }

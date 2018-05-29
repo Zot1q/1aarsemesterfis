@@ -1,5 +1,5 @@
 ﻿using _1AarsProjekt.Model.CustomerManagement;
-using _1AarsProjekt.Model.DB;
+using _1AarsProjekt.ExternalConnections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,46 +8,46 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.AgreementManagement
 {
-    public class AgreementMethods
+    public static class AgreementMethods
     {
-        public void CreateAgreementTest(Agreement agreement)
+        public static void CreateAgreementTest(Agreement agreement)
         {
             agreement.Status = true;
             CreateAgreement(agreement);
         }
-        private void SqlFormattedDateTime(Agreement agree)
+        private static void SqlFormattedDateTime(Agreement agree)
         {
             agree.ExpirationDate.Date.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
-        public void CreateAgreement(Agreement agree)
+        public static void CreateAgreement(Agreement agree)
         {
             DataAccessLayer.InsertAgreement(agree);
         }
 
-        public void DeleteAgreement(Agreement selectedAgreement)
+        public static void DeleteAgreement(Agreement selectedAgreement)
         {
             selectedAgreement.Status = false;
             DataAccessLayer.AgreementDelete(selectedAgreement);
         }
 
-        public List<Agreement> ListAgreements()
+        public static List<Agreement> ListAgreements()
         {
             List<Agreement> AgreementList = DataAccessLayer.GetAgreements();
             return AgreementList;
         }
-        public Agreement CheckAgreement(Agreement AgreementToCheck)
+        public static Agreement CheckAgreement(Agreement AgreementToCheck)
         {
             Agreement existAgreement = DataAccessLayer.AgreementCheck(AgreementToCheck);
             return existAgreement;
         }
 
-        public void EditAgreement(Agreement AgreementToEdit)
+        public static void EditAgreement(Agreement AgreementToEdit)
         {
             DataAccessLayer.UpdateAgreement(AgreementToEdit);
         }
 
-        public async void ExpiredAgreements()
+        public static async void ExpiredAgreements()
         {
             while (true)
             {
@@ -63,7 +63,7 @@ namespace _1AarsProjekt.Model.AgreementManagement
             }
         }
 
-        private async Task PutTaskDelay()
+        private static async Task PutTaskDelay()
         {
             await Task.Delay(TimeSpan.FromDays(1));
         }

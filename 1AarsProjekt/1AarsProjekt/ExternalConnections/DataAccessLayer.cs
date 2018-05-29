@@ -14,7 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace _1AarsProjekt.Model.DB
+namespace _1AarsProjekt.ExternalConnections
 {
     class DataAccessLayer
     {
@@ -105,16 +105,16 @@ namespace _1AarsProjekt.Model.DB
                     "VALUES (@ProdNumber, @Price, @ProductName1, @ProductName2, @ProductDescription, @ItemUnit, @Synonyms, @Weight, @Discount, @NetPrice, @PCode, @DistCode, @ProductGroup, @MinQuantity)", connection);
                 command.Parameters.Add(CreateParam("@ProdNumber", prod.ProductID));
                 command.Parameters.Add(CreateParam("@Price", prod.Price));
-                command.Parameters.Add(CreateParam("@ProductName1", prod.Productname1));
-                command.Parameters.Add(CreateParam("@ProductName2", prod.Productname2));
-                command.Parameters.Add(CreateParam("@ProductDescription", prod.Productdescription));
+                command.Parameters.Add(CreateParam("@ProductName1", prod.ProductName1));
+                command.Parameters.Add(CreateParam("@ProductName2", prod.ProductName2));
+                command.Parameters.Add(CreateParam("@ProductDescription", prod.ProductDescription));
                 command.Parameters.Add(CreateParam("@ProductGroup", prod.ProductGroup));
                 command.Parameters.Add(CreateParam("@ItemUnit", prod.ItemUnit));
                 command.Parameters.Add(CreateParam("@Synonyms", prod.Synonyms));
                 command.Parameters.Add(CreateParam("@Weight", prod.Weight));
                 command.Parameters.Add(CreateParam("@Discount", prod.Discount));
                 command.Parameters.Add(CreateParam("@NetPrice", prod.NetPrice));
-                command.Parameters.Add(CreateParam("@PCode", prod.Pcode));
+                command.Parameters.Add(CreateParam("@PCode", prod.PCode));
                 command.Parameters.Add(CreateParam("@DistCode", prod.DistCode));
                 command.Parameters.Add(CreateParam("@MinQuantity", prod.MinQuantity));
 
@@ -268,9 +268,9 @@ namespace _1AarsProjekt.Model.DB
 
                     prod.ProductID = Convert.ToString((int)reader["ProdNumber"]).PadLeft(9, pad);
                     prod.Price = (double)reader["Price"];
-                    prod.Productname1 = (string)reader["ProductName1"];
-                    prod.Productname2 = (string)reader["ProductName2"];
-                    prod.Productdescription = (string)reader["ProductDescription"];
+                    prod.ProductName1 = (string)reader["ProductName1"];
+                    prod.ProductName2 = (string)reader["ProductName2"];
+                    prod.ProductDescription = (string)reader["ProductDescription"];
                     prod.ProductGroup = (string)reader["ProductGroup"];
                     prod.ItemUnit = (string)reader["ItemUnit"];
                     prod.Synonyms = (string)reader["Synonyms"];
@@ -278,7 +278,7 @@ namespace _1AarsProjekt.Model.DB
                     prod.MinQuantity = (string)reader["MinQuantity"];
                     prod.Discount = (double)reader["Discount"];
                     prod.NetPrice = (double)reader["NetPrice"];
-                    prod.Pcode = (string)reader["PCode"];
+                    prod.PCode = (string)reader["PCode"];
                     prod.DistCode = (string)reader["DistCode"];
                     prodList.Add(prod);
 
@@ -315,16 +315,16 @@ namespace _1AarsProjekt.Model.DB
 
                     prod.ProductID = Convert.ToString((int)reader["ProdNumber"]).PadLeft(9, pad);
                     prod.Price = (double)reader["Price"];
-                    prod.Productname1 = (string)reader["ProductName1"];
-                    prod.Productname2 = (string)reader["ProductName2"];
-                    prod.Productdescription = (string)reader["ProductDescription"];
+                    prod.ProductName1 = (string)reader["ProductName1"];
+                    prod.ProductName2 = (string)reader["ProductName2"];
+                    prod.ProductDescription = (string)reader["ProductDescription"];
                     prod.ProductGroup = (string)reader["ProductGroup"];
                     prod.ItemUnit = (string)reader["ItemUnit"];
                     prod.Synonyms = (string)reader["Synonyms"];
                     prod.Weight = (double)reader["Weight"];
                     prod.Discount = (double)reader["Discount"];
                     prod.NetPrice = (double)reader["NetPrice"];
-                    prod.Pcode = (string)reader["PCode"];
+                    prod.PCode = (string)reader["PCode"];
                     prod.DistCode = (string)reader["DistCode"];
                     prod.MinQuantity = (string)reader["MinQuantity"].ToString();
                     prodList.Add(prod);
@@ -569,16 +569,16 @@ namespace _1AarsProjekt.Model.DB
                     "WHERE ProdNumber = @ProdNumber", connection);
                 command.Parameters.Add(CreateParam("@ProdNumber", prod.ProductID));
                 command.Parameters.Add(CreateParam("@Price", prod.Price));
-                command.Parameters.Add(CreateParam("@ProductName1", prod.Productname1));
-                command.Parameters.Add(CreateParam("@ProductName2", prod.Productname2));
-                command.Parameters.Add(CreateParam("@ProductDescription", prod.Productdescription));
+                command.Parameters.Add(CreateParam("@ProductName1", prod.ProductName1));
+                command.Parameters.Add(CreateParam("@ProductName2", prod.ProductName2));
+                command.Parameters.Add(CreateParam("@ProductDescription", prod.ProductDescription));
                 command.Parameters.Add(CreateParam("@ProductGroup", prod.ProductGroup));
                 command.Parameters.Add(CreateParam("@ItemUnit", prod.ItemUnit));
                 command.Parameters.Add(CreateParam("@Synonyms", prod.Synonyms));
                 command.Parameters.Add(CreateParam("@Weight", prod.Weight));
                 command.Parameters.Add(CreateParam("@Discount", prod.Discount));
                 command.Parameters.Add(CreateParam("@NetPrice", prod.NetPrice));
-                command.Parameters.Add(CreateParam("@PCode", prod.Pcode));
+                command.Parameters.Add(CreateParam("@PCode", prod.PCode));
                 command.Parameters.Add(CreateParam("@DistCode", prod.DistCode));
                 command.Parameters.Add(CreateParam("@MinQuantity", prod.MinQuantity));
 

@@ -9,10 +9,10 @@ namespace _1AarsProjekt.Model.ProductManagement
     public class Product
     {
         public string ProductID { get; set; }
-        public string Productname1 { get; set; }
-        public string Productname2 { get; set; }
+        public string ProductName1 { get; set; }
+        public string ProductName2 { get; set; }
         public string ItemUnit { get; set; }
-        public string Productdescription { get; set; }
+        public string ProductDescription { get; set; }
         public string Synonyms { get; set; }
         public string ProductGroup { get; set; }
         public double Weight { get; set; }
@@ -20,7 +20,7 @@ namespace _1AarsProjekt.Model.ProductManagement
         public double Price { get; set; }
         public double Discount { get; set; }
         public double NetPrice { get; set; }
-        public string Pcode { get; set; }
+        public string PCode { get; set; }
         public string DistCode { get; set; }
     }
 } 

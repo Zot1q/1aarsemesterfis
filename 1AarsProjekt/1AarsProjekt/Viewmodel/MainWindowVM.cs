@@ -22,32 +22,32 @@ namespace _1AarsProjekt.Viewmodel
         #endregion
 
 
-        private Page frame;
+        private Page _frame;
 
         public Page Frame
         {
-            get { return frame; }
+            get { return _frame; }
             set
             {
-                frame = value;
+                _frame = value;
                 NotifyPropertyChanged();
             }
         }
 
-        public ChangePageCMD SwapPageWelcomePages { get; set; }
-        public ChangePageCMD SwapPageCustomerPages { get; set; }
-        public ChangePageCMD SwapPageAgreementPages { get; set; }
-        public ChangePageCMD SwapPageProductPages { get; set; }
-        public ChangePageCMD SwapPageStatisticPages { get; set; }
-        public ChangePageCMD CloseProgram { get; set; }
+        public MethodCommand SwapPageWelcomePages { get; set; }
+        public MethodCommand SwapPageCustomerPages { get; set; }
+        public MethodCommand SwapPageAgreementPages { get; set; }
+        public MethodCommand SwapPageProductPages { get; set; }
+        public MethodCommand SwapPageStatisticPages { get; set; }
+        public MethodCommand CloseProgram { get; set; }
         public MainWindowVM()
         {
-            SwapPageWelcomePages = new ChangePageCMD(PageSwapWelcomePages);
-            SwapPageCustomerPages = new ChangePageCMD(PageSwapCustomerPages);
-            SwapPageAgreementPages = new ChangePageCMD(PageSwapAgreementPages);
-            SwapPageProductPages = new ChangePageCMD(PageSwapProductPages);
-            SwapPageStatisticPages = new ChangePageCMD(PageSwapStatisticPages);
-            CloseProgram = new ChangePageCMD(Close);
+            SwapPageWelcomePages = new MethodCommand(PageSwapWelcomePages);
+            SwapPageCustomerPages = new MethodCommand(PageSwapCustomerPages);
+            SwapPageAgreementPages = new MethodCommand(PageSwapAgreementPages);
+            SwapPageProductPages = new MethodCommand(PageSwapProductPages);
+            SwapPageStatisticPages = new MethodCommand(PageSwapStatisticPages);
+            CloseProgram = new MethodCommand(Close);
             Frame = new WelcomePage();
         }
         public void Close()

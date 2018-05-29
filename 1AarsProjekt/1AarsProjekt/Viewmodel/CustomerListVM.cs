@@ -1,5 +1,5 @@
 ﻿using _1AarsProjekt.Model.CustomerManagement;
-using _1AarsProjekt.Model.DB;
+using _1AarsProjekt.ExternalConnections;
 using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel.Commands;
 using System;
@@ -17,25 +17,24 @@ namespace _1AarsProjekt.Viewmodel
 {
     public class CustomerListVM : INotifyPropertyChanged
     {
-        CustomerMethods custMethods = new CustomerMethods();
-        public ChangePageCMD OpenCustomerEditWindow { get; set; }
-        public ChangePageCMD CustDelete { get; set; }
-        private List<Customer> custList;
+        public MethodCommand OpenCustomerEditWindow { get; set; }
+        public MethodCommand CustDelete { get; set; }
+        private List<Customer> _custList;
 
         public List<Customer> CustList
         {
-            get { return custList; }
-            set { custList = value; }
+            get { return _custList; }
+            set { _custList = value; }
         }
 
-        private int selectedIndex;
+        private int _selectedIndex;
 
         public int SelectedIndex
         {
-            get { return selectedIndex; }
+            get { return _selectedIndex; }
             set
             {
-                selectedIndex = value;
+                _selectedIndex = value;
                 NotifyPropertyChanged();
             }
         }
@@ -43,9 +42,9 @@ namespace _1AarsProjekt.Viewmodel
 
         public CustomerListVM()
         {
-            OpenCustomerEditWindow = new ChangePageCMD(EditCustWindow);
-            CustDelete = new ChangePageCMD(DeleteCustomer);
-            CustList = custMethods.ListCustomers();
+            OpenCustomerEditWindow = new MethodCommand(EditCustWindow);
+            CustDelete = new MethodCommand(DeleteCustomer);
+            CustList = CustomerMethods.ListCustomers();
 
         }
 
@@ -59,9 +58,9 @@ namespace _1AarsProjekt.Viewmodel
         public void DeleteCustomer()
         {
             Customer selectedCust = new Customer();
-            selectedCust = custList.ElementAt(SelectedIndex);
-            custMethods.DeleteCustomer(selectedCust);
-            CustList = custMethods.ListCustomers();
+            selectedCust = CustList.ElementAt(SelectedIndex);
+            CustomerMethods.DeleteCustomer(selectedCust);
+            CustList = CustomerMethods.ListCustomers();
             NotifyPropertyChanged("");
         }
         public event PropertyChangedEventHandler PropertyChanged;

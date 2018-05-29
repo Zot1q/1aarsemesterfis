@@ -30,13 +30,13 @@
                     <Label HorizontalAlignment="left" Margin="0 10 0 0" Content="Min. antal: " FontSize="16" FontWeight="Medium"  Foreground="#246882"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Height="420" VerticalAlignment="Top"  Width="150" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
-                    <TextBox x:Name="txtProductID" Text="{Binding localProductNumber}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtProductName1" Text="{Binding ProductToEdit.Productname1}" Width="80" Height="30" Margin="0 5 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtProductName2" Text="{Binding ProductToEdit.Productname2}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtProductID" Text="{Binding ProductToEdit.ProductID}" IsReadOnly="True" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtProductName1" Text="{Binding ProductToEdit.ProductName1}" Width="80" Height="30" Margin="0 5 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtProductName2" Text="{Binding ProductToEdit.ProductName2}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtItemUnit" Text="{Binding ProductToEdit.ItemUnit}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtProductDescription" Text="{Binding ProductToEdit.Productdescription}" Width="80" Height="30" Margin="0 10 0 0 " HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtProductDescription" Text="{Binding ProductToEdit.ProductDescription}" Width="80" Height="30" Margin="0 10 0 0 " HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtSynonyms" Text="{Binding ProductToEdit.Synonyms}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtWeight" Text="{Binding Product.Weight}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtWeight" Text="{Binding ProductToEdit.Weight}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtMinQuantity" Text="{Binding ProductToEdit.MinQuantity}" Width="80" Height="30" Margin="0 16 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
@@ -51,18 +51,18 @@
 
 
                 <StackPanel HorizontalAlignment="Right" Height="400" VerticalAlignment="Top" Width="150" Grid.Column="1" Grid.Row="1">
-                    <TextBox x:Name="txtPrice" Text="{Binding Product.Price}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtPrice" Text="{Binding ProductToEdit.Price}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtDiscount" Text="{Binding ProductToEdit.Discount}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtNetPrice" Text="{Binding ProductToEdit.NetPrice}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtPCode" Text="{Binding ProductToEdit.Pcode}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtPCode" Text="{Binding ProductToEdit.PCode}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtDistCode" Text="{Binding ProductToEdit.DistCode}" Width="80" Height="30" Margin="0 10 0 0 " HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="mainGroup" ItemsSource="{Binding mainGroup}" SelectedItem="{Binding SelectedMainGroup}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="subGroup" ItemsSource="{Binding SubGroup}" SelectedItem="{Binding selectedSubGroup}" Width="80" Height="30" Margin="0 10 0 0 " HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="mainGroup" ItemsSource="{Binding MainGroup}" SelectedItem="{Binding SelectedMainGroup}" Width="80" Height="30" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="subGroup" ItemsSource="{Binding SubGroup}" SelectedItem="{Binding SelectedSubGroup}" Width="80" Height="30" Margin="0 10 0 0 " HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 </StackPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Height="20" Width="80">
-                <Button x:Name="btnCreateCustomer" Background="#94C514" Foreground="#FF313131" Command="{Binding CreateProduct}" Content="Opret" Height="30" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,-10,0,0"/>
+                <Button x:Name="btnCreateCustomer" Background="#94C514" Foreground="#FF313131" Command="{Binding EditProduct}" Content="Rediger" Height="30" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,-10,0,0"/>
             </StackPanel>
         </Grid>
     </Grid>

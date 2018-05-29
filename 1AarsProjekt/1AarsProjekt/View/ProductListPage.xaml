@@ -45,7 +45,7 @@
                     <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding Price}" />
                     <GridViewColumn Header="Rabat" Width="120" DisplayMemberBinding="{Binding Discount}" />
                     <GridViewColumn Header="Net. Pris" Width="120" DisplayMemberBinding="{Binding NetPrice}" />
-                    <GridViewColumn Header="PCode" Width="120" DisplayMemberBinding="{Binding PCode}" />
+                    <GridViewColumn Header="PCode" Width="120" DisplayMemberBinding="{Binding Pcode}" />
                     <GridViewColumn Header="DistCode" Width="120" DisplayMemberBinding="{Binding DistCode}" />
                 </GridView>
             </ListView.View>

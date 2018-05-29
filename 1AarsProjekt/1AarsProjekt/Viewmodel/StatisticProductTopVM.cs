@@ -12,48 +12,49 @@ namespace _1AarsProjekt.Viewmodel
 {
     class StatisticProductTopVM : INotifyPropertyChanged
     {
-        Statistic statistic = new Statistic();
-        private List<Agreement> topList;
-
+        private List<Agreement> _topList;
         public List<Agreement> TopList
         {
             get
             {
-                return topList;
+                return _topList;
             }
             set
             {
-                topList = value;
+                _topList = value;
                 NotifyPropertyChanged();
             }
         }
-        private int _amount;
 
+        private int _amount;
         public int Amount
         {
             get { return _amount; }
             set
             {
                 _amount = value;
-                //NotifyPropertyChanged("Amount");
                 UpdateTopList();
             }
 
         }
+
         public StatisticProductTopVM()
         {
-            TopList = statistic.ListTopProductGroup();
+            Amount = 10;
+            TopList = Statistic.ListTopProductGroup();
+            TopList = TopList.GroupBy(x => x.ProductGroup).OrderByDescending(g => g.Count()).Select(x => x.FirstOrDefault()).Take(Amount).ToList();
+        }
+
+        public void UpdateTopList()
+        {
+            TopList = Statistic.ListTopProductGroup();
             TopList = TopList.GroupBy(x => x.ProductGroup).OrderByDescending(g => g.Count()).Select(x => x.FirstOrDefault()).Take(_amount).ToList();
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public void UpdateTopList()
-        {
-            TopList = statistic.ListTopProductGroup();
-            TopList = TopList.GroupBy(x => x.ProductGroup).OrderByDescending(g => g.Count()).Select(x => x.FirstOrDefault()).Take(_amount).ToList();
         }
     }
 }

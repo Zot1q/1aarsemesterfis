@@ -13,23 +13,23 @@ namespace _1AarsProjekt.Viewmodel
 {
     class CustomerEditVM : INotifyPropertyChanged
     {
-        private Customer custToEdit;
+        private Customer _custToEdit;
 
         public Customer CustToEdit
         {
-            get { return custToEdit; }
+            get { return _custToEdit; }
             set
             {
-                custToEdit = value;
+                _custToEdit = value;
                 NotifyPropertyChanged();
             }
         }
-        public ChangePageCMD CustomerEdit { get; set; }
+        public MethodCommand CustomerEdit { get; set; }
         //Constructor
         public CustomerEditVM(object selectedCust)
         {
             CastToType(selectedCust);
-            CustomerEdit = new ChangePageCMD(EditCustomer);
+            CustomerEdit = new MethodCommand(EditCustomer);
         }
 
         public void CastToType(object selectedCust)
@@ -43,8 +43,8 @@ namespace _1AarsProjekt.Viewmodel
                 ("Er du sikker på at du vil redigere kunden?", "Bekræftelse", MessageBoxButton.YesNo);
             if (boxResult == MessageBoxResult.Yes)
             {
-                CustomerMethods custMethods = new CustomerMethods();
-                custMethods.EditCustomer(CustToEdit);
+                CustomerMethods.EditCustomer(CustToEdit);
+                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
             }
         }
 

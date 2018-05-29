@@ -15,8 +15,6 @@ namespace _1AarsProjekt.Viewmodel
 {
     public class AgreementListVM : INotifyPropertyChanged
     {
-        AgreementMethods agreeMethod = new AgreementMethods();
-
         private List<Agreement> _agreementList;
 
         public  List<Agreement> AgreementList
@@ -29,33 +27,33 @@ namespace _1AarsProjekt.Viewmodel
             }
         }
 
-        private int selectedIndex;
+        private int _selectedIndex;
 
         public int SelectedIndex
         {
-            get { return selectedIndex; }
+            get { return _selectedIndex; }
             set
             {
-                selectedIndex = value;
+                _selectedIndex = value;
                 NotifyPropertyChanged();
             }
         }
 
-        public ChangePageCMD AgreementDelete { get; set; }
-        public ChangePageCMD OpenAgreementEditWindow { get; set; }
+        public MethodCommand AgreementDelete { get; set; }
+        public MethodCommand OpenAgreementEditWindow { get; set; }
 
         public AgreementListVM()
         {
-            AgreementDelete = new ChangePageCMD(DeleteAgreement);
-            OpenAgreementEditWindow = new ChangePageCMD(AgreementEditWindowOpen);
-            AgreementList = agreeMethod.ListAgreements();
+            AgreementDelete = new MethodCommand(DeleteAgreement);
+            OpenAgreementEditWindow = new MethodCommand(AgreementEditWindowOpen);
+            AgreementList = AgreementMethods.ListAgreements();
         }
 
         public void DeleteAgreement()
         {
             Agreement selectedAgreement = AgreementList.ElementAt(SelectedIndex);
-            agreeMethod.DeleteAgreement(selectedAgreement);
-            AgreementList = agreeMethod.ListAgreements();
+            AgreementMethods.DeleteAgreement(selectedAgreement);
+            AgreementList = AgreementMethods.ListAgreements();
             MessageBox.Show("Aftale slettet!");
         }
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _1AarsProjekt.Model.ExternalConnections
+namespace _1AarsProjekt.ExternalConnections
 {
     class ServerAccessLayer
     {

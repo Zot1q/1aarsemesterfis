@@ -91,13 +91,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ExternalConnections\DataAccessLayer.cs" />
+    <Compile Include="ExternalConnections\ServerAccessLayer.cs" />
     <Compile Include="Model\AgreementManagement\Agreement.cs" />
     <Compile Include="Model\AgreementManagement\AgreementMethods.cs" />
     <Compile Include="Model\CSV\CSVHandler.cs" />
     <Compile Include="Model\CustomerManagement\Customer.cs" />
     <Compile Include="Model\CustomerManagement\CustomerMethods.cs" />
-    <Compile Include="Model\ExternalConnections\DataAccessLayer.cs" />
-    <Compile Include="Model\ExternalConnections\ServerAccessLayer.cs" />
     <Compile Include="Model\LOG\ErrorLog.cs" />
     <Compile Include="Model\ProductManagement\Product.cs" />
     <Compile Include="Model\ProductManagement\ProductMethods.cs" />
@@ -106,8 +106,7 @@
     <Compile Include="Viewmodel\AgreementEditVM.cs" />
     <Compile Include="Viewmodel\AgreementListVM.cs" />
     <Compile Include="Viewmodel\AgreementVM.cs" />
-    <Compile Include="Viewmodel\Commands\ChangePageCMD.cs" />
-    <Compile Include="Viewmodel\Commands\ThisCMD.cs" />
+    <Compile Include="Viewmodel\Commands\MethodCommand.cs" />
     <Compile Include="Viewmodel\CustomerEditVM.cs" />
     <Compile Include="Viewmodel\CustomerListVM.cs" />
     <Compile Include="Viewmodel\CustomerCreateVM.cs" />

@@ -13,86 +13,81 @@ namespace _1AarsProjekt.Viewmodel
 {
     class ProductVM : INotifyPropertyChanged
     {
-        public int localProductNumber { get; set; }
-        public ChangePageCMD CreateProduct { get; set; }
+        public int LocalProductNumber { get; set; }
+        public MethodCommand CreateProduct { get; set; }
 
         public Product Product { get; set; }
 
-        public List<Product> listProducts { get; set; }
-        public List<string> mainGroup { get; set; }
-        private List<string> subGroup;
+        public List<Product> ListProducts { get; set; }
+        public List<string> MainGroup { get; set; }
 
+        private List<string> _subGroup;
         public List<string> SubGroup
         {
             get {
-                return subGroup; }
+                return _subGroup; }
             set
             {
-                subGroup = value;
+                _subGroup = value;
             }
         }
 
 
-        private string selectedMainGroup;
-
+        private string _selectedMainGroup;
         public string SelectedMainGroup
         {
             get
             {
-                GetSubGroup();
-                return selectedMainGroup;
+                return _selectedMainGroup;
             }
             set
             {
-                selectedMainGroup = value;
+                _selectedMainGroup = value;
+                GetSubGroups();
             }
         }
 
-
-        public string selectedSubGroup { get; set; }
+        public string SelectedSubGroup { get; set; }
 
         public ProductVM()
         {
-            selectedMainGroup = "00";
+            ListProducts = ProductMethods.ListProducts();
+            SelectedMainGroup = "00";
             Product = new Product();
-            CreateProduct = new ChangePageCMD(CreateProd);
+            CreateProduct = new MethodCommand(CreateProd);
             GetProductGroups();
-            GetSubGroup();
+            GetSubGroups();
         }
         public void CreateProd()
         {
-            ProductMethods prodMethods = new ProductMethods();
             bool productNumberExist;
-            if (productNumberExist = prodMethods.CheckProductNumber(localProductNumber))
+            if (productNumberExist = ProductMethods.CheckProductNumber(LocalProductNumber))
             {
                 MessageBox.Show("Dette produktnummer eksisterer allerede. Prøv et nyt");
             }
             else
             {
-                Product.ProductID = localProductNumber.ToString();
-                Product.ProductGroup = SelectedMainGroup + "-" + selectedSubGroup;
-                ProductMethods productMethod = new ProductMethods();
-                productMethod.CreateProduct(Product);
+                Product.ProductID = LocalProductNumber.ToString();
+                Product.ProductGroup = SelectedMainGroup + "-" + SelectedSubGroup;
+                ProductMethods.CreateProduct(Product);
                 MessageBox.Show("Produkt oprettet!");
             }
         }
 
         private void GetProductGroups()
         {
-            ProductMethods productMethod = new ProductMethods();
-            listProducts = productMethod.ListProducts();
-            mainGroup = listProducts.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
-            mainGroup = mainGroup.Distinct().ToList();
+            MainGroup = ListProducts.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
+            MainGroup = MainGroup.Distinct().ToList();
 
         }
 
-        private void GetSubGroup()
+        private void GetSubGroups()
         {
-            List<string> tempList = listProducts.Select(x => x.ProductGroup).OrderBy(x => x).ToList();
+            List<string> tempList = ListProducts.Select(x => x.ProductGroup).OrderBy(x => x).ToList();
             tempList = tempList.Distinct().ToList();
-            subGroup = tempList.Where(s => s.Substring(0,2).Contains(selectedMainGroup)).ToList();
-            subGroup = subGroup.Select(x => x.Substring(3)).ToList();
-            NotifyPropertyChanged("SubGroup");
+            SubGroup = tempList.Where(s => s.Substring(0,2).Contains(SelectedMainGroup)).ToList();
+            SubGroup = SubGroup.Select(x => x.Substring(3)).ToList();
+            NotifyPropertyChanged("");
 
         }
 

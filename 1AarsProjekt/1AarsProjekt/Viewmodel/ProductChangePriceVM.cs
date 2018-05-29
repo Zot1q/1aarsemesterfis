@@ -1,4 +1,4 @@
-﻿using _1AarsProjekt.Model.DB;
+﻿using _1AarsProjekt.ExternalConnections;
 using _1AarsProjekt.Model.ProductManagement;
 using _1AarsProjekt.View;
 using _1AarsProjekt.Viewmodel.Commands;
@@ -18,14 +18,13 @@ namespace _1AarsProjekt.Viewmodel
         //closing  window
         public Action CloseAction { get; set; }
 
-        ProductMethods productMethod = new ProductMethods();
-        private Product productGroupUpdate;
+        private Product _productGroupUpdate;
         public Product ProductGroupUpdate
         {
-            get { return productGroupUpdate; }
+            get { return _productGroupUpdate; }
             set
             {
-                productGroupUpdate = value;
+                _productGroupUpdate = value;
                 NotifyPropertyChanged();
             }
         }
@@ -40,10 +39,10 @@ namespace _1AarsProjekt.Viewmodel
             }
         }
         public List<string> MainGroup { get; set; }
-        public ChangePageCMD UpdatedPrice { get; set; }
+        public MethodCommand UpdatedPrice { get; set; }
         public ProductChangePriceVM()
         {
-            UpdatedPrice = new ChangePageCMD(ChangePrice);
+            UpdatedPrice = new MethodCommand(ChangePrice);
 
             GetProductGroups();
             NotifyPropertyChanged("");
@@ -69,15 +68,10 @@ namespace _1AarsProjekt.Viewmodel
         }
         public void GetProductGroups()
         {
-            List<Product> products = productMethod.ListProducts();
+            List<Product> products = ProductMethods.ListProducts();
             MainGroup = products.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
             MainGroup = MainGroup.Distinct().ToList();
         }
-        //public void SetProductGroup()
-        //{
-        //    Product prod = new Product();
-        //    SelectedProductGroup = MainGroup.FindIndex(productGroup =>  productGroup == ProductGroupUpdate.ProductGroup);
-        //}
 
 
         private double _txtNewPrice;

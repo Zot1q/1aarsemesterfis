@@ -1,4 +1,4 @@
-﻿using _1AarsProjekt.Model.DB;
+﻿using _1AarsProjekt.ExternalConnections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,26 +8,26 @@ using System.Windows;
 
 namespace _1AarsProjekt.Model.CustomerManagement
 {
-    public class CustomerMethods
+    public static class CustomerMethods
     {
-        List<Customer> CustomerList = new List<Customer>();
-        public void CreateCustomer(Customer cust)
+        static List<Customer> CustomerList = new List<Customer>();
+        public static void CreateCustomer(Customer cust)
         {
             cust.Status = true;
             DataAccessLayer.InsertCustomer(cust);
         }
-        public List<Customer> ListCustomers()
+        public static List<Customer> ListCustomers()
         {
             CustomerList = DataAccessLayer.GetCustomers();
             return CustomerList;
         }
-        public void DeleteCustomer(Customer selectedCust)
+        public static void DeleteCustomer(Customer selectedCust)
         {
             selectedCust.Status = false;
             DataAccessLayer.CustomerDelete(selectedCust);
             DataAccessLayer.CustomerAgreementDelete(selectedCust);
         }
-        public void EditCustomer(Customer CustToEdit)
+        public static void EditCustomer(Customer CustToEdit)
         {
             DataAccessLayer.UpdateCustomer(CustToEdit);
             MessageBox.Show(CustToEdit.CompanyName.ToString(), "ændret");

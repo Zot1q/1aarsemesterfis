@@ -10,18 +10,16 @@ namespace _1AarsProjekt.Viewmodel
 {
     class StatisticCustomerVM
     {
-        Statistic statistic = new Statistic();
-
-        private List<Customer> custStatisticList;
+        private List<Customer> _custStatisticList;
 
         public List<Customer> CustStatisticList
         {
-            get { return custStatisticList; }
-            set { custStatisticList = value; }
+            get { return _custStatisticList; }
+            set { _custStatisticList = value; }
         }
         public StatisticCustomerVM()
         {
-            CustStatisticList = statistic.ListCustomer();
+            CustStatisticList = Statistic.ListCustomer();
         }
 
     }

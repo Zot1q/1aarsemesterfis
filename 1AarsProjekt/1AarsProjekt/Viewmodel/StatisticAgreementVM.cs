@@ -14,19 +14,17 @@ namespace _1AarsProjekt.Viewmodel
 {
     class StatisticAgreementVM : INotifyPropertyChanged
     {
-        Statistic statistic = new Statistic();
-
-        private List<Agreement> agreeStatisticList;
+        private List<Agreement> _agreeStatisticList;
 
         public List<Agreement> AgreeStatisticList
         {
-            get { return agreeStatisticList; }
-            set { agreeStatisticList = value; }
+            get { return _agreeStatisticList; }
+            set { _agreeStatisticList = value; }
         }
 
         public StatisticAgreementVM()
         {
-            AgreeStatisticList = statistic.ListAgreements();
+            AgreeStatisticList = Statistic.ListAgreements();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

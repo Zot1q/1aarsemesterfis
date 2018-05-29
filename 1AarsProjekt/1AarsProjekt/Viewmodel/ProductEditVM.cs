@@ -13,12 +13,10 @@ namespace _1AarsProjekt.Viewmodel
 {
     public class ProductEditVM : INotifyPropertyChanged
     {
-        public List<Product> listProducts { get; set; }
-        public ChangePageCMD EditProduct { get; set; }
+        public List<Product> ListProducts { get; set; }
+        public MethodCommand EditProduct { get; set; }
 
-        public int localProductNumber { get; set; }
-
-        public List<string> mainGroup { get; set; }
+        public List<string> MainGroup { get; set; }
 
         private Product _productToEdit;
 
@@ -31,62 +29,52 @@ namespace _1AarsProjekt.Viewmodel
                 NotifyPropertyChanged();
             }
         }
-        private List<string> subGroup;
+        private List<string> _subGroup;
 
         public List<string> SubGroup
         {
             get
             {
-                return subGroup;
+                return _subGroup;
             }
             set
             {
-                subGroup = value;
+                _subGroup = value;
             }
         }
 
-        private string selectedMainGroup;
+        private string _selectedMainGroup;
         public string SelectedMainGroup
         {
             get
             {
-                GetSubGroup();
-                return selectedMainGroup;
+                return _selectedMainGroup;
             }
             set
             {
-                selectedMainGroup = value;
+                _selectedMainGroup = value;
+                GetSubGroup();
             }
         }
 
 
-        public string selectedSubGroup { get; set; }
+        public string SelectedSubGroup { get; set; }
 
         public ProductEditVM(object selectedProduct)
         {
-            selectedMainGroup = "00";
-            EditProduct = new ChangePageCMD(ProductEdit);
+            EditProduct = new MethodCommand(ProductEdit);
             CastToType(selectedProduct);
-            SetLocalProductNumber();
+            ListProducts = ProductMethods.ListProducts();
             GetProductGroups();
-            GetSubGroup();
+            SelectedMainGroup = ProductToEdit.ProductGroup.Substring(0, 2);
+            SelectedSubGroup = ProductToEdit.ProductGroup.Substring(3, 3);
         }
         private void ProductEdit()
         {
-            ProductMethods prodMethods = new ProductMethods();
-            bool productNumberExist;
-            if (productNumberExist = prodMethods.CheckProductNumber(localProductNumber))
-            {
-                MessageBox.Show("Dette produktnummer eksisterer allerede. Prøv et nyt");
-            }
-            else
-            {
-                ProductToEdit.ProductID = localProductNumber.ToString();
-                ProductToEdit.ProductGroup = SelectedMainGroup + "-" + selectedSubGroup;
-                ProductMethods productMethod = new ProductMethods();
-                //productMethod.EditProduct(ProductToEdit);
-                MessageBox.Show("Produkt Redigeret!");
-            }
+            ProductToEdit.ProductGroup = SelectedMainGroup + "-" + SelectedSubGroup;
+            ProductMethods.EditProduct(ProductToEdit);
+            MessageBox.Show("Produkt Redigeret!");
+            Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
         }
 
         private void CastToType(object selectedProduct)
@@ -96,29 +84,18 @@ namespace _1AarsProjekt.Viewmodel
 
         private void GetSubGroup()
         {
-            List<string> tempList = listProducts.Select(x => x.ProductGroup).OrderBy(x => x).ToList();
+            List<string> tempList = ListProducts.Select(x => x.ProductGroup).OrderBy(x => x).ToList();
             tempList = tempList.Distinct().ToList();
-            subGroup = tempList.Where(s => s.Substring(0, 2).Contains(selectedMainGroup)).ToList();
-            subGroup = subGroup.Select(x => x.Substring(3)).ToList();
-            NotifyPropertyChanged("SubGroup");
-
+            SubGroup = tempList.Where(s => s.Substring(0, 2).Contains(SelectedMainGroup)).ToList();
+            SubGroup = SubGroup.Select(x => x.Substring(3)).ToList();
+            NotifyPropertyChanged("");
         }
 
         private void GetProductGroups()
         {
-            ProductMethods productMethod = new ProductMethods();
-            listProducts = productMethod.ListProducts();
-            mainGroup = listProducts.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
-            mainGroup = mainGroup.Distinct().ToList();
+            MainGroup = ListProducts.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
+            MainGroup = MainGroup.Distinct().ToList();
 
-        }
-
-        private void SetLocalProductNumber()
-        {
-            int result;
-            Int32.TryParse("123", out result);
-            result = localProductNumber;
-            localProductNumber = Int32.Parse(ProductToEdit.ProductID);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

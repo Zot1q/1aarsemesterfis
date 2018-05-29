@@ -1,4 +1,4 @@
-﻿using _1AarsProjekt.Model.DB;
+﻿using _1AarsProjekt.ExternalConnections;
 using _1AarsProjekt.View;
 using System;
 using System.Collections.Generic;

@@ -14,33 +14,32 @@ namespace _1AarsProjekt.Viewmodel
 {
     class AgreementVM : INotifyPropertyChanged
     {
-        CustomerMethods cust = new CustomerMethods();
-        private List<Customer> custList;
+        private List<Customer> _custList;
 
         public List<Customer> CustList
         {
-            get { return custList; }
+            get { return _custList; }
             set
             {
-                custList = value;
+                _custList = value;
             }
         }
-        private int selectedIndex;
+        private int _selectedIndex;
 
         public int SelectedIndex
         {
-            get { return selectedIndex; }
+            get { return _selectedIndex; }
             set
             {
-                selectedIndex = value;
+                _selectedIndex = value;
                 NotifyPropertyChanged();
             }
         }
-        public ChangePageCMD OpenAgreementWin { get; set; }
+        public MethodCommand OpenAgreementWin { get; set; }
         public AgreementVM()
         {
-            OpenAgreementWin = new ChangePageCMD(AgreementWinOpen);
-            CustList = cust.ListCustomers();
+            OpenAgreementWin = new MethodCommand(AgreementWinOpen);
+            CustList = CustomerMethods.ListCustomers();
         }
         public void AgreementWinOpen()
         {

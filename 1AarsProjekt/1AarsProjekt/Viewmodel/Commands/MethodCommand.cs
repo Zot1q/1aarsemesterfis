@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace _1AarsProjekt.Viewmodel.Commands
 {
-    public class ThisCMD
+    public class MethodCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        private Action<object> _execute;
+        private Action _execute;
 
-        public ThisCMD(Action<object> execute)
+        public MethodCommand(Action execute)
         {
             _execute = execute;
         }
@@ -23,7 +24,7 @@ namespace _1AarsProjekt.Viewmodel.Commands
 
         public void Execute(object parameter)
         {
-            _execute.Invoke(parameter);
+            _execute.Invoke();
         }
     }
 }

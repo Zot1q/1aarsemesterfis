@@ -23,7 +23,7 @@
                 <Label x:Name="lblSubcriptionId" Content="" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding mainGroup}" SelectedIndex="{Binding SelectedProductGroup}" SelectedItem="{Binding AgreementToEdit.ProductGroup}" Width="200" VerticalAlignment="Center">
+                <ComboBox ItemsSource="{Binding MainGroup}" SelectedIndex="{Binding SelectedProductGroup}" SelectedItem="{Binding AgreementToEdit.ProductGroup}" Width="200" VerticalAlignment="Center">
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="0,30">
@@ -36,7 +36,7 @@
                 <TextBox x:Name="txtDuration" Text="{Binding TimeToAdd, Mode=OneWayToSource}" Width="150" Height="30"/>
             </StackPanel>
         </StackPanel>
-        <Button Content="Gem" HorizontalAlignment="Center" Background="#94C514" Foreground="#246882" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Width="75" Height="30" Command="{Binding EditAgreement}"/>
+        <Button Content="Gem" HorizontalAlignment="Center" Background="#94C514" Foreground="#246882" Margin="0,30,0,0"  Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Width="75" Height="30" Command="{Binding EditAgreement}"/>
 
     </Grid>
 </Window>

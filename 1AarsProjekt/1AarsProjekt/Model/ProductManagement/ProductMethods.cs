@@ -1,4 +1,4 @@
-﻿using _1AarsProjekt.Model.DB;
+﻿using _1AarsProjekt.ExternalConnections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,25 +7,30 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.ProductManagement
 {
-    public class ProductMethods
+    public static class ProductMethods
     {
-        public List<Product> ProductList { get; set; }
-        Product product = new Product();
+        private static List<Product> ProductList { get; set; }
+        private static Product product = new Product();
 
-        public void CreateProduct(Product product)
+        public static void CreateProduct(Product product)
         {
            DataAccessLayer.InsertProduct(product);
         }
-        public List<Product> ListProducts()
+        public static List<Product> ListProducts()
         {
             ProductList = DataAccessLayer.CreateProductList();
             return ProductList;
         }
 
-        public bool CheckProductNumber(int productNumber)
+        public static bool CheckProductNumber(int productNumber)
         {
             bool ProductNumberExist = DataAccessLayer.ProductNumberCheck(productNumber);
             return ProductNumberExist;
+        }
+
+        public static void EditProduct(Product ProductToEdit)
+        {
+            DataAccessLayer.UpdateProductInDB(ProductToEdit);
         }
     }
 }

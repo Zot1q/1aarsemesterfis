@@ -21,7 +21,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding mainGroup}" SelectedIndex="0" SelectedItem="{Binding Agreement.ProductGroup}" Width="200" VerticalAlignment="Center">
+                <ComboBox ItemsSource="{Binding MainGroup}" SelectedIndex="0" SelectedItem="{Binding Agreement.ProductGroup}" Width="200" VerticalAlignment="Center">
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="0,30">

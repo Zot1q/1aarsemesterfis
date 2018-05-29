@@ -16,24 +16,22 @@ namespace _1AarsProjekt.Viewmodel
     class AgreementCreateVM : INotifyPropertyChanged
     {
         public Agreement Agreement { get; set; }
-        AgreementMethods agreementMethod = new AgreementMethods();
-        public ChangePageCMD CreateAgreement { get; set; }
-        public ProductMethods productMethod = new ProductMethods();
-        public List<string> mainGroup { get; set; }
+        public MethodCommand CreateAgreement { get; set; }
+        public List<string> MainGroup { get; set; }
         public int TimeToAdd { get; set; }
 
         public AgreementCreateVM(int custID)
         {
             Agreement = new Agreement();
             Agreement.CustomerID = custID;
-            CreateAgreement = new ChangePageCMD(AgreementCreate);
+            CreateAgreement = new MethodCommand(AgreementCreate);
             GetProductGroups();
         }
         public void AgreementCreate()
         {
             Agreement.ExpirationDate = DateTime.Now.AddMonths(TimeToAdd);
 
-            Agreement AgreementResult = agreementMethod.CheckAgreement(Agreement);
+            Agreement AgreementResult = AgreementMethods.CheckAgreement(Agreement);
             if (AgreementResult.AgreementID != 0)
             {
                 MessageBoxResult boxResult = MessageBox.Show("Vil du redigere den eksisterende aftale?", "Denne kunde har allerede en aftale for denne produktgruppe", MessageBoxButton.YesNo);
@@ -47,17 +45,17 @@ namespace _1AarsProjekt.Viewmodel
             }
             else
             {
-                agreementMethod.CreateAgreementTest(Agreement);
-                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
+                AgreementMethods.CreateAgreementTest(Agreement);
                 MessageBox.Show("Aftale oprettet!");
+                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
             }
         }
 
         private void GetProductGroups()
         {
-            List<Product> listProducts = productMethod.ListProducts();
-            mainGroup = listProducts.Select(x => x.ProductGroup.Substring(0,2)).OrderBy(x=> x).ToList();
-            mainGroup = mainGroup.Distinct().ToList();
+            List<Product> listProducts = ProductMethods.ListProducts();
+            MainGroup = listProducts.Select(x => x.ProductGroup.Substring(0,2)).OrderBy(x=> x).ToList();
+            MainGroup = MainGroup.Distinct().ToList();
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
