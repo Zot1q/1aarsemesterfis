@@ -77,7 +77,7 @@
                 </TransformGroup>
             </Grid.RenderTransform>
             
-            <ScrollViewer CanContentScroll="True" Visibility="Visible">
+            <ScrollViewer CanContentScroll="True" Visibility="Visible" Margin="0 40 0 20">
             <StackPanel>
                 <Button Background="{x:Null}" Height="100" BorderBrush="{x:Null}" Command="{Binding SwapPageWelcomePages}">
                     <Image Margin="0 0 0 0" Source="/1AarsProjekt;component/Images/EchoLogo1.png"/>
@@ -225,7 +225,7 @@
                 </StackPanel>
             </ScrollViewer>
             <Button x:Name="ButtonClose" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#000" Width="30" Height="30" Padding="0">
-                <materialDesign:PackIcon Kind="Close" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <materialDesign:PackIcon Kind="Close" Foreground="#000" Opacity="0.8" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Button>
         </Grid>
     </Grid>
