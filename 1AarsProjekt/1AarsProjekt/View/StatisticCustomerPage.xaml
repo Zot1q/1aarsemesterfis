@@ -30,7 +30,7 @@
                     <GridViewColumn Header="Firma" Width="100" DisplayMemberBinding="{Binding CompanyName}" />
                     <GridViewColumn Header="Adr." Width="100" DisplayMemberBinding="{Binding Address}" />
                     <GridViewColumn Header="E-mail" Width="100" DisplayMemberBinding="{Binding Email}" />
-                    <GridViewColumn Header="Tlf. Nr" Width="100" DisplayMemberBinding="{Binding PhoneNr}" />
+                    <GridViewColumn Header="Tlf. Nr" Width="100" DisplayMemberBinding="{Binding Phone}" />
                     <GridViewColumn Header="Kontakt" Width="100" DisplayMemberBinding="{Binding ContactPers}" />
                     <GridViewColumn Header="F. Omsætning" Width="80" DisplayMemberBinding="{Binding ExpectRevenue}" />
                     <GridViewColumn Header="Status" Width="80" DisplayMemberBinding="{Binding Status}"/>

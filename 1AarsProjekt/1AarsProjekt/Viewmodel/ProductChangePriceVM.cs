@@ -15,8 +15,6 @@ namespace _1AarsProjekt.Viewmodel
 {
     class ProductChangePriceVM : INotifyPropertyChanged
     {
-        //closing  window
-        public Action CloseAction { get; set; }
 
         private Product _productGroupUpdate;
         public Product ProductGroupUpdate
@@ -62,7 +60,6 @@ namespace _1AarsProjekt.Viewmodel
                 prod.Price = prod.Price / 100 * TxtNewPrice;
                 DataAccessLayer.UpdateProductPriceInDB(prod);
             }
-            CloseAction();
             MessageBox.Show("Indsat");
 
         }

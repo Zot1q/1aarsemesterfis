@@ -25,7 +25,7 @@
         <!--<TextBlock Text="Oversigt over kunder" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Grid.Column="1" Grid.Row="0"/>-->
        
         <StackPanel VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
-            <ListView ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="425">
+            <ListView ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="600">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" Width="125" DisplayMemberBinding="{Binding CustomerID}" />
@@ -34,6 +34,7 @@
                         <GridViewColumn Header="E-mail" Width="125" DisplayMemberBinding="{Binding Email}" />
                         <GridViewColumn Header="Kontakt person" Width="125" DisplayMemberBinding="{Binding ContactPers}" />
                         <GridViewColumn Header="Status" Width="125" DisplayMemberBinding="{Binding Status}" />
+                        <GridViewColumn Header="Forventet Omsætning" Width="125" DisplayMemberBinding="{Binding ExpectRevenue}" />
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>

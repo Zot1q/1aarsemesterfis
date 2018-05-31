@@ -166,8 +166,8 @@ namespace _1AarsProjekt.ExternalConnections
             try
             {
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("INSERT INTO tblLog ([ErrorID], [LogMessage], [ErrorNr], [AmountOfData], [DateAndTime]) VALUES (@ErrorID, @LogMessage, @ErrorNr, @AmountOfData, @DateAndTime)", connection);
-                cmd.Parameters.Add(CreateParam("@ErrorID", log.ErrorID));
+                SqlCommand cmd = new SqlCommand("INSERT INTO tblLog ([LogMessage], [ErrorNr], [AmountOfData], [DateAndTime]) VALUES (@LogMessage, @ErrorNr, @AmountOfData, @DateAndTime)", connection);
+                
                 cmd.Parameters.Add(CreateParam("@LogMessage", log.LogMessage));
                 cmd.Parameters.Add(CreateParam("@ErrorNr", log.ErrorNr));
                 cmd.Parameters.Add(CreateParam("@AmountOfData", log.AmountOfData));
