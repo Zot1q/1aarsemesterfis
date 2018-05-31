@@ -14,7 +14,7 @@ using System.Windows;
 namespace _1AarsProjekt.Viewmodel
 {
     /// <summary>
-    /// Class which contains logic to control changine price for and productgroup
+    /// Class which contains logic to control chaning price for a specified productgroup
     /// </summary>
     class ProductChangePriceVM : INotifyPropertyChanged
     {
