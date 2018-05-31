@@ -5,6 +5,7 @@ using _1AarsProjekt.Model.ProductManagement;
 using _1AarsProjekt.View;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -22,11 +23,13 @@ namespace _1AarsProjekt.ExternalConnections
 
         private static SqlConnection connection = new SqlConnection();
 
+        static string connString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+
         #region OPEN&CLOSE CONNECTION
         static void OpenConnection()
         { //Open connection to the database
             mutex.WaitOne();
-            connection = new SqlConnection("Data Source=.;Initial Catalog=ApEngrosDb;Integrated Security=True");
+            connection = new SqlConnection(connString);
             connection.Open();
         }
         static void CloseConnection()
