@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <summary>
+    /// Class which gets agreements in list
+    /// 
+    /// </summary>
     class StatisticAgreementVM : INotifyPropertyChanged
     {
         private List<Agreement> _agreeStatisticList;

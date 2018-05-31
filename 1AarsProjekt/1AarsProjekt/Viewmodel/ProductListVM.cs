@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <summary>
+    /// ViewModel Class which controls the productlist view with search function and listview elemnets.
+    /// </summary>
     class ProductListVM : INotifyPropertyChanged
     {
         public MethodCommand ChangePriceWindow { get; set; }

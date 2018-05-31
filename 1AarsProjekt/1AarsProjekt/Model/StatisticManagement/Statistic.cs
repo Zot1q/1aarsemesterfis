@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.StatisticManagement
-{
+{/// <summary>
+/// Class to which contains static list properties and methods which contains data from DAL.
+/// </summary>
     public static class Statistic
     {
         static List<Agreement> AgreementList = new List<Agreement>();

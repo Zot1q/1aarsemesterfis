@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.ProductManagement
 {
+    /// <summary>
+    /// Product basic content with specified datatypes.
+    /// </summary>
     public class Product
     {
         public string ProductID { get; set; }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.ProductManagement
 {
+    /// <summary>
+    /// Class which contains methods and list propertie and gets data from DAL.
+    /// </summary>
     public static class ProductMethods
     {
         private static List<Product> ProductList { get; set; }

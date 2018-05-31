@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <summary>
+    /// Class which contains controls of the view product top list.
+    /// </summary>
     class StatisticProductTopVM : INotifyPropertyChanged
     {
         private List<Agreement> _topList;
