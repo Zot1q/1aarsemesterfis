@@ -57,13 +57,17 @@ namespace _1AarsProjekt.Viewmodel
                 NotifyPropertyChanged("MyFilteredItems");
             }
         }
-
+        /// <summary>
+        /// IEnumerable interface. 
+        /// This function will iterate over the collection and do a return on all the elements.
+        /// </summary>
         public IEnumerable<Product> MyFilteredItems
         {
             get
             {
                 if (SearchText == null)
-                    return ProductList;
+                    return ProductList; 
+                // Returns current element.
 
                 return ProductList.Where
                     (
@@ -72,6 +76,7 @@ namespace _1AarsProjekt.Viewmodel
                     item.ProductDescription.ToUpper().StartsWith(SearchText.ToUpper()) ||
                     item.ProductID.ToUpper().StartsWith(SearchText.ToUpper())
                     );
+                // Returns Productlist and compare the text input and text in item if it startswith uppercase. 
             }
         }
         public ProductListVM()
@@ -83,6 +88,9 @@ namespace _1AarsProjekt.Viewmodel
             ProductList = ProductMethods.ListProducts();
             GetProducts();
         }
+        /// <summary>
+        /// Llist new product which is splitted in maingroup and subgroup by lamda expression / linq
+        /// </summary>
         public void GetProducts()
         {
             List<Product> listProducts = ProductMethods.ListProducts();

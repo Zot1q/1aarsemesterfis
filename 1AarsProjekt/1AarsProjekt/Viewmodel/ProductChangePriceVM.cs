@@ -44,16 +44,15 @@ namespace _1AarsProjekt.Viewmodel
 
             GetProductGroups();
             NotifyPropertyChanged("");
-            //SetProductGroup();
         }
-
-
-
         public List<Product> UpdatedProductGroup { get; set; }
-
+        
+        /// <summary>
+        /// Updated Product group in a new list with selected products
+        /// and changes price to each product in the list. Thereafter there is a calculation foreach product and updates the new price for the whole product group in DAL
+        /// </summary>
         public void ChangePrice()
         {
-            //SelectedProductGroup = MainGroup.FindIndex(productGroup => productGroup == ProductGroupUpdate.ProductGroup );
             UpdatedProductGroup = DataAccessLayer.CreateList(SelectedProductGroup.ToString());
             foreach (Product prod in UpdatedProductGroup)
             {
@@ -61,8 +60,13 @@ namespace _1AarsProjekt.Viewmodel
                 DataAccessLayer.UpdateProductPriceInDB(prod);
             }
             MessageBox.Show("Indsat");
-
         }
+
+        /// <summary>
+        /// Function that lists the products from the product methods to which are added to property maingroup,
+        /// which enters and selects each item in the product group and breaks up after the first two digits and sort in a list. 
+        /// Then the elements are compared to other values
+        /// </summary>
         public void GetProductGroups()
         {
             List<Product> products = ProductMethods.ListProducts();

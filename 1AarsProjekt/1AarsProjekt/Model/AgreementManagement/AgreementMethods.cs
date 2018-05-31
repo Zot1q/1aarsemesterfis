@@ -15,6 +15,8 @@ namespace _1AarsProjekt.Model.AgreementManagement
             agreement.Status = true;
             CreateAgreement(agreement);
         }
+
+        // Converts date and time
         private static void SqlFormattedDateTime(Agreement agree)
         {
             agree.ExpirationDate.Date.ToString("yyyy-MM-dd HH:mm:ss");

@@ -19,7 +19,7 @@ namespace _1AarsProjekt.Viewmodel
         public List<Agreement> AgreeStatisticList
         {
             get { return _agreeStatisticList; }
-            set { _agreeStatisticList = value; }
+            set { _agreeStatisticList = value;}
         }
 
         public StatisticAgreementVM()
