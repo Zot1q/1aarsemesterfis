@@ -12,10 +12,18 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.CSV
 {
+    /// <summary>
+    /// This class is used to handle all the logic with the .csv files. 
+    /// At first it connects to the Database, to see if there is data in it, if thats the case, it will update the table with a new file. Otherwise it will find the newest .csv file and import to the Database via the DataAccessLayer
+    /// </summary>
     class CSVHandler
     {
         private string NewFile { get; set; }
 
+
+        /// <summary>
+        /// This method is connection to the database, to see if there data or not in the table, if the count returns zero, a new list is imported, otherwise it will compare the products.
+        /// </summary>
         public async void CreateProductListToDB()
         {
             while (true)
@@ -49,7 +57,9 @@ namespace _1AarsProjekt.Model.CSV
             await Task.Delay(TimeSpan.FromDays(i));
         }
     
-
+        /// <summary>
+        /// When the local directory is updated with .csv files, we are using the date in the filename, to find newest edition with sort.
+        /// </summary>
         public void ImportNewestFile()
         {
             ServerAccessLayer.DownloadFiles();
@@ -86,6 +96,9 @@ namespace _1AarsProjekt.Model.CSV
             return CheckNewestFile(NewFile);
         }
 
+        /// <summary>
+        /// Another lookup in the Database, to see if the filename allready is found in the database. 
+        /// </summary>
         private bool CheckNewestFile(string NewFile)
         {
             if (!DataAccessLayer.CheckFilenameInLog().Contains(NewFile))
@@ -169,7 +182,10 @@ namespace _1AarsProjekt.Model.CSV
             return newList;
         }
 
-
+        /// <summary>
+        /// All the products that are not equal to the products in the database, comes through here. At first it looks up the productnumber, to see if its found in the database, if thats the case, the product its updated.
+        /// Otherwise its a new entry to the database.
+        /// </summary>
         private void UpdateOrNewEntry(List<string[]> addList, List<string[]> oldList)
         {
             List<string[]> updateList = new List<string[]>();
