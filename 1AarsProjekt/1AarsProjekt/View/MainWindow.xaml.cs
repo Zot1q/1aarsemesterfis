@@ -31,8 +31,9 @@ namespace _1AarsProjekt
             //CSVHandler handler = new CSVHandler();
             //AgreementMethods agreementMethods = new AgreementMethods();
 
-
+            //handler.CreateCSV();
             //Thread csvthread = new Thread(handler.CreateProductListToDB);
+            //Thread csvthread = new Thread(handler.CreateCSV);
             //Thread agreeThread = new Thread(agreementMethods.ExpiredAgreements);
 
 

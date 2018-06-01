@@ -292,7 +292,7 @@ namespace _1AarsProjekt.Model.CSV
             DataAccessLayer.AddToProductLog(lines.Count(), "Emner slettet", NewFile);
         }
   
-        private async void CreateCSV()
+        public async void CreateCSV()
         {
             while (true)
             {

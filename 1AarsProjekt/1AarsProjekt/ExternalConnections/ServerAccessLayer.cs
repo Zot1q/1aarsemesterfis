@@ -48,7 +48,7 @@ namespace _1AarsProjekt.ExternalConnections
             using (var sftp = new SftpClient(@"10.152.120.37", "echo", "ec.12ho."))
             {
                 sftp.Connect();
-                sftp.CreateDirectory(remoteDirectory);//Create folder if necessary else skip
+                //sftp.CreateDirectory(remoteDirectory);//Create folder if necessary else skip
                 var files = Directory.GetFiles(localDirectory);
 
                 foreach (var file in files)
