@@ -11,11 +11,13 @@ using System.Windows;
 using System.Windows.Controls;
 
 namespace _1AarsProjekt.Viewmodel
-{
-    /// <summary>
-    /// ViewModel class which controls our basic elements on our mainwindow. 
-    /// Command to swappages in our frame etc.
-    /// </summary>
+{    /// <Author>
+     /// Nicolai and Newjan
+     /// </Author>
+     /// <summary>
+     /// ViewModel class which controls our basic elements on our mainwindow. 
+     /// Command to swappages in our frame etc.
+     /// </summary>
     public class MainWindowVM : INotifyPropertyChanged
     {
         #region SelectedIndexes

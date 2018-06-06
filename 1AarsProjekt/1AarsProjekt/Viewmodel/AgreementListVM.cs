@@ -13,6 +13,12 @@ using System.Windows.Input;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the AgreementListPage
+    /// </summary>
     public class AgreementListVM : INotifyPropertyChanged
     {
         private List<Agreement> _agreementList;

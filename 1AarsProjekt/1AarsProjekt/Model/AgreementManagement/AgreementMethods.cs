@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.AgreementManagement
 {
+    /// <Author>
+    /// Nicolai
+    /// </Author>
+    /// <summary>
+    /// All stuff from that is about an Agreement, goes through here
+    /// </summary>
     public static class AgreementMethods
     {
         public static void CreateAgreementTest(Agreement agreement)

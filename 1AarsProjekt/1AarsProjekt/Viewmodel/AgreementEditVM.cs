@@ -13,6 +13,12 @@ using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the AgreementEditWindow
+    /// </summary>
     public class AgreementEditVM : INotifyPropertyChanged
     {
         private Agreement _agreementToEdit;

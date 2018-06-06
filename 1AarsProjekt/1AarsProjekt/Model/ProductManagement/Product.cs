@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.ProductManagement
 {
+    /// <Author>
+    /// Thomas, Nicolai, Newjan and Christian
+    /// </Author>
     /// <summary>
     /// Product basic content with specified datatypes.
     /// </summary>

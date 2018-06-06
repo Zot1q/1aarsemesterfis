@@ -13,6 +13,9 @@ using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Newjan and Christian
+    /// </Author>
     /// <summary>
     /// Class which contains logic to control chaning price for a specified productgroup
     /// </summary>

@@ -17,9 +17,15 @@ using System.Windows;
 
 namespace _1AarsProjekt.ExternalConnections
 {
+    /// <Author>
+    /// Thomas, Nicolai, Newjan and Christian
+    /// </Author>
+    /// <summary>
+    /// This class handles all connections between the SQL Database and the program
+    /// </summary>
     class DataAccessLayer
     {
-        private static Mutex mutex = new Mutex();
+        private static Mutex mutex = new Mutex(); // Used to lock thread if connection is open
 
         private static SqlConnection connection = new SqlConnection();
 
@@ -53,15 +59,15 @@ namespace _1AarsProjekt.ExternalConnections
                 command.Parameters.Add(CreateParam("@Status", agreement.Status.ToString()));
                 command.Parameters.Add(CreateParam("@CustomerID", agreement.CustomerID));
 
-                //InsertLog(new ErrorLog(0, "An agreement for CustomerID: " + agreement.CustomerID + " Inserted in the database", DateTime.Now.ToString(), 5));
+                InsertLog(new ErrorLog(0, "An agreement for CustomerID: " + agreement.CustomerID + " Inserted in the database", DateTime.Now.ToString(), 5));
 
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                //Error(ex);
-                //InsertLog(new ErrorLog(1, "Error ocurred while inserting an agreement into the database", DateTime.Now.ToString(), 0));
-                MessageBox.Show("Error" + ex);
+                InsertLog(new ErrorLog(1, "Error ocurred while inserting an agreement into the database", DateTime.Now.ToString(), 0));
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -90,7 +96,7 @@ namespace _1AarsProjekt.ExternalConnections
             {
                 Error(ex);
                 InsertLog(new ErrorLog(1, "Error ocurred while inserting a customer into the database", DateTime.Now.ToString(), 0));
-                MessageBox.Show("Error" + ex);
+                throw;
             }
             finally
             {
@@ -121,7 +127,7 @@ namespace _1AarsProjekt.ExternalConnections
                 command.Parameters.Add(CreateParam("@DistCode", prod.DistCode));
                 command.Parameters.Add(CreateParam("@MinQuantity", prod.MinQuantity));
 
-                //InsertLog(new ErrorLog(0, "Product Inserted in the database", DateTime.Now.ToString(), 14));
+                InsertLog(new ErrorLog(0, "Product Inserted in the database", DateTime.Now.ToString(), 14));
 
                 command.ExecuteNonQuery();
             }
@@ -129,7 +135,7 @@ namespace _1AarsProjekt.ExternalConnections
             {
                 Error(ex);
                 InsertLog(new ErrorLog(1, "Error ocurred while inserting a product into the database", DateTime.Now.ToString(), 0));
-                Console.WriteLine(ex);
+                throw;
 
             }
             finally
@@ -156,7 +162,7 @@ namespace _1AarsProjekt.ExternalConnections
             catch (Exception ex)
             {
                 Error(ex);
-                Console.WriteLine("Fejl i linie {0} - " + ex);
+                throw;
 
             }
             finally
@@ -217,8 +223,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -245,8 +251,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -290,8 +296,7 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                //ErrorLog(ex);
-                Console.WriteLine(ex);
+                Error(ex);
                 throw;
             }
             finally
@@ -338,8 +343,7 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                //ErrorLog(ex);
-                Console.WriteLine(ex);
+                Error(ex);
                 throw;
             }
         }
@@ -366,8 +370,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + " " + ex);
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -400,7 +404,7 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex);
+                Error(ex);
                 throw;
             }
             finally
@@ -433,8 +437,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + " " + ex);
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -447,12 +451,13 @@ namespace _1AarsProjekt.ExternalConnections
             try
             {
                 OpenConnection();
-                SqlCommand cmd = new SqlCommand("SELECT TOP(1000) [Discount], [ExpirationDate], [ProductGroup], [CustomerID], [Status] FROM dbo.tblAgreement", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.tblAgreement", connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Agreement> agreementList = new List<Agreement>();
                 while (reader.Read())
                 {
                     Agreement agree = new Agreement();
+                    agree.AgreementID = (int)reader["AgreementID"];
                     agree.Discount = (decimal)reader["Discount"];
                     DateTime dt = (DateTime)reader["ExpirationDate"];
                     agree.ProductGroup = (string)reader["ProductGroup"];
@@ -464,8 +469,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + " " + ex);
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -492,8 +497,7 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                //ErrorLog(ex);
-                Console.WriteLine(ex);
+                Error(ex);
                 throw;
             }
         }
@@ -525,8 +529,7 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                //ErrorLog(ex);
-                Console.WriteLine(ex);
+                Error(ex);
                 throw;
             }
         }
@@ -552,7 +555,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -590,7 +594,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Fejl i linie {0} - " + ex);
+                Error(ex);
+                throw;
 
             }
             finally
@@ -615,7 +620,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Fejl i linie {0} - " + ex);
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -639,7 +645,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -660,7 +667,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex);
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -678,7 +686,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -697,8 +706,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -716,8 +725,8 @@ namespace _1AarsProjekt.ExternalConnections
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Error(ex);
+                throw;
             }
             finally
             {
@@ -729,7 +738,7 @@ namespace _1AarsProjekt.ExternalConnections
 
         #region CREATEPARAMS
         private static SqlParameter CreateParam(string paramName, string paramValue)
-        {//parameter metoder der laver parameteren om til enten VarChar eller int, således det kan komme ind i databasen.
+        {//parameter methods which convert the parameter into either varchar or int.
             SqlParameter param = new SqlParameter();
             param.ParameterName = paramName;
             param.Value = paramValue;
@@ -737,7 +746,7 @@ namespace _1AarsProjekt.ExternalConnections
             return param;
         }
         private static SqlParameter CreateParam(string paramName, double paramValue)
-        {//parameter metoder der laver parameteren om til enten VarChar eller int, således det kan komme ind i databasen.
+        {//parameter methods which convert the parameter into either varchar or int.
             SqlParameter param = new SqlParameter();
             param.ParameterName = paramName;
             param.Value = paramValue;

@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.AgreementManagement
 {
+    /// <Author>
+    /// Thomas, Nicolai, Newjan and Christian
+    /// </Author>
+    /// <summary>
+    /// Properties for the object Agreement
+    /// </summary>
     public class Agreement
     {
         public int AgreementID { get; set; }

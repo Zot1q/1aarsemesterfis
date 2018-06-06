@@ -11,6 +11,12 @@ using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai and newjan
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the ProductCreatePage
+    /// </summary>
     class ProductVM : INotifyPropertyChanged
     {
         public int LocalProductNumber { get; set; }
@@ -74,6 +80,10 @@ namespace _1AarsProjekt.Viewmodel
             }
         }
 
+        /// <summary>
+        /// Getting all products and selecting productgroups
+        /// Takes the two first chars in the string, to define the maingroup
+        /// </summary>
         private void GetProductGroups()
         {
             MainGroup = ListProducts.Select(x => x.ProductGroup.Substring(0, 2)).OrderBy(x => x).ToList();
@@ -81,6 +91,9 @@ namespace _1AarsProjekt.Viewmodel
 
         }
 
+        /// <summary>
+        /// Listing Subgroups, depending on which maingroup the user has selected in view
+        /// </summary>
         private void GetSubGroups()
         {
             List<string> tempList = ListProducts.Select(x => x.ProductGroup).OrderBy(x => x).ToList();

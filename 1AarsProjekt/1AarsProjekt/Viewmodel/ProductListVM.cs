@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai and Newjan
+    /// </Author>
     /// <summary>
     /// ViewModel Class which controls the productlist view with search function and listview elemnets.
     /// </summary>

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.LOG
 {
+    /// <Author>
+    /// Christian
+    /// </Author>
     /// <summary>
     /// Class that defines the different properties that is inserted into the tboLog table in our database.
     /// </summary>

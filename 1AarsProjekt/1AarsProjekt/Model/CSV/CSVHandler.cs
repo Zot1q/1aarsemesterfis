@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.CSV
 {
+    /// <Author>
+    /// Thomas
+    /// </Author>
     /// <summary>
     /// This class is used to handle all the logic with the .csv files. 
     /// At first it connects to the Database, to see if there is data in it, if thats the case, it will update the table with a new file. Otherwise it will find the newest .csv file and import to the Database via the DataAccessLayer
@@ -74,7 +77,7 @@ namespace _1AarsProjekt.Model.CSV
                 fileDate.Add(DateTime.ParseExact(file.Substring(file.Length - 12, 8), "ddMMyyyy", CultureInfo.InvariantCulture));
             }
             fileDate.Sort();
-            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 1].ToString("ddMMyyyy");
+            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 2].ToString("ddMMyyyy");
         }
 
         public bool FindNewestFile()
@@ -91,7 +94,7 @@ namespace _1AarsProjekt.Model.CSV
                 fileDate.Add(DateTime.ParseExact(file.Substring(file.Length - 12, 8), "ddMMyyyy", CultureInfo.InvariantCulture));
             }
             fileDate.Sort();
-            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 1].ToString("ddMMyyyy");
+            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 2].ToString("ddMMyyyy");
 
             return CheckNewestFile(NewFile);
         }

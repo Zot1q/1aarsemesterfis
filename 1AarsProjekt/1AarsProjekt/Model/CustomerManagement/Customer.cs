@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.CustomerManagement
 {
+    /// <Author>
+    /// Thomas, Nicolai, Newjan and Christian
+    /// </Author>
+    /// <summary>
+    /// Properties for the object Customer
+    /// </summary>
     public class Customer
     {
         public string CompanyName { get; set; }

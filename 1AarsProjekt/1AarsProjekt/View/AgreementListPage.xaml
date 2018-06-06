@@ -25,7 +25,7 @@
             <Button ToolTipService.InitialShowDelay="0"
                     ToolTipService.ShowDuration="2000"
                     ToolTipService.BetweenShowDelay="10000"
-                    ToolTip="Højre klik på en aftale for at redigere den"
+                    ToolTip="Højre klik på en aftale for at redigere en aftale"
                     Background="{x:Null}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"

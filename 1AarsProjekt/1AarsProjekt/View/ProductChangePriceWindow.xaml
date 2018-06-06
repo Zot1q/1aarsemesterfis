@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1AarsProjekt.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Height="450" 
         Width="555"
@@ -30,6 +31,17 @@
             <Label Content="Indtast en ny pris i procent for produktgruppen: "/>
             <TextBox Text="{Binding TxtNewPrice}" Width="80" Height="30"/>
             <Button Content="Gem" Margin="15 0 0 0" Command="{Binding UpdatedPrice}" Background="#94C514" Foreground="#246882"/>
+            <Button ToolTipService.InitialShowDelay="0"
+                    ToolTipService.ShowDuration="2000"
+                    ToolTipService.BetweenShowDelay="10000"
+                    ToolTip="100% er den nuværende pris"
+                    Background="{x:Null}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    BorderBrush="{x:Null}"
+                    Margin="0 0 0 0" RenderTransformOrigin="0.219,-5.457">
+                <materialDesign:PackIcon Kind="InformationVariant" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Height="30" Foreground="#246882" Margin="0,0,0,0"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -8,6 +8,12 @@ using System.Windows;
 
 namespace _1AarsProjekt.Model.CustomerManagement
 {
+    /// <Author>
+    /// Nicolai and Christian
+    /// </Author>
+    /// <summary>
+    /// All stuff from that is about a Customer, goes through here
+    /// </summary>
     public static class CustomerMethods
     {
         static List<Customer> CustomerList = new List<Customer>();

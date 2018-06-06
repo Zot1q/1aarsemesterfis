@@ -12,6 +12,12 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the AgreementPage
+    /// </summary>
     class AgreementVM : INotifyPropertyChanged
     {
         private List<Customer> _custList;

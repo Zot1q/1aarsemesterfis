@@ -26,6 +26,17 @@
         <StackPanel Grid.Column="0" Grid.Row="0" Margin="0 0 0 0" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
             <materialDesign:PackIcon Kind="Magnify" Width="30" Height="30" Foreground="Gray" Margin="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtBoxSearch" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="120" Height="30" Margin="5"/>
+            <Button ToolTipService.InitialShowDelay="0"
+                    ToolTipService.ShowDuration="2000"
+                    ToolTipService.BetweenShowDelay="10000"
+                    ToolTip="Højre klik på et produkt for at redigere det"
+                    Background="{x:Null}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    BorderBrush="{x:Null}"
+                    Margin="0 10 0 0">
+                <materialDesign:PackIcon Kind="InformationVariant" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Height="30" Foreground="#246882"/>
+            </Button>
         </StackPanel>
 
         <Button Content="Prisændring" Height="30" Width="110" Grid.Column="1" HorizontalAlignment="Right" Command="{Binding ChangePriceWindow}" Grid.Row="2"/>
@@ -35,8 +46,8 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Prod Nr." Width="120" DisplayMemberBinding="{Binding ProductID}" />
-                    <GridViewColumn Header="Prod Navn1" Width="120" DisplayMemberBinding="{Binding Productname1}" />
-                    <GridViewColumn Header="Prod Navn2" Width="120" DisplayMemberBinding="{Binding Productname2}" />
+                    <GridViewColumn Header="Prod Navn1" Width="120" DisplayMemberBinding="{Binding ProductName1}" />
+                    <GridViewColumn Header="Prod Navn2" Width="120" DisplayMemberBinding="{Binding ProductName2}" />
                     <GridViewColumn Header="Vare Enhed" Width="120" DisplayMemberBinding="{Binding ItemUnit}" />
                     <GridViewColumn Header="Alias" Width="120" DisplayMemberBinding="{Binding Synonyms}" />
                     <GridViewColumn Header="Prod Group" Width="120" DisplayMemberBinding="{Binding ProductGroup}" />
@@ -45,7 +56,7 @@
                     <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding Price}" />
                     <GridViewColumn Header="Rabat" Width="120" DisplayMemberBinding="{Binding Discount}" />
                     <GridViewColumn Header="Net. Pris" Width="120" DisplayMemberBinding="{Binding NetPrice}" />
-                    <GridViewColumn Header="PCode" Width="120" DisplayMemberBinding="{Binding Pcode}" />
+                    <GridViewColumn Header="PCode" Width="120" DisplayMemberBinding="{Binding PCode}" />
                     <GridViewColumn Header="DistCode" Width="120" DisplayMemberBinding="{Binding DistCode}" />
                 </GridView>
             </ListView.View>
@@ -56,5 +67,6 @@
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
+
     </Grid>
 </Page>

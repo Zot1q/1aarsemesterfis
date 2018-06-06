@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Newjan
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the StatisticCustomerPage
+    /// </summary>
     class StatisticCustomerVM
     {
         private List<Customer> _custStatisticList;

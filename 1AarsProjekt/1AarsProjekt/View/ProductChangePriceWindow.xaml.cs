@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 
 namespace _1AarsProjekt.View
 {
+    /// <Author>
+    /// Christian and Newjan
+    /// </Author>
     /// <summary>
     /// Interaction logic for ProductChangePriceWindow.xaml
     /// </summary>

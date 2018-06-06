@@ -12,6 +12,12 @@ using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the CustomerCreatePage
+    /// </summary>
     class CustomerCreateVM : INotifyPropertyChanged
     {
         public Customer Customer { get; set; }

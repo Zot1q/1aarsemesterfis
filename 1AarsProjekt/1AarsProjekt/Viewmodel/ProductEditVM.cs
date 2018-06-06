@@ -11,6 +11,12 @@ using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai and Newjan
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the ProductEditPage
+    /// </summary>
     public class ProductEditVM : INotifyPropertyChanged
     {
         public List<Product> ListProducts { get; set; }

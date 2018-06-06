@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_1AarsProjekt.View"
       xmlns:agreement="clr-namespace:_1AarsProjekt.Viewmodel"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="425" d:DesignWidth="750"
       Title="AgreementWindow" Background="White">
@@ -14,7 +15,7 @@
     <Page.DataContext>
         <StaticResource ResourceKey="agreeVm"/>
     </Page.DataContext>
-    
+
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -29,27 +30,35 @@
         <!--<TextBlock Text="Opret aftale for en kunde" HorizontalAlignment="Center" FontSize="28" Grid.Column="1" VerticalAlignment="Center"/>-->
         <StackPanel Height="370" Grid.Column="1" Grid.RowSpan="2" Grid.Row="0" Grid.ColumnSpan="2">
             <ListView ItemsSource="{Binding CustList}" SelectedIndex="{Binding SelectedIndex}" Name="lvAgreementCreate" Height="425">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding CustomerID}" />
-                    <GridViewColumn Header="Navn" Width="125" DisplayMemberBinding="{Binding CompanyName}" />
-                    <GridViewColumn Header="Addresse" Width="125" DisplayMemberBinding="{Binding Address}" />
-                    <GridViewColumn Header="E-mail" Width="125" DisplayMemberBinding="{Binding Email}" />
-                    <GridViewColumn Header="Kontakt person" Width="150" DisplayMemberBinding="{Binding ContactPers}" />
-                    <GridViewColumn Header="Status" Width="125" DisplayMemberBinding="{Binding Status}" />
-                </GridView>
-            </ListView.View>
-            <ListView.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Opret aftale" Command="{Binding OpenAgreementWin}"/>
-                </ContextMenu>
-            </ListView.ContextMenu>
-        </ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding CustomerID}" />
+                        <GridViewColumn Header="Navn" Width="125" DisplayMemberBinding="{Binding CompanyName}" />
+                        <GridViewColumn Header="Addresse" Width="125" DisplayMemberBinding="{Binding Address}" />
+                        <GridViewColumn Header="E-mail" Width="125" DisplayMemberBinding="{Binding Email}" />
+                        <GridViewColumn Header="Kontakt person" Width="150" DisplayMemberBinding="{Binding ContactPers}" />
+                        <GridViewColumn Header="Status" Width="125" DisplayMemberBinding="{Binding Status}" />
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Opret aftale" Command="{Binding OpenAgreementWin}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
         </StackPanel>
-        <StackPanel Width="120" Height="50" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button Content="Opret aftale" Command="{Binding OpenAgreementWin}" Background="#94C514" Foreground="#246882" Margin="0, 0, 0, 0 "/>
-        </StackPanel>
-
+        <StackPanel Width="120" Height="50" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Button ToolTipService.InitialShowDelay="0"
+                    ToolTipService.ShowDuration="2000"
+                    ToolTipService.BetweenShowDelay="10000"
+                    ToolTip="Højre klik på en kunde for at oprette en aftale"
+                    Background="{x:Null}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    BorderBrush="{x:Null}"
+                    Margin="402,10,36,8" Grid.Column="1" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon Kind="InformationVariant" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Height="30" Foreground="#246882"/>
+        </Button>
     </Grid>
 </Page>
 <!--<StackPanel Orientation="Horizontal">

@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 
 namespace _1AarsProjekt.View
 {
+    /// <Author>
+    /// Newjan
+    /// </Author>
     /// <summary>
     /// Interaction logic for WelcomePage.xaml
     /// </summary>

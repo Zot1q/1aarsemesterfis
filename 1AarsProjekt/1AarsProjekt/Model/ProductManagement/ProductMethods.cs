@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Model.ProductManagement
 {
+    /// <Author>
+    /// Nicolai, Newjan and Christian
+    /// </Author>
     /// <summary>
     /// Class which contains methods and list propertie and gets data from DAL.
     /// </summary>

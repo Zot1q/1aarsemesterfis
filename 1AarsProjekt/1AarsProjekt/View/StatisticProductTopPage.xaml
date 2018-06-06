@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
 
-        <ListView HorizontalAlignment="Left" ItemsSource="{Binding TopList}" SelectedItem="{Binding SelectedIndex}" SelectionMode="Multiple" Name="lvProducts" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Width="auto">
+        <ListView HorizontalAlignment="Left" ItemsSource="{Binding TopList}" SelectedItem="{Binding SelectedIndex}" SelectionMode="Single" Name="lvProducts" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Width="auto">
             <ListView.View>
                 <GridView>
                     <!--<GridViewColumn Header="Aftale Nr." Width="200" DisplayMemberBinding="{Binding AgreementID}" />-->

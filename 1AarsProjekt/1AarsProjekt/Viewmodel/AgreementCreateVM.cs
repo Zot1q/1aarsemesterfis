@@ -13,10 +13,16 @@ using System.Windows;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the AgreementCreatePage
+    /// </summary>
     class AgreementCreateVM : INotifyPropertyChanged
     {
-        public Agreement Agreement { get; set; }
-        public MethodCommand CreateAgreement { get; set; }
+        public Agreement Agreement { get; set; } // Binding property
+        public MethodCommand CreateAgreement { get; set; } // Binding property. Binded to the button Command
         public List<string> MainGroup { get; set; }
         public int TimeToAdd { get; set; }
 
@@ -27,6 +33,9 @@ namespace _1AarsProjekt.Viewmodel
             CreateAgreement = new MethodCommand(AgreementCreate);
             GetProductGroups();
         }
+        /// <summary>
+        /// Validate data and sending the object to DataAccessLayer
+        /// </summary>
         public void AgreementCreate()
         {
             Agreement.ExpirationDate = DateTime.Now.AddMonths(TimeToAdd);
@@ -47,10 +56,12 @@ namespace _1AarsProjekt.Viewmodel
             {
                 AgreementMethods.CreateAgreementTest(Agreement);
                 MessageBox.Show("Aftale oprettet!");
-                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
+                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close(); // Closing current active window
             }
         }
-
+        /// <summary>
+        /// Method listing products and getting the maingroup afterwards
+        /// </summary>
         private void GetProductGroups()
         {
             List<Product> listProducts = ProductMethods.ListProducts();

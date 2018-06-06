@@ -12,9 +12,11 @@ using System.Threading.Tasks;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Newjan
+    /// </Author>
     /// <summary>
     /// Class which gets agreements in list
-    /// 
     /// </summary>
     class StatisticAgreementVM : INotifyPropertyChanged
     {

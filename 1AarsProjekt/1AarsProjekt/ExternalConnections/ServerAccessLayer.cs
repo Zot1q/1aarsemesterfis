@@ -7,11 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace _1AarsProjekt.ExternalConnections
-
-    /// <summary>
-    /// This class is used to handle the traffic between the Linux server, and the computer. 
-    /// </summary>
-    {
+/// <Author>
+/// Thomas
+/// </Author>
+/// <summary>
+/// This class is used to handle the traffic between the Linux server, and the computer. 
+/// </summary>
+{
     class ServerAccessLayer
     {
         public static void DownloadFiles()

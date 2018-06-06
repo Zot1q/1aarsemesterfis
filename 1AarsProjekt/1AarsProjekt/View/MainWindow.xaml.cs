@@ -21,6 +21,9 @@ using System.Windows.Shapes;
 
 namespace _1AarsProjekt
 {
+    /// <Author>
+    /// Nicolai and Newjan
+    /// </Author>
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -28,8 +31,9 @@ namespace _1AarsProjekt
     {
         public MainWindow()
         {
-            //CSVHandler handler = new CSVHandler();
+            CSVHandler handler = new CSVHandler();
             //AgreementMethods agreementMethods = new AgreementMethods();
+            //handler.CreateCSV();
 
             //handler.CreateCSV();
             //Thread csvthread = new Thread(handler.CreateProductListToDB);

@@ -16,6 +16,9 @@ using System.Windows.Shapes;
 
 namespace _1AarsProjekt.View
 {
+    /// <Author>
+    /// Newjan and Christian
+    /// </Author>
     /// <summary>
     /// Interaction logic for StatisticPage.xaml
     /// </summary>

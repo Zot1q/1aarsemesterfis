@@ -15,6 +15,12 @@ using System.Windows.Input;
 
 namespace _1AarsProjekt.Viewmodel
 {
+    /// <Author>
+    /// Nicolai
+    /// </Author>
+    /// <summary>
+    /// Class defines all that has to do with the CustomerListPage
+    /// </summary>
     public class CustomerListVM : INotifyPropertyChanged
     {
         public MethodCommand OpenCustomerEditWindow { get; set; }
