@@ -77,7 +77,7 @@ namespace _1AarsProjekt.Model.CSV
                 fileDate.Add(DateTime.ParseExact(file.Substring(file.Length - 12, 8), "ddMMyyyy", CultureInfo.InvariantCulture));
             }
             fileDate.Sort();
-            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 2].ToString("ddMMyyyy");
+            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 1].ToString("ddMMyyyy");
         }
 
         public bool FindNewestFile()
@@ -94,7 +94,7 @@ namespace _1AarsProjekt.Model.CSV
                 fileDate.Add(DateTime.ParseExact(file.Substring(file.Length - 12, 8), "ddMMyyyy", CultureInfo.InvariantCulture));
             }
             fileDate.Sort();
-            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 2].ToString("ddMMyyyy");
+            NewFile = "ApEngros_PriCat_" + fileDate[fileDate.Count - 1].ToString("ddMMyyyy");
 
             return CheckNewestFile(NewFile);
         }
@@ -140,15 +140,16 @@ namespace _1AarsProjekt.Model.CSV
 
         private void CompareFiles(List<string> newList, List<string> oldList)
         {
-            List<string[]> addListSplitted = SplitStrings(newList.Except(oldList).ToList()); //Fjerner duplicates i listerne
+            List<string[]> addListSplitted = SplitStrings(newList.Except(oldList).ToList()); //Laver AddList med de strings der ikke er i den gamle liste.
             List<string[]> oldListSplitted = SplitStrings(oldList);
             List<string[]> newListSplitted = SplitStrings(newList);
-            List<string[]> deleteListSplitted = SplitStrings(oldList.Except(newList).ToList());
+            List<string[]> deleteListSplitted = SplitStrings(oldList.Except(newList).ToList()); // Laver en DeleteList med de strings der ikke er i den nye liste.
 
 
             UpdateOrNewEntry(addListSplitted, oldListSplitted);
             DeletedProducts(newListSplitted, deleteListSplitted);
         }
+
 
         private void DeletedProducts(List<string[]> newList, List<string[]> deleteList)
         {
@@ -300,18 +301,19 @@ namespace _1AarsProjekt.Model.CSV
             while (true)
             {
                 List<Agreement> agreements = new List<Agreement>();
-                agreements = DataAccessLayer.CreateAgreementList();
+                agreements = DataAccessLayer.CreateAgreementList();  //Hemter liste af aggreements fra db.
 
-                List<Product> linesFromDB = new List<Product>();
+                List<Product> linesFromDB = new List<Product>();    
                 string header = "CompanyID;InterchangeId;ProductID;ProductName1;ProductName2;ItemUnit;ProductDesreptionLong;Synonyms;ProductGroup;Weight;MinQuantity;Price;Discount;NetPrice;Pcode;DistCode;";
 
                 foreach (Agreement agree in agreements)
                 {
-                    linesFromDB = DataAccessLayer.CreateList(agree.ProductGroup);
+                    linesFromDB = DataAccessLayer.CreateList(agree.ProductGroup);       //Henter liste af produkter fra DB, ved hjælp af ProductGroup fra agreements.
                     char pad = '0';
 
-                    string custID = Convert.ToString(agree.CustomerID).PadLeft(5, pad);
+                    string custID = Convert.ToString(agree.CustomerID).PadLeft(5, pad); 
                     string localDirectory = Directory.GetCurrentDirectory() + @"\CSVFilesToUpload\";
+
                     Directory.CreateDirectory(localDirectory);
 
                     //string filePath = @"C:\Test\";
